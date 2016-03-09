@@ -91,11 +91,13 @@ $(function() {
 				<span class="fa fa-search icon"></span>
 				<input class="academics-search-icon" type="text" placeholder="Search for degree programs by name or area of interest" />
 			</div>
-			<div class="col-md-12 academics-box academics-colleges-box fade-in">
-				<span class="title">Explore all 13 colleges at UCF</span>
-				<span class="fa fa-chevron-down icon"></span>
-				<a href="#expand"></a>
-				<div class="college-dropdown-content">
+			<div class="academics-colleges-box-container">
+				<div class="col-md-12 academics-box academics-colleges-box fade-in">
+					<span class="title">Explore all 13 colleges at UCF</span>
+					<span class="fa fa-chevron-down icon"></span>
+					<a href="#expand"></a>
+				</div>
+				<div class="col-md-12 college-dropdown-content">
 					<ul class="college-list first">
 						<li><a href="#arts">Arts &amp; Humanities</a></li>
 						<li><a href="#business">Burnett Honors College</a></li>
@@ -118,6 +120,7 @@ $(function() {
 				</div>
 			</div>
 		</div>
+
 	</div>
 </div>
 <div class="academics-content page-content" id="contentcol">
