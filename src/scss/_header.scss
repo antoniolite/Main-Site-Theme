@@ -3,6 +3,8 @@
   @include center-block();
   margin-bottom: 20px;
   margin-top: 20px;
+  position: relative;
+  z-index: 30;
 
   li {
     @media (max-width: $screen-sm-max) {
