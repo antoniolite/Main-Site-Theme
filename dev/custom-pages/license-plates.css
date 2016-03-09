@@ -1,0 +1,166 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
+
+
+#header-menu .last a {
+  background-color: #fff;
+}
+
+.page-media-header {
+  background-color: #F8C400;
+  height: auto;
+  overflow: auto;
+}
+
+.page-media-container {
+  left: unset;
+  position: static;
+  right: unset;
+}
+
+#contentcol {
+  counter-reset: item;
+  font-family: "Gotham SSm 4r", "Gotham SSm A", "Gotham SSm B";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@media (max-width: 767px) {
+  #contentcol {
+    font-size: 18px;
+  }
+}
+
+#contentcol h2 {
+  font-size: 21px;
+}
+
+#contentcol a {
+  color: #08c;
+  border-bottom: 0 solid transparent;
+}
+
+#contentcol a:hover,
+#contentcol a:active,
+#contentcol a:focus {
+  border-bottom: 0 solid transparent;
+  color: #23527c;
+  text-decoration: underline;
+}
+
+#contentcol .h2-tallsans {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 42px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -.04em;
+  line-height: 1;
+  margin-bottom: 8px;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  #contentcol .h2-tallsans {
+    font-size: 34px;
+  }
+}
+
+#contentcol .numbered-list {
+  font-family: "Gotham SSm 8r", "Gotham SSm A", "Gotham SSm B";
+  font-style: normal;
+  font-weight: 800;
+  margin-bottom: 35px;
+  margin-top: 25px;
+}
+
+#contentcol .numbered-list-item {
+  counter-increment: item;
+  display: block;
+  margin-bottom: 20px;
+  padding-left: 52px;
+  text-indent: -52px;
+  line-height: 1.3;
+}
+
+@media (max-width: 767px) {
+  #contentcol .numbered-list-item {
+    margin-bottom: 15px;
+    padding-left: 45px;
+    text-indent: -46px;
+  }
+}
+
+#contentcol .numbered-list-item:before {
+  background-color: #F8C400;
+  border-radius: 100%;
+  color: white;
+  content: counter(item, decimal);
+  display: inline-block;
+  height: 35px;
+  margin-right: 10px;
+  padding: 5px 0;
+  position: relative;
+  text-align: center;
+  text-indent: 0;
+  top: 4px;
+  vertical-align: bottom;
+  width: 35px;
+}
+
+@media (max-width: 767px) {
+  #contentcol .numbered-list-item:before {
+    height: 30px;
+    padding: 4px 0;
+    top: 2px;
+    width: 30px;
+  }
+}
+
+#contentcol .list-item-desc {
+  font-family: "Gotham SSm 4r", "Gotham SSm A", "Gotham SSm B";
+  font-size: 17px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: italic;
+  font-weight: 400;
+  display: block;
+  margin-top: 2px;
+  text-indent: 0;
+}
+
+@media (max-width: 767px) {
+  font-size: 15px;
+}
+
+#contentcol .sidebar {
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 35px;
+  margin-left: 25px;
+  margin-top: 30px;
+  padding: 25px;
+}
+
+@media (max-width: 767px) {
+  #contentcol .sidebar {
+    margin-left: 0;
+  }
+}
+
+#contentcol .sidebar a,
+#contentcol .sidebar a:hover,
+#contentcol .sidebar a:active,
+#contentcol .sidebar a:focus {
+  color: #fff;
+  text-decoration: underline;
+}
+
+#contentcol .sidebar h2 + p {
+  margin-top: 20px;
+}
+
+#contentcol .sidebar p {
+  line-height: 1.4;
+}
