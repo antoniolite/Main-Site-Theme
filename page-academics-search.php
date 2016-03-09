@@ -2,77 +2,18 @@
 get_header(); the_post();
 
 $header_img = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_img', true ) );
-$header_video_mp4 = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_mp4', true ) );
-$header_video_webm = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_webm', true ) );
-$header_video_ogg = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_ogg', true ) );
 $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_media_header_content', true ) ) );
-
-$use_video = $header_video_mp4 || $header_video_webm || $header_video_ogg;
-$placeholder_attrs = '';
-
-if ( $use_video ) {
-	$placeholder_attrs .= $header_video_mp4 ? 'data-mp4="'. $header_video_mp4 .'" ' : '';
-	$placeholder_attrs .= $header_video_webm ? 'data-webm="'. $header_video_webm .'" ' : '';
-	$placeholder_attrs .= $header_video_ogg ? 'data-ogg="'. $header_video_ogg .'" ' : '';
-}
 ?>
 
 <script>
-
 $(function() {
-
-	// var blurBackground = function(){
-	// 	$('.page-media-header').addClass('blur');
-	// };
-
-	// setTimeout(blurBackground, 100);
-
-
-	// setTimeout(function() {
-	// 	$('.academics-search-box').addClass('move');
-	// }, 200);
-	// setTimeout(function() {
-	// 	$('.academics-colleges-box').addClass('move');
-	// }, 500);
-
-	// var blurBackground = function(){
-	// 	$('.page-media-header').addClass('blur');
-	// };
-
-
 	$('#header-nav-wrap').addClass('light');
-	$('.page-media-header').addClass('blur');
-	$('.fade-in').each(function(index) {
-		$(this).css({
+
+	$('.fade-in').css({
 			opacity: 1,
 			transform: 'translateY(0)'
 		});
-	});
-
-	// var time = 500;
-	// $('.fade-in').each(function(index) {
-	// 	$this = $(this);
-	// 	setTimeout(function() {
-	// 		console.log('fade-in');
-	// 		console.log($this);
-
-	// 		$this.css({
-	// 			opacity: 1,
-	// 			transform: 'translateY(5px)'
-	// 		});
-	// 	}, time * index);
-	// });
-
-	// setTimeout(function() {
-	// 	console.log('hello');
-	// 	$('.academics-intro').css({
-	// 			opacity: 1,
- //  			transform: 'translateY(5px)' });
-	// }, 500);
-
 });
-
-
 </script>
 
 </div> <!-- close .container -->
@@ -84,7 +25,7 @@ $(function() {
 		<!-- <?php echo $header_content; ?> -->
 		<div class="container-fluid top-search">
 			<div class="col-md-10 academics-intro fade-in">
-				<p>Whatever your passion, we’ve got the program to get you going in the right direction.</p>
+				<?php echo $header_content; ?>
 			</div>
 			<div class="col-md-12 academics-box academics-search-box fade-in">
 				<span class="title">Find the program for you</span>
@@ -192,8 +133,6 @@ $(function() {
 				</div>
 			</div>
 		</div>
-
-
 	</article>
 </div>
 
