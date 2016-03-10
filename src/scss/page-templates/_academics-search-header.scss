@@ -1,16 +1,26 @@
 $font-family-serif-alt: "Archer", "Archer A", "Archer B", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif !default;
 $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, sans-serif !default;
-$font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Impact, Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Helvetica, Arial, sans-serif !default;
+
+.container {
+  width: $container-lg;
+}
 
 .academics {
   overflow: hidden;
+
+  h1 {
+    font-weight: 400;
+    font-size: 30px;
+    padding-top: 40px;
+  }
 
   .top-search {
     max-width: 1170px;
   }
 
   .page-media-header {
-    height: 950px;
+    height: 850px;
     overflow: hidden;
     width: 100%;
   }
@@ -64,7 +74,7 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Impact,
       position: absolute;
       right: 15px;
       top: 18px;
-      width: 50%;
+      width: 65%;
       z-index: 1;
 
       ::-webkit-input-placeholder {
@@ -129,7 +139,7 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Impact,
   }
 }
 
-.academics-content.page-content {
+.academics-content.page-content#contentcol {
   background: #fff;
   font-family: $font-family-sans-serif-alt;
   font-size: 16px;
@@ -138,6 +148,10 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Impact,
   min-height: 100px;
   top: -25px;
   z-index: 20;
+
+  .main-content-container {
+    margin-bottom: 150px;
+  }
 
   h2 {
     display: inline-block;
@@ -175,6 +189,43 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Impact,
     margin-top: 0;
   }
 
+  .buttons-heading {
+    border-top: solid 1px #e7e7e7;
+    color: #757575;
+    font-size: 14px;
+    font-weight: 700;
+    padding-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .count-button {
+    background-color: $ucf-gold;
+    border: none;
+    border-bottom: 0;
+    color: #000;
+    font-family: $font-family-sans-serif-alt;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+
+    .count {
+      color: #811f1f;
+      display: inline-block;
+      width: 30px;
+      border-right: solid 1px #ffe585;
+      text-align: right;
+      padding-right: 5px;
+    }
+
+    &:hover {
+      border: 0;
+      background: #f1bd00;
+      border-bottom: 0;
+    }
+  }
+
   ul {
     list-style-type: none;
     padding-left: 0;
@@ -194,16 +245,6 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Impact,
       }
   }
 }
-
-#header-nav-wrap.light {
-  li a {
-    &:link,
-    &:visited {
-      color: #fff;
-    }
-  }
-}
-
 
 .academics .page-media-header.blur {
   filter: blur(5px);
