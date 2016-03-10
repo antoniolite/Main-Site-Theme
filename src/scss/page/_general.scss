@@ -106,6 +106,17 @@
   }
 }
 
+// Overide mobile colors to match desktop
+#degree-single {
+    #contentcol .mobile-degree-cta a.btn-success,
+    #contentcol .mobile-degree-cta a.btn-primary {
+        color: #fff;
+    }
+
+    #contentcol .mobile-degree-cta a.btn-default {
+        color: #000;
+    }
+}
 
 // Subpages - Center Column (Content Column)
 #contentcol {
@@ -264,6 +275,8 @@
       display: none;
     }
   }
+
+
 }
 
 
@@ -301,6 +314,7 @@
       width: 530px;
     }
   }
+
 }
 
 #sidebar_r_facebook_wrap > iframe {

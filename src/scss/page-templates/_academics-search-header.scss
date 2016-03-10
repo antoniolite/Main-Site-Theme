@@ -1,0 +1,244 @@
+$font-family-serif-alt: "Archer", "Archer A", "Archer B", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif !default;
+$font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Impact, Helvetica, Arial, sans-serif !default;
+
+.academics {
+  overflow: hidden;
+
+  .top-search {
+    max-width: 1170px;
+  }
+
+  .page-media-header {
+    height: 950px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .page-media-container {
+    top: 0;
+  }
+
+  .academics-intro {
+    color: #000;
+    font-family: $font-family-serif-alt;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 40px;
+    margin-top: 60px;
+  }
+
+  .academics-box {
+    background: rgba(255, 201, 4, 0.9);
+    color: #000;
+    font-family: $font-family-sans-serif-alt-condensed:
+    font-size: 37px;
+    font-weight: bold;
+    padding: 15px 30px;
+    transition: all 1.8s;
+
+    .title {
+      text-transform: uppercase;
+    }
+  }
+
+  .academics-colleges-box {
+    margin-top: 60px;
+  }
+
+  .academics-search-box {
+    input {
+      background: #f9dd78;
+      border: none;
+      border-radius: 50px;
+      color: #000;
+      float: right;
+      font-family: $font-family-sans-serif-alt;
+      font-size: 17px;
+      font-style: italic;
+      font-weight: 100;
+      letter-spacing: .5px;
+      outline: 0;
+      padding: 13px 54px 13px 25px;
+      position: absolute;
+      right: 15px;
+      top: 18px;
+      width: 50%;
+      z-index: 1;
+
+      ::-webkit-input-placeholder {
+        color: rgba(0, 0, 0, 0.8);
+      }
+      :-moz-placeholder {
+        color: rgba(0, 0, 0, 0.8);
+      }
+      ::-moz-placeholder {
+        color: rgba(0, 0, 0, 0.8);
+      }
+      :-ms-input-placeholder {
+        color: rgba(0, 0, 0, 0.8);
+      }
+      :placeholder-shown {
+        color: rgba(0, 0, 0, 0.8);
+      }
+
+    }
+  }
+
+  .icon {
+    position: absolute;
+    right: 26px;
+    top: 26px;
+    z-index: 2;
+  }
+
+
+  .college-dropdown-content {
+    background: rgba(255, 225, 113, 0.9);
+    font-size: 18px;
+    overflow: auto;
+    padding: 0 15px;
+
+    ul {
+      float: left;
+      list-style-type: none;
+      margin: 0;
+      padding: 0 15px;
+      width: 30%;
+
+      li {
+        border-bottom: 1px solid #e4c03c;
+        font-family: $font-family-sans-serif-alt;
+        font-size: 18px;
+        font-weight: normal;
+        padding: 10px 0;
+
+        &:last-child {
+          border: 0;
+        }
+
+        a {
+          &:link,
+          &:visited {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+.academics-content.page-content {
+  background: #fff;
+  font-family: $font-family-sans-serif-alt;
+  font-size: 16px;
+  position: relative;
+  line-height: 28px;
+  min-height: 100px;
+  top: -25px;
+  z-index: 20;
+
+  h2 {
+    display: inline-block;
+    font-family: $font-family-sans-serif-alt;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-bottom: 18px;
+    margin-top: 60px;
+    padding: 0 0 10px 0;
+    text-transform: uppercase;
+
+    @media (max-width: $screen-xs-max) {
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+
+    &::after {
+      background: $ucf-gold;
+      content: " ";
+      display: block;
+      height: 2px;
+      margin-top: 15px;
+      width: 25px;
+    }
+  }
+
+  h3 {
+    font-family: $font-family-serif-alt;
+    font-size: 37px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    margin-top: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .college {
+    border-bottom: solid 1px #e7e7e7;
+    margin-bottom: 70px;
+    padding-bottom: 20px;
+
+    .description {
+      padding-bottom: 20px;
+    }
+
+    img {
+      margin-bottom: 30px;
+      }
+  }
+}
+
+#header-nav-wrap.light {
+  li a {
+    &:link,
+    &:visited {
+      color: #fff;
+    }
+  }
+}
+
+
+.academics .page-media-header.blur {
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+}
+
+.academics .academics-intro,
+.academics .academics-colleges-box,
+.academics .academics-search-box {
+  opacity: 0;
+  transition: all 1s;
+  transform: translateY(-10px);
+}
+
+.academics .academics-intro {
+  transition-delay: .5s;
+}
+
+.academics .academics-search-box {
+  transition-delay: 1s;
+}
+
+.academics .academics-colleges-box {
+  transition-delay: 1.5s;
+}
+
+.academics-colleges-box-container .college-dropdown-content {
+  display: block;
+  opacity: 0;
+  transition: all 0.3s;
+  transform: translateY(-5px);
+}
+
+.academics-colleges-box-container:hover .college-dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
