@@ -122,7 +122,6 @@ $(function() {
 					<ul>
 						<li>Visit <a href="#">art.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
-						<li><a href="#">View Degree Programs</a></li>
 					</ul>
 					<h4 class="buttons-heading">Degree Programs</h4>
 					<ul>
@@ -141,7 +140,6 @@ $(function() {
 					<ul>
 						<li>Visit <a href="#">art.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
-						<li><a href="#">View Degree Programs</a></li>
 					</ul>
 					<h4 class="buttons-heading">Degree Programs</h4>
 					<ul>
