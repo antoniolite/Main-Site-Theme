@@ -1,0 +1,8 @@
+.container {
+  width: 1170px;
+}
+
+#header-nav-wrap li a:link,
+#header-nav-wrap li a:visited {
+  color: #fff;
+}

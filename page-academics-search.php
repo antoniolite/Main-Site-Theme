@@ -7,8 +7,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 
 <script>
 $(function() {
-	$('#header-nav-wrap').addClass('light');
-
 	$('.fade-in').css({
 			opacity: 1,
 			transform: 'translateY(0)'
@@ -24,15 +22,21 @@ $(function() {
 	<div class="page-media-container">
 		<!-- <?php echo $header_content; ?> -->
 		<div class="container-fluid top-search">
+			<div class="col-md-12">
+				<h1 id="page-title">Undergraduate and Academic Degrees</h1>
+			</div>
+		</div>
+
+		<div class="container-fluid top-search">
 			<div class="col-md-10 academics-intro fade-in">
-				<?php echo $header_content; ?>
+				<p>Whatever your passion, we’ve got the program to get you going in the right direction.</p>
 			</div>
 			<div class="col-md-12 academics-box academics-search-box fade-in">
 				<span class="title">Find the program for you</span>
 				<span class="fa fa-search icon"></span>
 				<input class="academics-search-icon" type="text" placeholder="Search for degree programs by name or area of interest" />
 			</div>
-			<div class="academics-colleges-box-container">
+<!-- 			<div class="academics-colleges-box-container">
 				<div class="col-md-12 academics-box academics-colleges-box fade-in">
 					<span class="title">Explore all 13 colleges at UCF</span>
 					<span class="fa fa-chevron-down icon"></span>
@@ -59,18 +63,18 @@ $(function() {
 						<li><a href="#arts">Business Administration</a></li>
 					</ul>
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 	</div>
 </div>
 <div class="academics-content page-content" id="contentcol">
 	<article role="main">
-		<div class="container">
+		<div class="container main-content-container">
 			<div class="row">
 				<div class="col-md-12 col-sm-12">
 					<h2 class="section-title">Colleges at UCF</h2>
-					<?php the_content(); ?>
+						<?php the_content(); ?>
 				</div>
 			</div>
 		</div>
@@ -82,25 +86,33 @@ $(function() {
 					<ul>
 						<li>Visit <a href="#">art.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
-						<li><a href="#">View Degree Programs</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">25</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">5</span> Graduate Programs</a></li>
 					</ul>
 				</div>
 				<div class="col-md-8 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett-small.png" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/ucf_seal_strip.jpg" alt="" />
 					<p>From literature to philosophy to digital media, our faculty members hone their creative skills and enjoy an environment for artistic expression of every kind. We empower faculty to explore their creative interests in everything from music, performing arts, history, women’s studies and more. With 17 departments, as well as new facilities such as our Performing Arts Center, the college embodies forward-thinking teaching and research in arts and humanities.</p>
 				</div>
 			</div>
 			<div class="row college">
 				<div class="col-md-4">
-					<h3 id="business">Buisiness Admin</h3>
+					<h3 id="business">Buisiness Administration</h3>
 					<ul>
 						<li>Visit <a href="#">art.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
-						<li><a href="#">View Degree Programs</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">22</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">6</span> Graduate Programs</a></li>
 					</ul>
 				</div>
 				<div class="col-md-8 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/ucf-seal-2-small.png" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" alt="" />
 					<p>From literature to philosophy to digital media, our faculty members hone their creative skills and enjoy an environment for artistic expression of every kind. We empower faculty to explore their creative interests in everything from music, performing arts, history, women’s studies and more. With 17 departments, as well as new facilities such as our Performing Arts Center, the college embodies forward-thinking teaching and research in arts and humanities.</p>
 				</div>
 			</div>
@@ -112,23 +124,33 @@ $(function() {
 						<li><a href="#">See College Departments</a></li>
 						<li><a href="#">View Degree Programs</a></li>
 					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">18</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">3</span> Graduate Programs</a></li>
+					</ul>
 				</div>
 				<div class="col-md-8 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett-small.png" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/ucf_seal_strip.jpg" alt="" />
 					<p>From literature to philosophy to digital media, our faculty members hone their creative skills and enjoy an environment for artistic expression of every kind. We empower faculty to explore their creative interests in everything from music, performing arts, history, women’s studies and more. With 17 departments, as well as new facilities such as our Performing Arts Center, the college embodies forward-thinking teaching and research in arts and humanities.</p>
 				</div>
 			</div>
 			<div class="row college">
 				<div class="col-md-4">
-					<h3 id="business">Buisiness Admin</h3>
+					<h3 id="business">Buisiness Administration</h3>
 					<ul>
 						<li>Visit <a href="#">art.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 						<li><a href="#">View Degree Programs</a></li>
 					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">23</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">15</span> Graduate Programs</a></li>
+					</ul>
 				</div>
 				<div class="col-md-8 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/ucf-seal-2-small.png" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" alt="" />
 					<p>From literature to philosophy to digital media, our faculty members hone their creative skills and enjoy an environment for artistic expression of every kind. We empower faculty to explore their creative interests in everything from music, performing arts, history, women’s studies and more. With 17 departments, as well as new facilities such as our Performing Arts Center, the college embodies forward-thinking teaching and research in arts and humanities.</p>
 				</div>
 			</div>
