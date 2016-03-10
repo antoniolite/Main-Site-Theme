@@ -5,15 +5,6 @@ $header_img = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_img',
 $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_media_header_content', true ) ) );
 ?>
 
-<script>
-$(function() {
-	$('.fade-in').css({
-			opacity: 1,
-			transform: 'translateY(0)'
-		});
-});
-</script>
-
 </div> <!-- close .container -->
 
 <div class="container-fullwidth page-media academics" id="<?php echo $post->post_name; ?>">
