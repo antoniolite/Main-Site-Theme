@@ -1264,33 +1264,21 @@ function page_specific_webfonts( $pageid ) {
 function wideheader_script() {
 	global $post;
 
-
-	$pageid = $post->ID;
-
-	if ( ! ( get_post_meta( $pageid, 'page_use_wideheader', True ) == 'on' ) ) {
+	// if the post doesn't have the wide setting set, ignore
+	if ( ! ( get_post_meta( $post->ID, 'page_use_wideheader', True ) == 'on' ) ) {
 		return;
 	}
 
 	foreach( Config::$scripts as $config_script ) {
 		if ($config_script["name"] === "ucfhb-script") {
-			$config_script["src"] = $config_script["src"] . "?use-1200-breakpoint=1";
-			$script = $config_script["src"];
+			$config_script["src"] .= "?use-1200-breakpoint=1";
+			$script_src = $config_script["src"];
 		}
 	}
 
 	wp_deregister_script( 'ucfhb-script' );
-	wp_register_script( 'ucfhb-script', $script );
+	wp_register_script( 'ucfhb-script', $script_src );
 	wp_enqueue_script( 'ucfhb-script' );
-
-	// wp_dequeue_script( 'ucfhb-script' );
-
-
-	// wp_register_script( 'ucfhb-script', $config_script["src"] );
-	// wp_enqueue_script( 'ucfhb-script' );
-
-	// array( 'admin' => True, 'src' => THEME_JS_URL.'/admin.min.js' ),
-	// array( 'name' => 'ucfhb-script', 'src' => '//universityheader.ucf.edu/bar/js/university-header.js' ),
-	// array( 'name' => 'theme-script', 'src' => THEME_JS_URL . '/script.min.js' ),
 }
 add_action( 'wp_enqueue_scripts', 'wideheader_script' );
 
