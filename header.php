@@ -32,7 +32,6 @@
 		// Load webfonts if enabled by page.
 		if ( is_page() ) {
 			page_specific_webfonts( $post->ID );
-			// page_specific_wideheader( $post->ID );
 		}
 
 		// Load page-specific css.
