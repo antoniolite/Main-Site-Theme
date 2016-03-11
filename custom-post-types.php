@@ -498,6 +498,13 @@ class Page extends CustomPostType {
 					'std' => 'off',
 				),
 				array(
+					'name' => 'Use wide University Header',
+					'desc' => '(Optional) Check this box to use the wide version of the <a href="https://universityheader.ucf.edu/">University Header bar</a>.',
+					'id' => $prefix.'use_wideheader',
+					'type' => 'checkbox',
+					'std' => 'off',
+				),
+				array(
 					'name' => 'Subheader',
 					'desc' => '(Optional) Display a Subheader above the page\'s content.',
 					'id' => $prefix.'subheader',

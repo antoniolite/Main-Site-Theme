@@ -1259,6 +1259,42 @@ function page_specific_webfonts( $pageid ) {
 
 
 /**
+ * Updates University Header link to include wide param
+ **/
+function wideheader_script() {
+	global $post;
+
+
+	$pageid = $post->ID;
+
+	if ( ! ( get_post_meta( $pageid, 'page_use_wideheader', True ) == 'on' ) ) {
+		return;
+	}
+
+	foreach( Config::$scripts as $config_script ) {
+		if ($config_script["name"] === "ucfhb-script") {
+			$config_script["src"] = $config_script["src"] . "?use-1200-breakpoint=1";
+			$script = $config_script["src"];
+		}
+	}
+
+	wp_deregister_script( 'ucfhb-script' );
+	wp_register_script( 'ucfhb-script', $script );
+	wp_enqueue_script( 'ucfhb-script' );
+
+	// wp_dequeue_script( 'ucfhb-script' );
+
+
+	// wp_register_script( 'ucfhb-script', $config_script["src"] );
+	// wp_enqueue_script( 'ucfhb-script' );
+
+	// array( 'admin' => True, 'src' => THEME_JS_URL.'/admin.min.js' ),
+	// array( 'name' => 'ucfhb-script', 'src' => '//universityheader.ucf.edu/bar/js/university-header.js' ),
+	// array( 'name' => 'theme-script', 'src' => THEME_JS_URL . '/script.min.js' ),
+}
+add_action( 'wp_enqueue_scripts', 'wideheader_script' );
+
+/**
  * Kill attachment, author, and daily archive pages.
  *
  * http://betterwp.net/wordpress-tips/disable-some-wordpress-pages/

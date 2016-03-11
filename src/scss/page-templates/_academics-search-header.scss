@@ -5,34 +5,78 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Helveti
 .academics {
   overflow: hidden;
 
-  h1 {
+  .college-info {
+    @media (max-width: $screen-sm-max) {
+      width: 50%;
+      display: inline-block;
+    }
+  }
+
+  .college-info {
+    @media (max-width: $screen-sm-max) {
+      width: 50%;
+      display: inline-block;
+    }
+  }
+
+  #page-title {
     font-weight: 400;
     font-size: 30px;
     padding-top: 40px;
+
+    @media (max-width: $screen-sm-max) {
+      padding-top: 20px;
+    }
   }
 
   .top-search {
     max-width: 1170px;
   }
 
+  &.page-media {
+    @media (max-width: $screen-lg-min) {
+      top: -110px;
+    }
+  }
+
   .page-media-header {
     height: 850px;
     overflow: hidden;
     width: 100%;
+
+    @media (max-width: $screen-sm-max) {
+      height: 720px;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      height: 650px;
+    }
   }
 
   .page-media-container {
     top: 0;
+
+    @media (max-width: $screen-sm-max) {
+      padding-top: 95px;
+    }
   }
 
   .academics-intro {
     color: #000;
     font-family: $font-family-serif-alt;
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 600;
     line-height: 1.25;
-    margin-bottom: 40px;
-    margin-top: 60px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+    @media (max-width: $screen-sm-max) {
+      font-size: 30px;
+    }
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 50px;
+      margin-top: 30px;
+    }
   }
 
   .academics-box {
@@ -252,7 +296,10 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Helveti
 .academics .academics-colleges-box,
 .academics .academics-search-box {
   opacity: 0;
-  transition: all 1s;
+  -webkit-transition: transform 1s, opacity 1s;
+     -moz-transition: transform 1s, opacity 1s;
+       -o-transition: transform 1s, opacity 1s;
+          transition: transform 1s, opacity 1s;
   transform: translateY(-10px);
 }
 

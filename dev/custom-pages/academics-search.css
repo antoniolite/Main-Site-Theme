@@ -1,8 +1,26 @@
-.container {
-  width: 1170px;
-}
-
 #header-nav-wrap li a:link,
 #header-nav-wrap li a:visited {
   color: #fff;
+}
+
+#site-nav-xs {
+  z-index: 100;
+}
+
+#header-menu.list-inline > li {
+  padding-left: 17px;
+  padding-right: 17px;
+}
+
+@media (max-width: 1176px) {
+  #header-menu.list-inline > li {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
 }
