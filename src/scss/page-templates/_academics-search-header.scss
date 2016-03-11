@@ -227,6 +227,10 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Helveti
     line-height: 1.1;
     margin-bottom: 30px;
     margin-top: 0;
+
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
   }
 
   .buttons-heading {
@@ -238,6 +242,22 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Helveti
     margin-top: 40px;
     margin-bottom: 20px;
     text-transform: uppercase;
+
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
+  }
+
+  .program-info-list {
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
+  }
+
+  .college-info {
+    @media (max-width: $screen-xs-max) {
+      text-align: center;
+    }
   }
 
   .count-button {
@@ -258,13 +278,29 @@ $font-family-sans-serif-alt-condensed: "Gotham Cond A", "Gotham Cond B", Helveti
       border-right: solid 1px #ffe585;
       text-align: right;
       padding-right: 5px;
+
+      // @media (max-width: $screen-sm-max) {
+      //   color: #000;
+      //   display: inline;
+      //   border: none;
+      //   padding-right: 0;
+      // }
     }
 
-    &:hover {
-      border: 0;
-      background: #f1bd00;
-      border-bottom: 0;
-    }
+    // @media (max-width: $screen-sm-max) {
+    //   background: none;
+    //   display: inline;
+    //   font-size: 14px;
+    //   width: auto;
+    //   padding: 0;
+    //   text-decoration: underline;
+    // }
+
+    // &:visited,
+    // &:hover {
+    //   text-decoration: none;
+    //   color: 1px solid #E50606;
+    // }
   }
 
   ul {
