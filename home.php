@@ -54,5 +54,8 @@
 
 <div class="container" id="home-footerwrap">
 	<div class="row">
-
+		<?php
+			wp_enqueue_script( 'phaser' );
+			wp_enqueue_script( 'knitrolib' );
+		?>
 		<?php get_footer();?>

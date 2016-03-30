@@ -624,6 +624,7 @@ Config::$scripts = array(
 	array( 'admin' => True, 'src' => THEME_JS_URL.'/admin.min.js' ),
 	array( 'name' => 'ucfhb-script', 'src' => '//universityheader.ucf.edu/bar/js/university-header.js' ),
 	array( 'name' => 'theme-script', 'src' => THEME_JS_URL . '/script.min.js' ),
+	
 );
 
 
@@ -636,6 +637,13 @@ function jquery_in_header() {
     wp_deregister_script( 'jquery' );
     wp_register_script( 'jquery', '//code.jquery.com/jquery-1.11.0.min.js' );
     wp_enqueue_script( 'jquery' );
+
+    wp_register_script( 'phaser', 'https://cdnjs.cloudflare.com/ajax/libs/phaser/2.4.6/phaser.min.js', null, null, true);
+    wp_register_script( 'knitrolib', THEME_JS_URL.'/knitrolib.min.js', array( 'jquery', 'phaser' ), null, true );
+    $translation_array = array(
+    	'knitroImg' => THEME_IMG_URL.'/knitro-2.png'
+    );
+    wp_localize_script( 'knitrolib', 'knitrolib', $translation_array );
 }
 add_action( 'wp_enqueue_scripts', 'jquery_in_header' );
 
