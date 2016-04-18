@@ -1685,11 +1685,11 @@ function degree_search_with_keywords( $search, &$wp_query ) {
 			return $search;
 		}
 
-		$search_term = $wp_query->query_vars[ 's' ];
+		$search_term = '%'.$wpdb->esc_like( $wp_query->query_vars[ 's' ] ).'%';
 
-		$search = " AND (
-			($wpdb->posts.post_title LIKE '%$search_term%')
-			OR ($wpdb->posts.post_content LIKE '%$search_term%')
+		$search = $wpdb->prepare( " AND (
+			($wpdb->posts.post_title LIKE %s)
+			OR ($wpdb->posts.post_content LIKE %s)
 			OR EXISTS
 			(
 				SELECT * FROM $wpdb->terms
@@ -1699,9 +1699,9 @@ function degree_search_with_keywords( $search, &$wp_query ) {
 					ON $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id
 				WHERE taxonomy = 'degree_keywords'
 					AND object_id = $wpdb->posts.ID
-					AND $wpdb->terms.name LIKE '%$search_term%'
+					AND $wpdb->terms.name LIKE %s
 			)
-		)";
+		)", $search_term, $search_term, $search_term);
 	}
 
 	return $search;
