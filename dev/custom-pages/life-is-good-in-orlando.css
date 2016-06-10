@@ -1,0 +1,412 @@
+.page-media-container {
+  display: table;
+  width: 100%;
+  height: 500px;
+
+ @media (max-width: 480px) {
+    height: 400px;
+    position: relative;
+    top: 0;
+  }
+}
+
+.page-media {
+  z-index: -3;
+}
+
+.title-wrapper {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.header-title {
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+}
+
+.site-title {
+  font-family: "Archer A", "Archer B", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+}
+
+.title-header-container {
+  display: table;
+  margin: 0 auto;
+  position: relative;
+  top: -80px;
+}
+@media (max-width: 480px) {
+  .title-header-container {
+    top: -100px;
+  }
+}
+.title-header-container > h1,
+.title-header-container > span {
+  background-color: #FC0;
+  background-color: rgba(255, 204, 0, 0.8);
+  display: block;
+  font-size: 50px;
+  font-weight: 800;
+  margin: 0;
+  padding: 4px 30px;
+}
+@media (max-width: 992px) {
+  .title-header-container > h1,
+  .title-header-container > span {
+    font-size: 68px;
+  }
+}
+@media (max-width: 768px) {
+  .title-header-container > h1,
+  .title-header-container > span {
+    font-size: 55px;
+  }
+}
+@media (max-width: 480px) {
+  .title-header-container > h1,
+  .title-header-container > span {
+    font-size: 40px;
+  }
+}
+
+a:link, a:visited, a:active, a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+.weather {
+  background: #000;
+  display: inline-block;
+  color: #fff;
+  font-family: "Archer A", "Archer B", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-size: 18px;
+  line-height: 32px;
+  padding: 6px 20px;
+  position: absolute;
+  right: 0;
+  letter-spacing: 1.35px;
+  font-weight: 100;
+}
+@media (max-width: 480px) {
+  .weather {
+    font-size: 13px;
+    padding: 0 14px;
+  }
+}
+.weather .icon {
+  display: inline-block;
+  padding-right: 6px;
+}
+@media (max-width: 480px) {
+  .weather .icon {
+    padding-right: 4px;
+  }
+}
+.weather .icon span {
+  color: #ffc904;
+  font-size: 27px;
+  display: inline-block;
+  position: relative;
+  bottom: -3px;
+}
+@media (max-width: 480px) {
+  .weather .icon span {
+    font-size: 20px;
+  }
+}
+.weather .vertical-rule {
+  border-left: 1px solid #fff;
+  margin-left: 4px;
+  margin-right: 6px;
+  width: 2px;
+}
+.weather .temp {
+  margin-left: 4px;
+  font-weight: 800;
+}
+
+.img-center {
+  margin: 0 auto;
+}
+
+
+.ie8 #contentcol .md-border-left {
+  border-left: 2px dotted #000;
+  padding-left: 30px;
+}
+
+.ie8 #contentcol .md-border-right {
+  border-right: 2px dotted #000;
+  padding-right: 30px;
+}
+
+.ie8 #contentcol .md-border-bottom {
+  border-bottom: 2px dotted #000;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+
+@media (min-width: 992px) {
+  #contentcol .md-border-left {
+    border-left: 2px dotted #000;
+    padding-left: 30px;
+  }
+
+  #contentcol .md-border-right {
+    border-right: 2px dotted #000;
+    padding-right: 30px;
+  }
+
+  #contentcol .md-border-bottom {
+    border-bottom: 2px dotted #000;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #contentcol .sm-border-left {
+    border-left: 2px dotted #000;
+    padding-left: 30px;
+  }
+
+  #contentcol .sm-border-right {
+    border-right: 2px dotted #000;
+    padding-right: 30px;
+  }
+
+  #contentcol .sm-border-bottom {
+    border-bottom: 2px dotted #000;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+
+  #contentcol .sm-border-top {
+    border-top: 2px dotted #000;
+    margin-top: 20px;
+    padding-top: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  #contentcol .xs-border-bottom {
+    border-bottom: 2px dotted #000;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+
+  #contentcol .xs-border-top {
+    border-top: 2px dotted #000;
+    margin-top: 20px;
+    padding-top: 15px;
+  }
+
+  #contentcol .xs-border-right {
+    border-right: 2px dotted #000;
+    padding-right: 15px;
+  }
+}
+
+#contentcol .heading-mtop {
+  margin-top: 15px;
+}
+
+#contentcol .embed-fadein * {
+  opacity: 0;
+  transition: opacity 1.25s ease-in-out;
+}
+
+#contentcol .embed-fadein.inview * {
+  opacity: 1;
+}
+
+/*page*/
+
+.life-is-good {
+  font-family: "Gotham SSm A","Gotham SSm B",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #333;
+  line-height: 1.7;
+}
+
+#contentcol .life-is-good h2 {
+  font-size: 26px;
+  font-family: "Archer A", "Archer B", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.lead {
+  font-size: 24px;
+  font-family: "Archer A", "Archer B", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.quick-stats {
+
+}
+
+.quick-stats ul li{
+  position: relative;
+  padding-top: 40px;
+}
+
+  .quick-stats ul li:after {
+    border-top: 1px solid #000;
+    content: '';
+    display: block;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    width: 30%;
+  }
+
+  .quick-stats ul li:first-child:after {
+    display: none;
+  }
+
+  .quick-stats .quick-stat-description {
+    text-transform: uppercase;
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .quick-stats .quick-stat-number {
+    font-size: 2em;
+    font-family: "Archer A", "Archer B", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    color: #fc0;
+    font-size: 86px;
+    font-weight: 500;
+    display: block;
+    margin: 0;
+    line-height: 1;
+  }
+
+.days-of-sun {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.days-of-sun .days-of-sun-number {
+    font-family: "Gotham Cond A", "Gotham Cond B",Helvetica,Arial,sans-serif;
+    font-size: 90px;
+    font-weight: 100;
+    display: block;
+    margin: 0;
+    line-height: 1;
+}
+
+.research-park {
+  text-transform: uppercase;
+}
+
+  .research-park .research-park-text {
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .research-park-heading {
+    color: #fc0;
+    font-family: "Gotham Cond A", "Gotham Cond B",Helvetica,Arial,sans-serif;
+    font-size: 55px;
+    font-weight: 600;
+    display: block;
+    margin: 0;
+    line-height: 1;
+  }
+
+.concert {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+  .concert .concert-head {
+    font-family: "Gotham Cond A", "Gotham Cond B",Helvetica,Arial,sans-serif;
+    font-size: 45px;
+    font-weight: 100;
+    display: block;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .concert p {
+    display: block;
+    width: 85%;
+    margin: 0 auto;
+  }
+
+.museums {
+  text-transform: uppercase;
+  font-size: 12px;
+  background: url('/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-ticket.png');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.museums-head {
+    color: #fc0;
+    font-family: "Gotham Cond A", "Gotham Cond B",Helvetica,Arial,sans-serif;
+    font-size: 55px;
+    font-weight: 600;
+    display: block;
+    margin: 0;
+    line-height: .85;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.food {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.food-head {
+    font-family: "Gotham Cond A", "Gotham Cond B",Helvetica,Arial,sans-serif;
+    font-size: 55px;
+    font-weight: 100;
+    display: block;
+    margin: 0;
+    line-height: .85;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.food img {
+  max-width: 45%;
+  margin: 0 auto;
+}
+
+.career-services {
+  text-transform: uppercase;
+}
+
+  .career-services-text {
+    max-width: 60%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .career-services img {
+    max-width: 70%;
+  }
+
+  .career-services-heading  {
+    color: #fc0;
+    font-family: "Gotham Cond A", "Gotham Cond B",Helvetica,Arial,sans-serif;
+    font-size: 55px;
+    font-weight: 600;
+    display: block;
+    margin: 0;
+    line-height: 1;
+    max-width: 100%;
+  }
