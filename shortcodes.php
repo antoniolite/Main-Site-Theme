@@ -1287,6 +1287,13 @@ add_shortcode( 'social-share-buttons', 'sc_social_share_buttons' );
  * on the page.
  **/
 function sc_sections_menu( $atts, $content='' ) {
+	$atts = shortcode_atts(
+		array(
+			selector => '.auto-section'
+		),
+		$atts
+	);
+
 	ob_start();
 ?>
 	<nav id="sections-navbar" class="navbar navbar-gold center">
@@ -1299,7 +1306,7 @@ function sc_sections_menu( $atts, $content='' ) {
 					<span class="icon-bar"></span>
 				</button>
 			</div>
-			<div class="collapse navbar-collapse" id="sections-menu">
+			<div class="collapse navbar-collapse" id="sections-menu" data-selector="<?php echo $atts['selector']; ?>">
 				<ul class="nav navbar-nav">
 
 				</ul>
@@ -1311,5 +1318,41 @@ function sc_sections_menu( $atts, $content='' ) {
 }
 
 add_shortcode( 'sections-menu', 'sc_sections_menu' );
+
+/*
+ * Search for a image by file name and return its URL.
+ *
+ */
+function sc_full_width_image( $attr, $content='' ) {
+	$image = isset( $attr['image'] ) ? $attr['image'] : null;
+	$filename = isset ( $attr['filename'] ) ? $attr['filename'] : null;
+	$bgcolor = isset( $attr['bgcolor'] ) ? $attr['bgcolor'] : null;
+	$color = isset( $attr['color'] ) ? $attr['color'] : null;
+	$size = isset( $attr['size'] ) ? $attr['size'] : null;
+	$classes = isset( $attr['classes'] ) ? $attr['classes'] : null; 
+	$container = isset( $attr['container'] ) ? filter_var( $attr['container'],  FILTER_VALIDATE_BOOLEAN ) : true;
+
+	if ( ! $image && $filename ) {
+		$image = get_image_url( $filename );
+	}
+
+	$styles = array();
+
+	if ( $image ) { $styles[] = 'background-image: url('.$image.');'; }
+	if ( $bgcolor ) { $styles[] = 'background-color: '.$bgcolor.';'; }
+	if ( $color ) { $styles[] = 'color: '.$color.';'; }
+	if ( $size ) { $styles[] = 'background-size: '.$size.';'; }
+
+	if ( $container ) {
+		$content = '<div class="container">'.apply_filters( 'the_content', $content ).'</div>';
+	}
+
+	if ( ! empty( $styles ) ) {
+		$content = '<div class="' . $classes . '" style="'.implode( ' ', $styles ).'">'.$content.'</div>';
+	}
+
+	return $content;
+}
+add_shortcode( 'full-width-image', 'sc_full_width_image' );
 
 ?>

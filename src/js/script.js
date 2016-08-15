@@ -1555,15 +1555,16 @@ var mediaTemplateVideo = function($) {
 var sectionsMenu = function($) {
   var $sectionsMenu = $('#sections-menu');
   if ( $sectionsMenu.length ) {
+    var selector = $sectionsMenu.data('selector');
+
     var clickHandler = function(e) {
       e.preventDefault();
 
       var $target = $(this.hash);
       $target = $target.length ? $target : $('[name=' + this.hash.slice() + ']');
 
-      var scrollTo = $target.offset().top;
+      var scrollTo = $target.offset().top - 50;
       if ( $(window).width() < 991 ) {
-        scrollTo -= 50;
         $sectionsMenu.collapse('toggle');
       }
 
@@ -1603,7 +1604,7 @@ var sectionsMenu = function($) {
       offset = $firstSection.offset().top - $menu.height(); // Reduce by 50px to account for university header.
     };
 
-    var $sections = $('section'),
+    var $sections = $(selector),
         $menuList = $sectionsMenu.find('ul.nav'),
         $menu = $('#sections-navbar'),
         $firstSection = $sections.first(),
@@ -1611,7 +1612,7 @@ var sectionsMenu = function($) {
 
     $.each($sections, addToMenu);
     $(document).on('scroll', scroll);
-    $('body').scrollspy({target: '#sections-menu'});
+    $('body').scrollspy({target: '#sections-menu', offset: 60});
     $(window).on('resize', onResize);
     scroll();
   }
