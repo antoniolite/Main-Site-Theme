@@ -747,7 +747,6 @@ function get_announcements($role='all', $keyword=NULL, $time='thisweek') {
 	}
 }
 
-
 /**
  * Prints a set of announcements, given an announcements array
  * returned from get_announcements().
@@ -1232,7 +1231,6 @@ function page_specific_stylesheet($pageid) {
 	}
 	else { return NULL; }
 }
-
 
 /**
  * Prints the Cloud.Typography font stylesheet <link> tag.
@@ -3032,6 +3030,7 @@ function get_image_url( $filename ) {
 	$url = '';
 	if ( $filename ) {
 		$sql = sprintf( 'SELECT * FROM %s WHERE post_title="%s" AND post_parent=%d ORDER BY post_date DESC', $wpdb->posts, $wpdb->escape( $filename ), $post_id );
+
 		$rows = $wpdb->get_results( $sql );
 		if ( count( $rows ) > 0 ) {
 			$obj = $rows[0];
