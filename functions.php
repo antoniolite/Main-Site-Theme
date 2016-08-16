@@ -1685,11 +1685,11 @@ function degree_search_with_keywords( $search, &$wp_query ) {
 			return $search;
 		}
 
-		$search_term = $wp_query->query_vars[ 's' ];
+		$search_term = '%'.$wpdb->esc_like( $wp_query->query_vars[ 's' ] ).'%';
 
-		$search = " AND (
-			($wpdb->posts.post_title LIKE '%$search_term%')
-			OR ($wpdb->posts.post_content LIKE '%$search_term%')
+		$search = $wpdb->prepare( " AND (
+			($wpdb->posts.post_title LIKE %s)
+			OR ($wpdb->posts.post_content LIKE %s)
 			OR EXISTS
 			(
 				SELECT * FROM $wpdb->terms
@@ -1699,9 +1699,9 @@ function degree_search_with_keywords( $search, &$wp_query ) {
 					ON $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id
 				WHERE taxonomy = 'degree_keywords'
 					AND object_id = $wpdb->posts.ID
-					AND $wpdb->terms.name LIKE '%$search_term%'
+					AND $wpdb->terms.name LIKE %s
 			)
-		)";
+		)", $search_term, $search_term, $search_term);
 	}
 
 	return $search;
@@ -2979,5 +2979,115 @@ function enqueue_page_js() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_page_js' );
+
+
+/**
+ * Prints the Google Tag Manager snippet using the GTM ID in Theme Options.
+ **/
+function google_tag_manager() {
+	ob_start();
+	$gtm_id = get_theme_option( 'gtm_id' );
+	if ( $gtm_id ) :
+?>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=<?php echo $gtm_id; ?>"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','<?php echo $gtm_id; ?>');</script>
+<!-- End Google Tag Manager -->
+<?php
+	endif;
+	return ob_get_clean();
+}
+
+
+/**
+ * Prints the Google Tag Manager data layer snippet.
+ **/
+function google_tag_manager_dl() {
+	ob_start();
+	$gtm_id = get_theme_option( 'gtm_id' );
+	if ( $gtm_id ) :
+?>
+	<script>
+	  dataLayer = [];
+	</script>
+<?php
+	endif;
+	return ob_get_clean();
+}
+
+
+function get_image_url( $filename ) {
+	global $wpdb, $post;
+
+	$post_id = wp_is_post_revision( $post->ID );
+	if( $post_id === False ) {
+		$post_id = $post->ID;
+	}
+
+	$url = '';
+	if ( $filename ) {
+		$sql = sprintf( 'SELECT * FROM %s WHERE post_title="%s" AND post_parent=%d ORDER BY post_date DESC', $wpdb->posts, $wpdb->escape( $filename ), $post_id );
+		$rows = $wpdb->get_results( $sql );
+		if ( count( $rows ) > 0 ) {
+			$obj = $rows[0];
+			if( $obj->post_type == 'attachment' && stripos( $obj->post_mime_type, 'image/' ) == 0 ) {
+				$url = wp_get_attachment_url( $obj->ID );
+			}
+		}
+	}
+	return $url;
+}
+
+function display_social_menu() {
+	$items = wp_get_nav_menu_items( 'social-links' );
+
+	ob_start();
+?>
+	<div class="social">
+<?php
+	foreach( $items as $item ):
+		$href = $item->url;
+		$icon = get_social_icon( $item->post_name );
+?>
+		<a href="<?php echo $href; ?>" class="social-icon ga-event-link">
+			<span class="<?php echo $icon; ?>"></span>
+		</a>
+
+<?php
+	endforeach;
+?>
+	</div>
+<?php
+	return ob_get_clean();
+}
+
+function get_social_icon( $item_slug ) {
+	
+	switch( true ) {
+		case stristr( $item_slug, 'facebook' ):
+			return 'fa fa-facebook';
+		case stristr( $item_slug, 'twitter' ):
+			return 'fa fa-twitter';
+		case stristr( $item_slug, 'google' ):
+			return 'fa fa-google-plus';
+		case stristr( $item_slug, 'linkedin' ):
+			return 'fa fa-linkedin';
+		case stristr( $item_slug, 'instagram' ):
+			return 'fa fa-instagram';
+		case stristr( $item_slug, 'pinterest' ):
+			return 'fa fa-pinterest-p';
+		case stristr( $item_slug, 'youtube' ):
+			return 'fa fa-youtube';
+		case stristr( $item_slug, 'flickr' ):
+			return 'fa fa-flickr';
+		default:
+			return 'fa fa-pencil';
+	}
+}
 
 ?>

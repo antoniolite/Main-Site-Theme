@@ -9,11 +9,13 @@ h1 {
   font-weight: normal;
   line-height: .9;
   margin-bottom: 8px;
+  margin-top: 40px;
 }
 
 @media (max-width: 991px) {
   h1 {
     font-size: 84px;
+    margin-top: 20px;
   }
 }
 
@@ -23,17 +25,52 @@ h1 {
   }
 }
 
+.page-media-header {
+  height: auto;
+}
+
+@media (max-width: 991px) {
+  .page-media-header {
+    height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-media-header {
+    height: auto;
+  }
+}
+
 .page-media-header .subtitle {
   font-family: "Gotham SSm 7r", "Gotham SSm A", "Gotham SSm B";
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   letter-spacing: .25em;
+  margin-bottom: 25px;
 }
 
 @media (max-width: 767px) {
   .page-media-header .subtitle {
     font-size: 3vw;
+    margin-bottom: 15px;
+  }
+}
+
+.page-media-container {
+  padding-bottom: 50px;
+  position: static;
+}
+
+@media (max-width: 991px) {
+  .page-media-container {
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  .page-media-container {
+    padding-bottom: 20px;
   }
 }
 
@@ -59,6 +96,17 @@ h1 {
 
 #contentcol a {
   border-bottom: 0 solid transparent;
+  color: #08c;
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+}
+
+#contentcol a:hover,
+#contentcol a:active,
+#contentcol a:focus {
+  border-bottom: 0 solid transparent;
+  color: #08c;
+  text-decoration: underline;
 }
 
 #contentcol p {
@@ -199,48 +247,11 @@ body.ie8 #contentcol object {
   color: #aaa;
 }
 
-#contentcol .text-lightest {
+#contentcol .text-lightest,
+#contentcol a.text-lightest:hover,
+#contentcol a.text-lightest:active,
+#contentcol a.text-lightest:focus {
   color: #fff;
-}
-
-#contentcol .feature-circle {
-  background-color: #FFD56D;
-  border: 4px solid #fff;
-  border-radius: 100%;
-  height: 170px;
-  line-height: 1;
-  padding: 15px 20px;
-  position: relative;
-  text-align: center;
-  width: 170px;
-}
-
-#contentcol .feature-circle:before {
-  background-color: #FFD56D;
-  border-radius: 100%;
-  bottom: 0;
-  content: '';
-  height: 178px;
-  left: -8px;
-  position: absolute;
-  right: 0;
-  top: -8px;
-  width: 178px;
-  z-index: -1;
-}
-
-#contentcol .feature-circle,
-#contentcol .feature-circle span {
-  display: block;
-  line-height: 1.2;
-}
-
-#contentcol .feature-number {
-  margin-bottom: 2px;
-}
-
-#contentcol .feature-desc {
-  font-size: 14px;
 }
 
 .ie8 #contentcol .md-border-left {
@@ -319,6 +330,15 @@ body.ie8 #contentcol object {
   margin-top: 15px;
 }
 
+#contentcol .embed-fadein * {
+  opacity: 0;
+  transition: opacity 1.25s ease-in-out;
+}
+
+#contentcol .embed-fadein.inview * {
+  opacity: 1;
+}
+
 
 /*
  * Article-specific overrides
@@ -384,18 +404,10 @@ body.ie8 #contentcol object {
   height: 48%;
 }
 
-/*#big-debt-free .debt-chart-bar-primary.inview {
-  height: 48%;
-}*/
-
 #big-debt-free .debt-chart-bar-secondary {
   background-color: #777;
   height: 33%;
 }
-
-// #big-debt-free .debt-chart-bar-secondary.inview {
-//   height: 33%;
-// }
 
 
 /* U.S. News Most Innovative */
@@ -561,12 +573,12 @@ body.ie8 #contentcol object {
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: 100% auto;
-  min-height: 340px;
+  min-height: 485px;
 }
 
 @media (max-width: 991px) {
   #big-athlete-success {
-    min-height: 400px;
+    min-height: 555px;
   }
 }
 
@@ -580,7 +592,7 @@ body.ie8 #contentcol object {
 #big-athlete-success .article-inner {
   float: right;
   padding-bottom: 22%;
-  width: 50%;
+  width: 45%;
 }
 
 @media (max-width: 991px) {
@@ -624,8 +636,6 @@ body.ie8 #contentcol object {
 
 #big-mentor-magnetism {
   background-color: #DBBE9C;
-  font-size: 18px;
-  line-height: 1.65;
   margin-top: 30px;
 }
 
@@ -635,22 +645,11 @@ body.ie8 #contentcol object {
   }
 }
 
-@media (max-width: 767px) {
-  #big-mentor-magnetism {
-    font-size: 15px;
-    line-height: 1.5;
-  }
-}
-
-#big-mentor-magnetism .text-biggest {
-  margin-bottom: 25px;
-}
-
-@media (max-width: 767px) {
-  #big-mentor-magnetism .text-biggest {
-    font-size: 42px !important;
-    margin-bottom: 15px;
-  }
+#big-mentor-magnetism h2 a,
+#big-mentor-magnetism h2 a:hover,
+#big-mentor-magnetism h2 a:active,
+#big-mentor-magnetism h2 a:focus {
+  color: #000;
 }
 
 #big-mentor-magnetism blockquote {
@@ -658,7 +657,7 @@ body.ie8 #contentcol object {
 }
 
 #big-mentor-magnetism .small {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 @media (max-width: 767px) {
@@ -680,6 +679,16 @@ body.ie8 #contentcol object {
 @media (max-width: 767px) {
   #big-mentor-magnetism .text-big {
     font-size: 22px;
+  }
+}
+
+#big-mentor-magnetism .text-bigger {
+  font-size: 36px;
+}
+
+@media (max-width: 767px) {
+  #big-mentor-magnetism .text-bigger {
+    font-size: 26px;
   }
 }
 
