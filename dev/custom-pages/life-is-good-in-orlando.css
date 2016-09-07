@@ -348,7 +348,7 @@ a:link, a:visited, a:active, a:hover {
 .museums {
   text-transform: uppercase;
   font-size: 12px;
-  background: url('/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-ticket.png');
+  background: url('//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-ticket.png');
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }

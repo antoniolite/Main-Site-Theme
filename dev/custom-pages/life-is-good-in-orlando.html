@@ -1,53 +1,5 @@
-<?php
-/**
- * Template Name: (DELETE ME) Media Feature
- **/
-?>
-<?php
-get_header(); the_post();
-
-$header_img = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_img', true ) );
-$header_video_mp4 = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_mp4', true ) );
-$header_video_webm = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_webm', true ) );
-$header_video_ogg = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_ogg', true ) );
-$header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_media_header_content', true ) ) );
-
-$use_video = $header_video_mp4 || $header_video_webm || $header_video_ogg;
-$placeholder_attrs = '';
-
-if ( $use_video ) {
-	$placeholder_attrs .= $header_video_mp4 ? 'data-mp4="'. $header_video_mp4 .'" ' : '';
-	$placeholder_attrs .= $header_video_webm ? 'data-webm="'. $header_video_webm .'" ' : '';
-	$placeholder_attrs .= $header_video_ogg ? 'data-ogg="'. $header_video_ogg .'" ' : '';
-}
-?>
-
-</div> <!-- close .container -->
-
-<div class="container-fullwidth page-media" id="<?php echo $post->post_name; ?>">
-	<div class="page-media-header" style="background-image: url('<?php echo $header_img; ?>');">
-
-	<?php if ( $use_video ): ?>
-	<div id="header-video-placeholder" <?php echo $placeholder_attrs; ?>></div>
-	<?php endif; ?>
-
-	<div class="page-media-container">
-		<?php echo $header_content; ?>
-	</div>
-
-	</div>
-</div>
-<div class="page-content" id="contentcol">
-	<article role="main">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 col-sm-12">
-					<?php // the_content(); ?>
-
-
 
 <!-- START CONTENT -->
-
 
 </div></div>
 <div class="life-is-good">
@@ -75,7 +27,7 @@ if ( $use_video ) {
 						<span class="quick-stat-description">
 							Million people live in greater Orlando
 						</span>
-						<img src="/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-florida.png" class="img-responsive img-center" alt="Florida" />
+						<img src="//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-florida.png" class="img-responsive img-center" alt="Florida" />
 					</li>
 					<li>
 						<span class="quick-stat-description">
@@ -96,12 +48,12 @@ if ( $use_video ) {
 			<div class="sm-border-bottom xs-border-bottom"></div>
 			<div class="row">
 				<div class="col-md-9 col-sm-9 col-xs-9">
-					<img src="/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-swim.png" class="img-responsive" alt="Swim in more than 2,000 lakes, springs, and rivers" />
-					<img src="/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-bike.png" class="img-responsive" alt="Hike or bike on 21 fitness trails" />
+					<img src="//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-swim.png" class="img-responsive" alt="Swim in more than 2,000 lakes, springs, and rivers" />
+					<img src="//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-bike.png" class="img-responsive" alt="Hike or bike on 21 fitness trails" />
 				</div>
 				<div class="col-md-3 col-sm-3 col-xs-3">
 					<article class="days-of-sun text-center">
-						<img src="/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-sun.png" class="spin img-responsive img-center" alt="" />
+						<img src="//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-sun.png" class="spin img-responsive img-center" alt="" />
 						<span class="days-of-sun-number">
 							236
 						</span>
@@ -122,12 +74,12 @@ if ( $use_video ) {
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-6">
 					<article class="md-border-right sm-border-right xs-border-right">
-						<img src="/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-kayak.png" class="img-responsive" alt="Kayak &amp; Paddleboard &amp; Grill &amp; Play Volleyball &amp; on campus at Lake Claire" />
+						<img src="//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-kayak.png" class="img-responsive" alt="Kayak &amp; Paddleboard &amp; Grill &amp; Play Volleyball &amp; on campus at Lake Claire" />
 					</article>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6">
 					<article>
-						<img src="/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-kayak.png" class="img-responsive" alt="Kayak &amp; Paddleboard &amp; Grill &amp; Play Volleyball &amp; on campus at Lake Claire" />
+						<img src="//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-kayak.png" class="img-responsive" alt="Kayak &amp; Paddleboard &amp; Grill &amp; Play Volleyball &amp; on campus at Lake Claire" />
 					</article>
 				</div>
 			</div>
@@ -178,7 +130,7 @@ if ( $use_video ) {
 				<div class="col-md-6 col-sm-6 col-xs-6">
 					<article class="alumni text-center">
 						<span class="alumni-graph">
-							<img src="/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-alumnipie.png" class="img-responsive img-center" alt="60%" />
+							<img src="//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-alumnipie.png" class="img-responsive img-center" alt="60%" />
 						</span>
 						<p>Of alumni start careers in Central Florida</p>
 					</article>
@@ -200,7 +152,7 @@ if ( $use_video ) {
 
 		<div class="col-md-3 col-sm-3 col-xs-12">
 			<article class="food text-center md-border-left">
-				<img src="/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-silverware.png" class="img-responsive img-center" alt="Silverware" />
+				<img src="//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-silverware.png" class="img-responsive img-center" alt="Silverware" />
 				<span class="food-text">
 					Satisfy your tastebuds at
 				</span>
@@ -210,7 +162,7 @@ if ( $use_video ) {
 				<span class="food-text">
 					Restaurants &amp; food trucks
 				</span>
-				<img src="/wordpress/wp-content/themes/Main-Site-Theme/dev/custom-pages/img/lig-foodtruck.png" class="img-responsive img-center" alt="Food Truck" />
+				<img src="//wwwdev.smca.ucf.edu/wp-content/uploads/2016/09/lig-foodtruck.png" class="img-responsive img-center" alt="Food Truck" />
 			</article>
 		</div>
 	</div>
@@ -218,16 +170,3 @@ if ( $use_video ) {
 </div>
 
 <!-- END CONTENT -->
-
-
-
-					<?php // /*end content*/ ?>
-				</div>
-			</div>
-		</div>
-	</article>
-</div>
-
-</div>
-<div class="container">
-	<?php get_footer();?>
