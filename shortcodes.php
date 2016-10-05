@@ -1454,7 +1454,42 @@ function sc_image( $atts ) {
 add_shortcode( 'image', 'sc_image' );
 
 
-function sc_image_srcset_atts( $atts ) {
+function sc_image_srcset( $atts, $content='' ) {
+	$atts = shortcode_atts(
+		array(
+			'filename' => null,
+			'force_original_only' => false
+		),
+		$atts
+	);
+	$img = false;
+	$img_atts = '';
+	$srcset = '';
+
+	if ( isset( $atts['filename'] ) ) {
+		$img = get_attachment_by_filename( $atts['filename'] );
+	}
+
+	if ( isset( $atts['force_original_only'] ) ) {
+		$atts['force_fullsize'] = filter_var( $atts['force_original_only'], FILTER_VALIDATE_BOOLEAN );
+	}
+
+	if ( $img ) {
+		if ( $atts['force_original_only'] && stripos( $img->post_mime_type, 'image/' ) == 0 ) {
+			$srcset = wp_get_attachment_url( $img->ID );
+		}
+		else {
+			$srcset = wp_get_attachment_image_srcset( $img->ID );
+		}
+		$img_atts = 'srcset="'. $srcset .'"';
+	}
+
+	return $img_atts;
+}
+add_shortcode( 'image-srcset', 'sc_image_srcset' );
+
+
+function sc_image_srcset_sizes( $atts, $content='' ) {
 	$atts = shortcode_atts(
 		array(
 			'filename' => null
@@ -1463,7 +1498,6 @@ function sc_image_srcset_atts( $atts ) {
 	);
 	$img = false;
 	$img_atts = '';
-	$srcset = '';
 	$sizes = '';
 
 	if ( isset( $atts['filename'] ) ) {
@@ -1471,14 +1505,26 @@ function sc_image_srcset_atts( $atts ) {
 	}
 
 	if ( $img ) {
-		$srcset = wp_get_attachment_image_srcset( $img->ID );
 		$sizes = wp_get_attachment_image_sizes( $img->ID, 'full' );
-		$img_atts = 'srcset="'. $srcset .'" sizes="'. $sizes .'"';
+		$img_atts = 'sizes="'. $sizes .'"';
 	}
 
 	return $img_atts;
 }
-add_shortcode( 'image-srcset-atts', 'sc_image_srcset_atts' );
+add_shortcode( 'image-srcset-sizes', 'sc_image_srcset_sizes' );
+
+
+function sc_picture_mq( $atts, $content='' ) {
+	$atts = shortcode_atts(
+		array(
+			'media' => ''
+		),
+		$atts
+	);
+
+	return 'media="'. $atts['media'] .'"';
+}
+add_shortcode( 'picture-mq', 'sc_picture_mq' );
 
 
 ?>
