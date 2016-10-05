@@ -20,6 +20,7 @@
     "jquery.cycle.all": "http://malsup.github.io/jquery.cycle.all.js",
     "jquery.cookie": "jquery-cookie#~1.4.1",
     "font-awesome": "~4.5.0",
-    "object-fit-images": "*"
+    "object-fit-images": "*",
+    "picturefill": "^3.0.2"
   }
 }
