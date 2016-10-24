@@ -1580,13 +1580,21 @@ function append_degree_metadata( $post, $tuition_data ) {
 			$post->financial_aid_message = $theme_options['financial_aid_message'];
 		}
 
+		$is_graduate = Degree::is_graduate_program( $post );
+
 		if ( empty( $post->degree_pdf ) ) {
-			if ( Degree::is_graduate_program( $post ) ) {
+			if ( $is_graduate ) {
 				$post->degree_pdf = GRAD_CATALOG_URL;
 			}
 			else {
 				$post->degree_pdf = UNDERGRAD_CATALOG_URL;
 			}
+		}
+
+		if ( $is_graduate ) {
+			$post->application_url = $theme_options['graduate_app_url'];
+		} else {
+			$post->application_url = $theme_options['undergraduate_app_url'];
 		}
 
 		// Append taxonomy term "meta"
@@ -3021,5 +3029,21 @@ function google_tag_manager_dl() {
 	endif;
 	return ob_get_clean();
 }
+
+/**
+ * Adds updated body class for degrees
+ **/
+function add_updated_degree_body_class( $classes ) {
+	global $post;
+	if ( $post->post_type == 'degree' ) {
+		$use_updated_template = get_post_meta( $post->ID, 'degree_use_updated_template', True );
+		if ( $use_updated_template ) {
+			$classes[] = 'updated-degree-template';
+		}
+	}
+	return $classes;
+}
+
+add_action( 'body_class', 'add_updated_degree_body_class' );
 
 ?>
