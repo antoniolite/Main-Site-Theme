@@ -37,3 +37,23 @@
 
 }
 // scss-lint:enable IdSelector
+
+
+// scss-lint:disable ImportantRule
+.supports-autoplay .hide-if-autoplay {
+  @media (min-width: $screen-sm-min) {
+    display: none !important;
+  }
+}
+
+.js-video-bg {
+  @media (max-width: $screen-xs-max) {
+    display: none !important; // never display video bg's on mobile devices
+  }
+}
+// scss-lint:enable ImportantRule
+
+
+picture br {
+  display: none;
+}

@@ -1483,15 +1483,16 @@ var customChart = function($) {
   }
 };
 
-var mediaTemplateVideo = function($) {
-  var $videoPlaceholder = $('#header-video-placeholder');
+var videoBg = function($) {
+  var $videoPlaceholders = $('.js-video-bg');
 
   // Generate a video tag for the header background
-  function createHeaderVideo() {
+  function createVideo($videoPlaceholder) {
     var mp4 = $videoPlaceholder.attr('data-mp4'),
-      webm = $videoPlaceholder.attr('data-webm'),
-      ogg = $videoPlaceholder.attr('data-ogg'),
-      video = '<video autoplay muted loop>';
+        webm = $videoPlaceholder.attr('data-webm'),
+        ogg = $videoPlaceholder.attr('data-ogg'),
+        cssClass = $videoPlaceholder.attr('data-video-class') || '',
+        video = '<video autoplay muted loop class="js-video-bg '+ cssClass +'">';
 
     // Stop now/display nothing if no video sources are provided
     if (!mp4 && !webm && !ogg) {
@@ -1516,9 +1517,15 @@ var mediaTemplateVideo = function($) {
     $videoPlaceholder.replaceWith($video);
   }
 
+  function createVideos() {
+    for (var i = 0; i < $videoPlaceholders.length; i++) {
+      $videoPlaceholder = $($videoPlaceholders[i]);
+      createVideo($videoPlaceholder);
+    }
+  }
+
   // Test if video auto plays
   function autoPlayOrBust() {
-
     var mp4 = 'data:video/mp4;base64,AAAAFGZ0eXBNU05WAAACAE1TTlYAAAOUbW9vdgAAAGxtdmhkAAAAAM9ghv7PYIb+AAACWAAACu8AAQAAAQAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAnh0cmFrAAAAXHRraGQAAAAHz2CG/s9ghv4AAAABAAAAAAAACu8AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAFAAAAA4AAAAAAHgbWRpYQAAACBtZGhkAAAAAM9ghv7PYIb+AAALuAAANq8AAAAAAAAAIWhkbHIAAAAAbWhscnZpZGVBVlMgAAAAAAABAB4AAAABl21pbmYAAAAUdm1oZAAAAAAAAAAAAAAAAAAAACRkaW5mAAAAHGRyZWYAAAAAAAAAAQAAAAx1cmwgAAAAAQAAAVdzdGJsAAAAp3N0c2QAAAAAAAAAAQAAAJdhdmMxAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAFAAOABIAAAASAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGP//AAAAEmNvbHJuY2xjAAEAAQABAAAAL2F2Y0MBTUAz/+EAGGdNQDOadCk/LgIgAAADACAAAAMA0eMGVAEABGjuPIAAAAAYc3R0cwAAAAAAAAABAAAADgAAA+gAAAAUc3RzcwAAAAAAAAABAAAAAQAAABxzdHNjAAAAAAAAAAEAAAABAAAADgAAAAEAAABMc3RzegAAAAAAAAAAAAAADgAAAE8AAAAOAAAADQAAAA0AAAANAAAADQAAAA0AAAANAAAADQAAAA0AAAANAAAADQAAAA4AAAAOAAAAFHN0Y28AAAAAAAAAAQAAA7AAAAA0dXVpZFVTTVQh0k/Ou4hpXPrJx0AAAAAcTVREVAABABIAAAAKVcQAAAAAAAEAAAAAAAAAqHV1aWRVU01UIdJPzruIaVz6ycdAAAAAkE1URFQABAAMAAAAC1XEAAACHAAeAAAABBXHAAEAQQBWAFMAIABNAGUAZABpAGEAAAAqAAAAASoOAAEAZABlAHQAZQBjAHQAXwBhAHUAdABvAHAAbABhAHkAAAAyAAAAA1XEAAEAMgAwADAANQBtAGUALwAwADcALwAwADYAMAA2ACAAMwA6ADUAOgAwAAABA21kYXQAAAAYZ01AM5p0KT8uAiAAAAMAIAAAAwDR4wZUAAAABGjuPIAAAAAnZYiAIAAR//eBLT+oL1eA2Nlb/edvwWZflzEVLlhlXtJvSAEGRA3ZAAAACkGaAQCyJ/8AFBAAAAAJQZoCATP/AOmBAAAACUGaAwGz/wDpgAAAAAlBmgQCM/8A6YEAAAAJQZoFArP/AOmBAAAACUGaBgMz/wDpgQAAAAlBmgcDs/8A6YEAAAAJQZoIBDP/AOmAAAAACUGaCQSz/wDpgAAAAAlBmgoFM/8A6YEAAAAJQZoLBbP/AOmAAAAACkGaDAYyJ/8AFBAAAAAKQZoNBrIv/4cMeQ==',
       body = document.getElementsByTagName('body')[0];
 
@@ -1543,11 +1550,12 @@ var mediaTemplateVideo = function($) {
     v.addEventListener('play', function () {
       clearTimeout(removeVideoTimeout);
       $(v).remove();
-      createHeaderVideo();
+      createVideos();
+      $('body').addClass('supports-autoplay');
     }, false);
   }
 
-  if ($videoPlaceholder.length) {
+  if ($videoPlaceholders.length) {
     autoPlayOrBust();
   }
 };
@@ -1619,12 +1627,6 @@ var sectionsMenu = function($) {
 };
 
 
-var objectFitPolyfill = function($) {
-  var $images = $('.js-object-fit');
-  objectFitImages($images);
-};
-
-
 if (typeof jQuery != 'undefined'){
   jQuery(document).ready(function($) {
     Webcom.slideshow($);
@@ -1655,9 +1657,8 @@ if (typeof jQuery != 'undefined'){
     ariaSilenceNoscripts($);
     announcementKeywordAutocomplete($);
     customChart($);
-    mediaTemplateVideo($);
+    videoBg($);
     sectionsMenu($);
-    objectFitPolyfill($);
 
     //devBootstrap($);
 

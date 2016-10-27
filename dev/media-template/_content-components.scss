@@ -187,11 +187,14 @@
   // Designed to also contain a stylized subsection heading.
   //
   .section-media-header {
+    // NOTE: overflow: hidden necessary to override Chrome bug:
+    // http://stackoverflow.com/q/30700144
+    overflow: hidden;
     position: relative;
   }
 
-  .section-media-header-image {
-    @include object-fit(cover);
+  .section-media-header,
+  .section-media-header-source {
     height: 400px;
     width: 100%;
 
@@ -200,14 +203,23 @@
     }
   }
 
+  .section-media-header-source {
+    object-fit: cover;
+  }
+
+  .section-media-title-wrap {
+    bottom: 30px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+  }
+
   .section-media-title {
     @include gotham();
-    bottom: 30px;
     color: $white;
     font-size: 32px;
-    position: absolute;
     text-shadow: 1px 1px 1px $black;
-    z-index: 2;
 
     @media (min-width: $screen-sm-min) {
       font-size: 48px;

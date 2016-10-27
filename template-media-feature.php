@@ -28,7 +28,7 @@ if ( $use_video ) {
 	<div class="page-media-header" style="background-image: url('<?php echo $header_img; ?>');">
 
 	<?php if ( $use_video ): ?>
-	<div id="header-video-placeholder" <?php echo $placeholder_attrs; ?>></div>
+	<div class="js-video-bg" <?php echo $placeholder_attrs; ?>></div>
 	<?php endif; ?>
 
 	<div class="page-media-container">

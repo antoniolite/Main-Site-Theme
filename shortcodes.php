@@ -1527,4 +1527,20 @@ function sc_picture_mq( $atts, $content='' ) {
 add_shortcode( 'picture-mq', 'sc_picture_mq' );
 
 
+/**
+ * Convenience method for wrapping <picture> tag <source>'s in compatibility
+ * wrapper markup for IE9.
+ * http://scottjehl.github.io/picturefill/#ie9
+ **/
+function sc_picture_sources( $atts, $content='' ) {
+	ob_start();
+?>
+	<!--[if IE 9]><video style="display: none;"><![endif]-->
+	<?php echo do_shortcode( $content ); ?>
+	<!--[if IE 9]></video><![endif]-->
+<?php
+	return ob_get_clean();
+}
+add_shortcode( 'picture-sources', 'sc_picture_sources' );
+
 ?>
