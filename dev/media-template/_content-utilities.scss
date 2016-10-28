@@ -57,3 +57,8 @@
 picture br {
   display: none;
 }
+
+
+.object-fit-cover {
+  @include object-fit-cover();
+}

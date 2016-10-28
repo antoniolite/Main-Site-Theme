@@ -77,3 +77,26 @@
 @mixin callout-subheading() {
   margin-top: 30px;
 }
+
+
+// Adds fallback styles for an element with object-fit:cover.
+@mixin object-fit-cover() {
+  object-fit: cover;
+
+  @include body-prefix('.no-object-fit') {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.horizontal {
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  &.vertical {
+    height: 100% !important;
+    width: auto !important;
+  }
+}

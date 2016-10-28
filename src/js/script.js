@@ -1484,7 +1484,8 @@ var customChart = function($) {
 };
 
 var videoBg = function($) {
-  var $videoPlaceholders = $('.js-video-bg');
+  var $videoPlaceholders = $('.js-video-bg'),
+      triggerObjectFitFallback = false;
 
   // Generate a video tag for the header background
   function createVideo($videoPlaceholder) {
@@ -1515,12 +1516,22 @@ var videoBg = function($) {
 
     $video = $(video);
     $videoPlaceholder.replaceWith($video);
+
+    // Update the triggerObjectFitFallback flag if the video has the
+    // .object-fit-cover class
+    if (cssClass.indexOf('object-fit-cover') !== -1) {
+      triggerObjectFitFallback = true;
+    }
   }
 
   function createVideos() {
     for (var i = 0; i < $videoPlaceholders.length; i++) {
       $videoPlaceholder = $($videoPlaceholders[i]);
       createVideo($videoPlaceholder);
+    }
+
+    if (triggerObjectFitFallback) {
+      $('window').trigger('objectFitFallback:DOMchange');
     }
   }
 
@@ -1627,6 +1638,73 @@ var sectionsMenu = function($) {
 };
 
 
+/**
+ * "polyfill" for object-fit.  Updates dimensions and absolute position
+ * of elements with the .object-fit-cover class to behave in a way that
+ * emulates object-fit:cover.
+ **/
+var objectFitFallback = function($) {
+
+  // If the browser does support object-fit, we don't need to continue
+  if ('objectFit' in document.documentElement.style !== false) {
+    return;
+  }
+
+  var $elems;
+
+  function setElems() {
+    $elems = $('.object-fit-cover');
+  }
+
+  function getAspectRatio($elem) {
+    return $elem.width() / $elem.height();
+  }
+
+  function resizeElems() {
+    if (!$elems) { return false; }
+
+    for (var i = 0; i < $elems.length; i++) {
+      var $elem = $($elems[i]),
+          $frame = $elem.parent();
+
+      // Don't divide by zero, kids
+      if ($elem.width() > 0 && $elem.height() > 0 && $frame.width() > 0 && $frame.height() > 0) {
+        var elemAspectRatio = getAspectRatio($elem),
+            frameAspectRatio = getAspectRatio($frame);
+
+        if (frameAspectRatio < elemAspectRatio) {
+          $elem
+            .removeClass('horizontal')
+            .addClass('vertical');
+        }
+        else {
+          $elem
+            .removeClass('vertical')
+            .addClass('horizontal');
+        }
+      }
+
+    }
+  }
+
+  function doFallback() {
+    setElems();
+    resizeElems();
+  }
+
+  function init() {
+    $('body').addClass('no-object-fit');
+    $(window)
+      .on('load objectFitFallback:DOMchange', doFallback)
+      .on('resize', resizeElems);
+  }
+
+  init();
+
+};
+
+
+
 if (typeof jQuery != 'undefined'){
   jQuery(document).ready(function($) {
     Webcom.slideshow($);
@@ -1659,6 +1737,7 @@ if (typeof jQuery != 'undefined'){
     customChart($);
     videoBg($);
     sectionsMenu($);
+    objectFitFallback($);
 
     //devBootstrap($);
 

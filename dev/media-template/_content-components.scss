@@ -203,8 +203,10 @@
     }
   }
 
-  .section-media-header-source {
-    object-fit: cover;
+  .section-media-header-frame {
+    display: block;
+    height: inherit;
+    width: inherit;
   }
 
   .section-media-title-wrap {
