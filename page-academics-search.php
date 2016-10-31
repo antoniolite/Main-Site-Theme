@@ -39,7 +39,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 				<!-- <p>UCF offers 210 Bachelor’s Degrees, Master’s Degrees, PhDs and more. Whatever your passion, we’ve got the program to get you going in the right direction.</p> -->
 			</div>
 			<div class="col-md-12 academics-box academics-search-box fade-in">
-				<span class="title">Find Your Degree:</span>
+				<span class="title">Find the program that's right for you:</span>
 				<span class="fa fa-search icon"></span>
 				<input class="academics-search-icon" type="text" placeholder="Search for degree programs by name or area of interest" />
 			</div>
