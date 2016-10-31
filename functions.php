@@ -1,4 +1,5 @@
 <?php
+require_once('third-party/truncate-html.php');  # Includes truncateHtml function
 require_once('functions/base.php');   			# Base theme functions
 require_once('functions/feeds.php');			# Where functions related to feed data live
 require_once('custom-taxonomies.php');  		# Where per theme taxonomies are defined
@@ -6,7 +7,7 @@ require_once('custom-post-types.php');  		# Where per theme post types are defin
 require_once('functions/admin.php');  			# Admin/login functions
 require_once('functions/config.php');			# Where per theme settings are registered
 require_once('shortcodes.php');         		# Per theme shortcodes
-require_once('third-party/truncate-html.php');  # Includes truncateHtml function
+
 
 //Add theme-specific functions here.
 
@@ -1257,6 +1258,30 @@ function page_specific_webfonts( $pageid ) {
 
 
 /**
+ * Updates University Header link to include wide param
+ **/
+function wideheader_script() {
+	global $post;
+
+	// if the post doesn't have the wide setting set, ignore
+	if ( ! ( get_post_meta( $post->ID, 'page_use_wideheader', True ) == 'on' ) ) {
+		return;
+	}
+
+	foreach( Config::$scripts as $config_script ) {
+		if ($config_script["name"] === "ucfhb-script") {
+			$config_script["src"] .= "?use-1200-breakpoint=1";
+			$script_src = $config_script["src"];
+		}
+	}
+
+	wp_deregister_script( 'ucfhb-script' );
+	wp_register_script( 'ucfhb-script', $script_src );
+	wp_enqueue_script( 'ucfhb-script' );
+}
+add_action( 'wp_enqueue_scripts', 'wideheader_script' );
+
+/**
  * Kill attachment, author, and daily archive pages.
  *
  * http://betterwp.net/wordpress-tips/disable-some-wordpress-pages/
@@ -1574,6 +1599,20 @@ function append_degree_metadata( $post, $tuition_data ) {
 			$post->tuition_estimates = get_tuition_estimate( $post->tax_program_type, $post->degree_hours );
 			$post->tuition_value_message = $theme_options['tuition_value_message'];
 			$post->financial_aid_message = $theme_options['financial_aid_message'];
+
+			switch( $post->tax_program_type->slug ) {
+				case 'undergraduate-degree':
+				case 'articulated-program':
+				case 'minor':
+					$post->tuition_credit_hours = intval( get_theme_option( 'tuition_undergrad_hours', TRUE ) );
+					break;
+				case 'graduate-degree':
+					$post->tuition_credit_hours = intval( get_theme_option( 'tuition_grad_hours', TRUE ) );
+					break;
+				default:
+					$post->tuition_credit_hours = intval( get_theme_option( 'tuition_undergrad_hours', TRUE ) );
+					break;
+			}
 		}
 
 		if ( empty( $post->degree_pdf ) ) {
@@ -3047,14 +3086,14 @@ function display_social_menu() {
 
 	ob_start();
 ?>
-	<div class="social">
+	<div class="social-menu">
 <?php
 	foreach( $items as $item ):
 		$href = $item->url;
-		$icon = get_social_icon( $item->post_name );
+		$icon = get_social_icon( $item->url );
 ?>
-		<a href="<?php echo $href; ?>" class="social-icon ga-event-link">
-			<span class="<?php echo $icon; ?>"></span>
+		<a href="<?php echo $href; ?>" class="social-menu-link ga-event-link">
+			<span class="social-menu-icon <?php echo $icon; ?>"></span>
 		</a>
 
 <?php
@@ -3066,7 +3105,6 @@ function display_social_menu() {
 }
 
 function get_social_icon( $item_slug ) {
-	
 	switch( true ) {
 		case stristr( $item_slug, 'facebook' ):
 			return 'fa fa-facebook';
@@ -3084,6 +3122,10 @@ function get_social_icon( $item_slug ) {
 			return 'fa fa-youtube';
 		case stristr( $item_slug, 'flickr' ):
 			return 'fa fa-flickr';
+		case stristr( $item_slug, 'vine' ):
+			return 'fa fa-vine';
+		case stristr( $item_slug, 'social' ):
+			return 'fa fa-share-alt';
 		default:
 			return 'fa fa-pencil';
 	}

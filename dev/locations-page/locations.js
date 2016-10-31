@@ -15,17 +15,15 @@ var init = function() {
 };
 
 var initialize = function() {
-  var pinImage = new google.maps.MarkerImage("https://www.google.com/maps/vt/icon/name=assets/icons/poi/quantum/container_shadow-2-medium.png,assets/icons/poi/quantum/container-2-medium.png,assets/icons/poi/quantum/school-2-medium.png&highlight=ff0000,000000,ffcc00&color=ffcc0000?scale=1.100000023841858");
-
-	var latLng = new google.maps.LatLng(28.601947, -81.200254);
-	
-	var mapOptions = {
-		center: latLng,
-		zoom: 8,
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		scrollwheel: false,
-		draggable: false
-	};
+  var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%20|FFCC00"),
+      latLng = new google.maps.LatLng(28.601947, -81.200254),
+	    mapOptions = {
+        center: latLng,
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false,
+        draggable: false
+      };
 
 	map = new google.maps.Map(document.getElementById("campus-map"), mapOptions);
 
@@ -159,7 +157,7 @@ var createMarker = function(title, lat, lng, icon, target) {
   });
 
   var infoWindow = new google.maps.InfoWindow({
-    content: title
+    content: '<p class="location-text">' + title + '</p>'
   });
 
   marker.addListener('mouseover', function() {
@@ -184,7 +182,7 @@ var scrollToTarget = function($target) {
 };
 
 var lazyLoadGoogleMap = function() {
-	$.getScript("http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBQtVEuBQkAjfKe1HbdO-In1LgIuu1UEXk")
+	$.getScript("https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBQtVEuBQkAjfKe1HbdO-In1LgIuu1UEXk")
 		.done(function() {
 			initializeMap();
 		});
@@ -202,10 +200,12 @@ function initializeMap() {
 }
 
 function initializeMatchHeight() {
-  $('.campus-card').matchHeight();
+  $campusCard = $('.campus-card');
+
+  $campusCard.matchHeight();
 
   $(window).on('resize', function() {
-    $('.campus-card').matchHeight();
+    $campusCard.matchHeight();
   });
 }
 

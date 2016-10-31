@@ -1282,6 +1282,69 @@ function sc_social_share_buttons( $atts, $content='' ) {
 
 add_shortcode( 'social-share-buttons', 'sc_social_share_buttons' );
 
+
+/**
+ * Displays a list of upcoming events. Events can be filtered by
+ * calendar url and start + end limits.
+ **/
+function sc_events( $atts, $content='' ) {
+	$atts = shortcode_atts(
+		array(
+			'start'             => 0,
+			'limit'             => 4,
+			'url'               => '',
+			'list_classes'      => '',
+			'list_item_classes' => '',
+			'show_descriptions' => false
+		), $atts, 'sc_events'
+	);
+
+	$atts['start'] = intval( $atts['start'] );
+	$atts['limit'] = intval( $atts['limit'] );
+	$atts['show_descriptions'] = filter_var( $atts['show_descriptions'], FILTER_VALIDATE_BOOLEAN );
+
+	ob_start();
+
+	$events = display_events_list( $atts['start'], $atts['limit'], $atts['url'], $atts['list_classes'], $atts['list_item_classes'], $atts['show_descriptions'] );
+
+	if ( trim( $events ) ) {
+		echo $events;
+	}
+	else {
+		echo $content;
+	}
+
+	return ob_get_clean();
+}
+add_shortcode( 'events', 'sc_events' );
+
+
+/**
+ * Displays a list of Pegasus issue archives. Can be filtered with start
+ * and end limits.
+ **/
+function sc_pegasus_issues( $atts, $content='' ) {
+	$atts = shortcode_atts(
+		array(
+			'start'                   => 0,
+			'limit'                   => 5,
+			'list_classes'            => '',
+			'list_item_classes'       => ''
+		), $atts, 'sc_events'
+	);
+
+	$atts['start'] = intval( $atts['start'] );
+	$atts['limit'] = intval( $atts['limit'] );
+
+	ob_start();
+
+	echo display_pegasus_issues_list( $atts['start'], $atts['limit'], $atts['list_classes'], $atts['list_item_classes'] );
+
+	return ob_get_clean();
+}
+add_shortcode( 'pegasus-issues', 'sc_pegasus_issues' );
+
+
 /**
  * Displays a navbar menu based on the sections present
  * on the page.
@@ -1319,18 +1382,32 @@ function sc_sections_menu( $atts, $content='' ) {
 
 add_shortcode( 'sections-menu', 'sc_sections_menu' );
 
+
 /*
  * Search for a image by file name and return its URL.
  *
  */
 function sc_full_width_image( $attr, $content='' ) {
-	$image = isset( $attr['image'] ) ? $attr['image'] : null;
-	$filename = isset ( $attr['filename'] ) ? $attr['filename'] : null;
-	$bgcolor = isset( $attr['bgcolor'] ) ? $attr['bgcolor'] : null;
-	$color = isset( $attr['color'] ) ? $attr['color'] : null;
-	$size = isset( $attr['size'] ) ? $attr['size'] : null;
-	$classes = isset( $attr['classes'] ) ? $attr['classes'] : null; 
-	$container = isset( $attr['container'] ) ? filter_var( $attr['container'],  FILTER_VALIDATE_BOOLEAN ) : true;
+	$attr = shortcode_atts(
+		array(
+			'image'     => null,
+			'filename'  => null,
+			'bgcolor'   => null,
+			'color'     => null,
+			'size'      => null,
+			'classes'   => null,
+			'container' => false
+		),
+		$attr
+	);
+
+	$image = $attr['image'];
+	$filename = $attr['filename'];
+	$bgcolor = $attr['bgcolor'];
+	$color = $attr['color'];
+	$size = $attr['size'];
+	$classes = $attr['classes'];
+	$container = filter_var( $attr['container'],  FILTER_VALIDATE_BOOLEAN );
 
 	if ( ! $image && $filename ) {
 		$image = get_image_url( $filename );
@@ -1338,22 +1415,24 @@ function sc_full_width_image( $attr, $content='' ) {
 
 	$styles = array();
 
-	if ( $image ) { $styles[] = 'background-image: url('.$image.');'; }
+	if ( $image ) { $styles[] = 'background-image: url(\''.$image.'\');'; }
 	if ( $bgcolor ) { $styles[] = 'background-color: '.$bgcolor.';'; }
 	if ( $color ) { $styles[] = 'color: '.$color.';'; }
 	if ( $size ) { $styles[] = 'background-size: '.$size.';'; }
 
+
+	$content = apply_filters( 'the_content', $content );
+
 	if ( $container ) {
-		$content = '<div class="container">'.apply_filters( 'the_content', $content ).'</div>';
+		$classes .= ' container';
 	}
 
-	if ( ! empty( $styles ) ) {
-		$content = '<div class="' . $classes . '" style="'.implode( ' ', $styles ).'">'.$content.'</div>';
-	}
+	$content = '<div class="' . $classes . '" style="'.implode( ' ', $styles ).'">'.apply_filters( 'the_content', $content ).'</div>';
 
 	return $content;
 }
 add_shortcode( 'full-width-image', 'sc_full_width_image' );
+
 
 function sc_image( $atts ) {
 	$atts = shortcode_atts(
@@ -1373,5 +1452,6 @@ function sc_image( $atts ) {
 }
 
 add_shortcode( 'image', 'sc_image' );
+
 
 ?>
