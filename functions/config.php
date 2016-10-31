@@ -71,13 +71,13 @@ define('FEED_FETCH_TIMEOUT', 10); // seconds
 
 $theme_options = get_option(THEME_OPTIONS_NAME);
 
+
 # Weather
 define('WEATHER_URL', !empty($theme_options['weather_service_url']) ? $theme_options['weather_service_url'] : 'http://weather.smca.ucf.edu/');
 define('WEATHER_CLICK_URL', 'http://www.weather.com/weather/today/Orlando+FL+32816');
 define('WEATHER_CACHE_DURATION', 60 * 5); //seconds
 define('WEATHER_FETCH_TIMEOUT', !empty($theme_options['weather_service_timeout']) ? (int)$theme_options['weather_service_timeout'] : 8); //seconds
 
-define('GA_ACCOUNT', $theme_options['ga_account']);
 define('CB_UID', $theme_options['cb_uid']);
 define('CB_DOMAIN', $theme_options['cb_domain']);
 
@@ -260,11 +260,11 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['gw_verify'],
 		)),
 		new TextField(array(
-			'name'        => 'Google Analytics Account',
-			'id'          => THEME_OPTIONS_NAME.'[ga_account]',
-			'description' => 'Example: <em>UA-9876543-21</em>. Leave blank for development.',
+			'name'        => 'Google Tag Manager Container ID',
+			'id'          => THEME_OPTIONS_NAME.'[gtm_id]',
+			'description' => 'The ID for the container in Google Tag Manager that represents this site.',
 			'default'     => null,
-			'value'       => $theme_options['ga_account'],
+			'value'       => $theme_options['gtm_id'],
 		)),
 		new TextField(array(
 			'name'        => 'Chartbeat UID',
@@ -310,27 +310,6 @@ Config::$theme_settings = array(
 			'default'     => 'https://ww2.graduate.ucf.edu/inquiry/',
 			'value'       => $theme_options['grad_degree_info_url'],
 		)),
-		new TextareaField(array(
-			'name'        => 'Tuition Value Message',
-			'id'          => THEME_OPTIONS_NAME.'[tuition_value_message]',
-			'description' => 'HTML formatted message that will appear below the Tuition and Fees header on the degree profile page',
-			'default'     => '',
-			'value'       => $theme_options['tuition_value_message'],
-		)),
-		new TextareaField(array(
-			'name'        => 'Financial Aid Message',
-			'id'          => THEME_OPTIONS_NAME.'[financial_aid_message]',
-			'description' => 'HTML formatted message that will appear below the Tuition and Fees content on the degree profile page',
-			'default'     => '',
-			'value'       => $theme_options['financial_aid_message'],
-		)),
-		new TextField(array(
-			'name'        => 'Tuition and Fees Feed URL',
-			'id'          => THEME_OPTIONS_NAME.'[tuition_fee_url]',
-			'description' => 'URL for the tuition and fee feed.',
-			'default'     => 'http://tuitionfees.ikm.ucf.edu/feed',
-			'value'       => $theme_options['tuition_fee_url'],
-		)),
 		new TextField(array(
 			'name'        => 'National Undergraduate Tuition Average (In State)',
 			'id'          => THEME_OPTIONS_NAME.'[national_undergraduate_in_state_average]',
@@ -362,6 +341,43 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['degrees_per_page'],
 		)),
 	),
+	'Tuition and Fees' => array(
+		new TextField(array(
+			'name'        => 'Tuition and Fees Feed URL',
+			'id'          => THEME_OPTIONS_NAME.'[tuition_fee_url]',
+			'description' => 'URL for the tuition and fee feed.',
+			'default'     => 'http://tuitionfees.ikm.ucf.edu/feed',
+			'value'       => $theme_options['tuition_fee_url'],
+		)),
+		new TextareaField(array(
+			'name'        => 'Tuition Value Message',
+			'id'          => THEME_OPTIONS_NAME.'[tuition_value_message]',
+			'description' => 'HTML formatted message that will appear below the Tuition and Fees header on the degree profile page',
+			'default'     => '',
+			'value'       => $theme_options['tuition_value_message'],
+		)),
+		new TextareaField(array(
+			'name'        => 'Financial Aid Message',
+			'id'          => THEME_OPTIONS_NAME.'[financial_aid_message]',
+			'description' => 'HTML formatted message that will appear below the Tuition and Fees content on the degree profile page',
+			'default'     => '',
+			'value'       => $theme_options['financial_aid_message'],
+		)),
+		new TextField(array(
+			'name'        => 'Undergraduate Full-time Credit Hours',
+			'id'          => THEME_OPTIONS_NAME.'[tuition_undergrad_hours]',
+			'description' => 'The number of credit hours to calculate a full-time tuition amount for Undergraduate Degrees',
+			'default'     => '30',
+			'value'       => $theme_options['tuition_undergrad_hours']
+		)),
+		new TextField(array(
+			'name'        => 'Graduate Full-time Credit Hours',
+			'id'          => THEME_OPTIONS_NAME.'[tuition_grad_hours]',
+			'description' => 'The number of credit hours to calculate a full-time tuition amount for Graduate Degrees',
+			'default'     => '24',
+			'value'       => $theme_options['tuition_grad_hours']
+		))
+	),
 	'Events' => array(
 		new SelectField(array(
 			'name'        => 'Events Max Items',
@@ -383,6 +399,13 @@ Config::$theme_settings = array(
 			'description' => 'Base URL for the calendar you wish to use. Example: <em>http://events.ucf.edu/mycalendar</em>',
 			'value'       => $theme_options['events_url'],
 			'default'     => 'http://events.ucf.edu',
+		)),
+		new TextareaField(array(
+			'name'        => 'Events Fallback Message',
+			'id'          => THEME_OPTIONS_NAME.'[events_fallback_message]',
+			'description' => 'Fallback message to display when events either fail to load, or when no events are found.',
+			'value'       => $theme_options['events_fallback_message'],
+			'default'     => '<p>Events could not be retrieved at this time.  Please try again later.</p>',
 		)),
 	),
 	'Home Page' => array(
@@ -512,6 +535,13 @@ Config::$theme_settings = array(
     		'description' => 'Number of seconds to wait before timing out a catalog feed request.  Default is 10 seconds.',
     		'default'     => 10,
     		'value'       => $theme_options['undergraduate_catalog_feed_timeout'],
+        )),
+    	new TextField(array(
+    		'name'        => 'Pegasus Magazine URL',
+    		'id'          => THEME_OPTIONS_NAME.'[pegasus_url]',
+    		'description' => 'URL to the Pegasus Magazine website.  Can be changed for development when testing Pegasus issue feeds on different environments.',
+    		'default'     => 'https://www.ucf.edu/pegasus/',
+    		'value'       => $theme_options['pegasus_url'],
         )),
 	),
 	'Social' => array(

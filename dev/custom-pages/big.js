@@ -67,5 +67,16 @@
             }
       });
     });
+
+    $('.embed-fadein')
+      .removeClass('inview')
+      .one('inview', function() {
+        $(this).addClass('inview');
+      });
+  }
+  else {
+    // Applying this class to the markup without js, then removing and re-adding will
+    // result in the fade effect not executing soon enough--so we always add it via js.
+    $('.embed-fadein').addClass('inview');
   }
 })();
