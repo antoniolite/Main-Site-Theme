@@ -13,16 +13,32 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 	<div class="page-media-container">
 		<!-- <?php echo $header_content; ?> -->
 		<div class="container-fluid top-search">
-			<div class="col-md-12">
-				<h1 id="page-title">Undergraduate and Academic Degrees</h1>
+
+			<div class="title-header-container">
+				<h1 class="site-title">
+					<a href="http://www.ucf.edu/students">Academic Degrees <br />&amp; Colleges</a>
+				</h1>
+				<div class="weather">
+					<span class="icon" title="Fair">
+						<span class="wi wi-day-sunny"></span>
+					</span>
+					<span class="location">Orlando, FL</span>
+					<span class="vertical-rule"></span>
+					<span class="temp">83°F</span>
+				</div>
 			</div>
+
+<!-- 			<div class="col-md-12">
+				<h1 id="site-title">Academic Degrees <br />&amp; Colleges</h1>
+			</div> -->
 		</div>
 
 		<div class="container-fluid top-search">
-			<div class="col-md-10 academics-intro fade-in">
-				<p>UCF offers 210 Bachelor’s Degrees, Master’s Degrees, PhDs and more. Whatever your passion, we’ve got the program to get you going in the right direction.</p>
+			<div class="col-md-12 academics-intro fade-in text-center">
+				<p>Whatever your passion, we’ve got the program to get you going in the right direction.</p>
+				<!-- <p>UCF offers 210 Bachelor’s Degrees, Master’s Degrees, PhDs and more. Whatever your passion, we’ve got the program to get you going in the right direction.</p> -->
 			</div>
-			<div class="col-md-8 academics-box academics-search-box fade-in">
+			<div class="col-md-12 academics-box academics-search-box fade-in">
 				<span class="title">Find Your Degree:</span>
 				<span class="fa fa-search icon"></span>
 				<input class="academics-search-icon" type="text" placeholder="Search for degree programs by name or area of interest" />
