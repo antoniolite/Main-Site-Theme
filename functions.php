@@ -1594,6 +1594,8 @@ function append_degree_metadata( $post, $tuition_data ) {
 		$post->tax_college                 = get_first_result( wp_get_post_terms( $post->ID, 'colleges' ) );
 		$post->tax_department              = get_first_result( wp_get_post_terms( $post->ID, 'departments' ) );
 		$post->tax_program_type            = get_first_result( wp_get_post_terms( $post->ID, 'program_types' ) );
+		$post->use_updated_template        = filter_var( get_post_meta( $post->ID, 'degree_use_updated_template', TRUE ), FILTER_VALIDATE_BOOLEAN );
+		$post->header_image                = wp_get_attachment_url( get_post_meta( $post->ID, 'degree_header_image', TRUE ) );
 
 		if ( $tuition_data ) {
 			$post->tuition_estimates = get_tuition_estimate( $post->tax_program_type, $post->degree_hours );
@@ -1615,13 +1617,21 @@ function append_degree_metadata( $post, $tuition_data ) {
 			}
 		}
 
+		$is_graduate = Degree::is_graduate_program( $post );
+
 		if ( empty( $post->degree_pdf ) ) {
-			if ( Degree::is_graduate_program( $post ) ) {
+			if ( $is_graduate ) {
 				$post->degree_pdf = GRAD_CATALOG_URL;
 			}
 			else {
 				$post->degree_pdf = UNDERGRAD_CATALOG_URL;
 			}
+		}
+
+		if ( $is_graduate ) {
+			$post->application_url = $theme_options['graduate_app_url'];
+		} else {
+			$post->application_url = $theme_options['undergraduate_app_url'];
 		}
 
 		// Append taxonomy term "meta"
@@ -3057,7 +3067,6 @@ function google_tag_manager_dl() {
 	return ob_get_clean();
 }
 
-
 function get_image_url( $filename ) {
 	global $wpdb, $post;
 
@@ -3130,5 +3139,21 @@ function get_social_icon( $item_slug ) {
 			return 'fa fa-pencil';
 	}
 }
+
+/**
+ * Adds updated body class for degrees
+ **/
+function add_updated_degree_body_class( $classes ) {
+	global $post;
+	if ( $post->post_type == 'degree' ) {
+		$use_updated_template = get_post_meta( $post->ID, 'degree_use_updated_template', True );
+		if ( $use_updated_template ) {
+			$classes[] = 'updated-degree-template';
+		}
+	}
+	return $classes;
+}
+
+add_action( 'body_class', 'add_updated_degree_body_class' );
 
 ?>

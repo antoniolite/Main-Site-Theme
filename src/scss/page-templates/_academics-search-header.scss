@@ -80,7 +80,8 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
   }
 
   .academics-box {
-    background: rgba(255, 201, 4, 0.9);
+    background-color: #FC0;
+    background-color: rgba(255,204,0,.8);
     color: #000;
     font-family: $font-family-sans-serif-alt;
     font-size: 24px;
@@ -107,7 +108,6 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       float: right;
       font-family: $font-family-sans-serif-alt;
       font-size: 17px;
-      font-style: italic;
       font-weight: 100;
       letter-spacing: .5px;
       outline: 0;
@@ -119,19 +119,19 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       z-index: 1;
 
       ::-webkit-input-placeholder {
-        color: rgba(0, 0, 0, 0.8);
+        color: #796b2d;
       }
       :-moz-placeholder {
-        color: rgba(0, 0, 0, 0.8);
+        color: #796b2d;
       }
       ::-moz-placeholder {
-        color: rgba(0, 0, 0, 0.8);
+        color: #796b2d;
       }
       :-ms-input-placeholder {
-        color: rgba(0, 0, 0, 0.8);
+        color: #796b2d;
       }
       :placeholder-shown {
-        color: rgba(0, 0, 0, 0.8);
+        color: #796b2d;
       }
 
     }
