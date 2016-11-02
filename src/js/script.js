@@ -696,28 +696,6 @@ var statusAlertCookieSet = function($) {
 };
 
 
-/* GA tracking for outbound clicks */
-var gaEventTracking = function($) {
-  $('.ga-event').on('click', function(e) {
-    e.preventDefault();
-
-    var link = $(this),
-      url = link.attr('href'),
-      category = link.attr('data-ga-category') ? link.attr('data-ga-category') : 'Outbound Links',
-      action = link.attr('data-ga-action'), // link name + action; e.g. "Apply to UCF btn click"
-      label = link.attr('data-ga-label');  // the page the user is leaving
-
-    if (typeof ga !== 'undefined' && action !== null && label !== null) {
-      ga('send', 'event', category, action, label);
-      window.setTimeout(function(){ document.location = url; }, 200);
-    }
-    else {
-      document.location = url;
-    }
-  });
-};
-
-
 /**
  * Handles the Degree search page
  **/
@@ -1063,16 +1041,12 @@ var degreeSearch = function ($) {
   };
 
   function trackFilterForGoogle(programTypes, colleges, searchTerm) {
-    if (typeof ga !== 'undefined') {
-
-      var category = 'Degree Search',
-        action = 'Filters Updated',
-        label = 'Filters Selected';
-
-      ga('send', 'event', category, action, label, {
-        'dimension1': searchTerm,
-        'dimension2': programTypes.join(),
-        'dimension3': colleges.join()
+    if (typeof dataLayer !== 'undefined') {
+      dataLayer.push({
+        'event': 'degreeSearchFilterChange',
+        'degreeSearchTerm': searchTerm,
+        'degreeSearchProgramTypes': programTypes.join(),
+        'degreeSearchCollege': colleges.join()
       });
     }
   }
@@ -1424,40 +1398,6 @@ var degreeProfile = function ($) {
   }
 };
 
-var socialButtonTracking = function($) {
-  $('.social a').click(function() {
-    var link = $(this),
-      target = link.attr('data-button-target'),
-      network = '',
-      socialAction = '';
-
-    if (link.hasClass('share-facebook')) {
-      network = 'Facebook';
-      socialAction = 'Like';
-    }
-    else if (link.hasClass('share-twitter')) {
-      network = 'Twitter';
-      socialAction = 'Tweet';
-    }
-    else if (link.hasClass('share-googleplus')) {
-      network = 'Google+';
-      socialAction = 'Share';
-    }
-    else if (link.hasClass('share-linkedin')) {
-      network = 'Linkedin';
-      socialAction = 'Share';
-    }
-    else if (link.hasClass('share-email')) {
-      network = 'Email';
-      socialAction = 'Share';
-    }
-
-    if (typeof ga !== 'undefined' && network !== null && socialAction !== null) {
-      ga('send', 'social', network, socialAction, window.location);
-    }
-  });
-};
-
 
 var ariaSilenceNoscripts = function($) {
   // Prevent text in <noscript> tags from being read aloud by screenreaders.
@@ -1612,10 +1552,11 @@ var mediaTemplateVideo = function($) {
   }
 };
 
+
 var academicDegreeSearch = function ($) {
-      /**
-     * #search-query specific typeahead init, event handlers
-     **/
+  /**
+ * #search-query specific typeahead init, event handlers
+ **/
   var $acedemicsDegreeSearch = $('#acedemics-degree-search');
 
   if ($acedemicsDegreeSearch.length > 0) {
@@ -1670,10 +1611,75 @@ var academicDegreeSearch = function ($) {
   }
 };
 
+var sectionsMenu = function($) {
+  var $sectionsMenu = $('#sections-menu');
+  if ( $sectionsMenu.length ) {
+    var selector = $sectionsMenu.data('selector');
+
+    var clickHandler = function(e) {
+      e.preventDefault();
+
+      var $target = $(this.hash);
+      $target = $target.length ? $target : $('[name=' + this.hash.slice() + ']');
+
+      var scrollTo = $target.offset().top - 50;
+      if ( $(window).width() < 991 ) {
+        $sectionsMenu.collapse('toggle');
+      }
+
+      if ($target.length) {
+        $('html, body').animate({
+          scrollTop: scrollTo
+        }, 750);
+      }
+    };
+
+    var addToMenu = function($i, $section) {
+      var $item  = $( $section ),
+          url = $item.attr('id'),
+          text = $item.find('h2.section-title').text(),
+          $listItem = $('<li></li>'),
+          $anchor = $('<a class="section-link" href="#' + url + '">' + text + '</a>');
+
+      $anchor.on('click', clickHandler);
+      $listItem.append($anchor);
+      $menuList.append($listItem);
+
+    };
+
+    var scroll = function() {
+      if ($(window).scrollTop() >= offset) {
+        $menu.removeClass('center');
+        $menu.addClass('navbar-fixed-top');
+        $('body').addClass('fixed-navbar');
+      } else {
+        $menu.addClass('center');
+        $menu.removeClass('navbar-fixed-top');
+        $('body').removeClass('fixed-navbar');
+      }
+    };
+
+    var onResize = function() {
+      offset = $firstSection.offset().top - $menu.height(); // Reduce by 50px to account for university header.
+    };
+
+    var $sections = $(selector),
+        $menuList = $sectionsMenu.find('ul.nav'),
+        $menu = $('#sections-navbar'),
+        $firstSection = $sections.first(),
+        offset = $firstSection.offset().top;
+
+    $.each($sections, addToMenu);
+    $(document).on('scroll', scroll);
+    $('body').scrollspy({target: '#sections-menu', offset: 60});
+    $(window).on('resize', onResize);
+    scroll();
+  }
+};
+
 if (typeof jQuery != 'undefined'){
   jQuery(document).ready(function($) {
     Webcom.slideshow($);
-    Webcom.analytics($);
     Webcom.chartbeat($);
     Webcom.handleExternalLinks($);
     Webcom.loadMoreSearchResults($);
@@ -1696,15 +1702,14 @@ if (typeof jQuery != 'undefined'){
     Generic.PostTypeSearch($);
     phonebookStaffToggle($);
     removeAndroidModals($);
-    gaEventTracking($);
     degreeSearch($);
     degreeProfile($);
-    socialButtonTracking($);
     ariaSilenceNoscripts($);
     announcementKeywordAutocomplete($);
     customChart($);
     mediaTemplateVideo($);
     academicDegreeSearch($);
+    sectionsMenu($);
 
     //devBootstrap($);
 
