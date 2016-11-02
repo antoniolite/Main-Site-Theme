@@ -108,7 +108,7 @@
 
     .degree-promo-icon,
     .degree-promo-text {
-      @extend .btn;
+      @extend .btn !optional;
 
       @media( max-width: $screen-md-max ) {
         margin: 12px 0;
@@ -116,7 +116,7 @@
     }
 
     .degree-promo-icon {
-      @extend btn !optional;
+      @extend .btn !optional;
       background: #3266cc;
       color: #fff;
       font-size: 32px;

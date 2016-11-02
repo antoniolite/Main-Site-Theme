@@ -2374,7 +2374,7 @@ function get_degree_search_suggestions() {
  **/
 function get_academics_search_suggestions() {
 	$suggestions = array();
-	$posts = get_posts( array(
+	$posts = get_posts( array (
 		'numberposts' => -1,
 		'post_type' => 'degree'
 	) );
@@ -2383,6 +2383,7 @@ function get_academics_search_suggestions() {
 		foreach ( $posts as $post ) {
 			$suggestion = (object) array (
 				'title' => $post->post_title,
+				'name' => str_replace( '&amp;', '&', $post->post_title ),
 				'url' => get_permalink( $post->ID ),
 			);
 			$suggestions[] = $suggestion;
