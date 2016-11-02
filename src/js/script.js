@@ -1569,9 +1569,8 @@ var academicDegreeSearch = function ($) {
       .typeahead({
         source: function (query, process) {
           $.each(searchSuggestions, function (i, suggestion) { // searchSuggestions defined in page-acedemics-search.php
-            var suggestionTitle = suggestion.title.replace('&amp;','&');
-            map[suggestionTitle] = suggestion;
-            suggestions.push(suggestionTitle);
+            map[suggestion.name] = suggestion;
+            suggestions.push(suggestion.name);
           });
           process(suggestions);
         },

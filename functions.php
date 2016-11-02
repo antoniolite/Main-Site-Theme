@@ -2365,17 +2365,17 @@ function get_degree_search_suggestions() {
  **/
 function get_academics_search_suggestions() {
 	$suggestions = array();
-	$posts = get_posts( array(
+	$posts = get_posts( array (
 		'numberposts' => -1,
 		'post_type' => 'degree'
 	) );
 
 	if ( $posts ) {
 		foreach ( $posts as $post ) {
-			$suggestion = (object) [
-				'title' => $post->post_title,
+			$suggestion = (object) array (
+				'name' => str_replace( '&amp;', '&', $post->post_title ),
 				'url' => get_permalink( $post->ID ),
-			];
+			);
 			$suggestions[] = $suggestion;
 		}
 	}
