@@ -2381,11 +2381,11 @@ function get_academics_search_suggestions() {
 
 	if ( $posts ) {
 		foreach ( $posts as $post ) {
-			$suggestion = (object) [
+			$suggestion = (object) array(
 				'id' => $post->ID,
 				'title' => $post->post_title,
 				'url' => $post->guid,
-			];
+			);
 			$suggestions[] = $suggestion;
 		}
 	}
