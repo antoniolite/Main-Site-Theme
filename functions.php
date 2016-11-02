@@ -2373,9 +2373,8 @@ function get_academics_search_suggestions() {
 	if ( $posts ) {
 		foreach ( $posts as $post ) {
 			$suggestion = (object) [
-				'id' => $post->ID,
 				'title' => $post->post_title,
-				'url' => $post->guid,
+				'url' => get_permalink( $post->ID ),
 			];
 			$suggestions[] = $suggestion;
 		}

@@ -1561,49 +1561,22 @@ var academicDegreeSearch = function ($) {
 
   if ($acedemicsDegreeSearch.length > 0) {
 
-    $.fn.typeahead.Constructor.prototype.render = function (items) {
-      var that = this;
-
-      // Don't autoselect 1st suggestion
-      items = $(items).map(function (i, item) {
-        i = $(that.options.item).attr('data-value', i.url);
-        i.find('a').html(that.highlighter(item));
-        return i[0];
-      });
-
-      this.$menu.html(items);
-      return this;
-    };
-
-    // $.fn.typeahead.Constructor.prototype.select = function () {
-    //   var val = this.$menu.find('.active').attr('data-value');
-
-    //   console.log(val);
-    //   console.log(this.$menu);
-
-    //   // Submit the form on select
-    //   // if (this.$element.parents('form').length) {
-    //   //   this.$element.parents('form').eq(0).submit();
-    //   // }
-
-    //   return this.hide();
-    // };
+    var suggestions = [],
+        map = {};
 
     // Typeahead init
     $acedemicsDegreeSearch
       .typeahead({
         source: function (query, process) {
-          suggestions = [];
-          map = {};
-
           $.each(searchSuggestions, function (i, suggestion) { // searchSuggestions defined in page-acedemics-search.php
-            map[suggestion.title] = suggestion;
-            suggestions.push(suggestion.title);
+            var suggestionTitle = suggestion.title.replace('&amp;','&');
+            map[suggestionTitle] = suggestion;
+            suggestions.push(suggestionTitle);
           });
-
           process(suggestions);
         },
         updater: function (item) {
+          window.location = map[item].url;
           $(this).val(item);
           return item;
         }
