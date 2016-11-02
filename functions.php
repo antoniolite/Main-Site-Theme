@@ -8,7 +8,6 @@ require_once('functions/admin.php');  			# Admin/login functions
 require_once('functions/config.php');			# Where per theme settings are registered
 require_once('shortcodes.php');         		# Per theme shortcodes
 
-
 //Add theme-specific functions here.
 
 /**
