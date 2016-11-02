@@ -845,12 +845,12 @@ var degreeSearch = function ($) {
     // Typeahead init
     $searchQuery
       .typeahead({
-      source: function (query, process) {
-        return searchSuggestions; // searchSuggestions defined in page-degree-search.php
-      },
-      updater: function (item) {
-        $(this).val(item);
-        return item;
+        source: function (query, process) {
+          return searchSuggestions; // searchSuggestions defined in page-degree-search.php
+        },
+        updater: function (item) {
+          $(this).val(item);
+          return item;
       }
     });
 
@@ -1612,6 +1612,64 @@ var mediaTemplateVideo = function($) {
   }
 };
 
+var academicDegreeSearch = function ($) {
+      /**
+     * #search-query specific typeahead init, event handlers
+     **/
+  var $acedemicsDegreeSearch = $('#acedemics-degree-search');
+
+  if ($acedemicsDegreeSearch.length > 0) {
+
+    $.fn.typeahead.Constructor.prototype.render = function (items) {
+      var that = this;
+
+      // Don't autoselect 1st suggestion
+      items = $(items).map(function (i, item) {
+        i = $(that.options.item).attr('data-value', i.url);
+        i.find('a').html(that.highlighter(item));
+        return i[0];
+      });
+
+      this.$menu.html(items);
+      return this;
+    };
+
+    // $.fn.typeahead.Constructor.prototype.select = function () {
+    //   var val = this.$menu.find('.active').attr('data-value');
+
+    //   console.log(val);
+    //   console.log(this.$menu);
+
+    //   // Submit the form on select
+    //   // if (this.$element.parents('form').length) {
+    //   //   this.$element.parents('form').eq(0).submit();
+    //   // }
+
+    //   return this.hide();
+    // };
+
+    // Typeahead init
+    $acedemicsDegreeSearch
+      .typeahead({
+        source: function (query, process) {
+          suggestions = [];
+          map = {};
+
+          $.each(searchSuggestions, function (i, suggestion) { // searchSuggestions defined in page-acedemics-search.php
+            map[suggestion.title] = suggestion;
+            suggestions.push(suggestion.title);
+          });
+
+          process(suggestions);
+        },
+        updater: function (item) {
+          $(this).val(item);
+          return item;
+        }
+      });
+  }
+};
+
 if (typeof jQuery != 'undefined'){
   jQuery(document).ready(function($) {
     Webcom.slideshow($);
@@ -1646,6 +1704,7 @@ if (typeof jQuery != 'undefined'){
     announcementKeywordAutocomplete($);
     customChart($);
     mediaTemplateVideo($);
+    academicDegreeSearch($);
 
     //devBootstrap($);
 

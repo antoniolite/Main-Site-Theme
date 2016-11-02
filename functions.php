@@ -2346,6 +2346,31 @@ function get_degree_search_suggestions() {
 	return array_values( array_unique( $suggestions ) );
 }
 
+/**
+ * Returns an array of degree titles, for use by the degree search
+ * autocomplete field.
+ **/
+function get_academics_search_suggestions() {
+	$suggestions = array();
+	$posts = get_posts( array(
+		'numberposts' => -1,
+		'post_type' => 'degree'
+	) );
+
+	if ( $posts ) {
+		foreach ( $posts as $post ) {
+			$suggestion = (object) [
+				'id' => $post->ID,
+				'title' => $post->post_title,
+				'url' => $post->guid,
+			];
+			$suggestions[] = $suggestion;
+		}
+	}
+
+	return $suggestions;
+}
+
 
 /**
  * Returns an array containing arrays of term objects, for use in

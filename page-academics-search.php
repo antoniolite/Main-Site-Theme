@@ -7,6 +7,10 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 
 </div> <!-- close .container -->
 
+	<script>
+		var searchSuggestions = <?php echo json_encode( get_academics_search_suggestions() ); ?>;
+	</script>
+
 <div class="container-fullwidth page-media academics" id="<?php echo $post->post_name; ?>">
 	<div class="page-media-header" style="background-image: url('<?php echo $header_img; ?>');">
 	</div>
@@ -25,7 +29,8 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 			<div class="col-md-8 academics-box academics-search-box fade-in">
 				<span class="title">Find Your Degree:</span>
 				<span class="fa fa-search icon"></span>
-				<input class="academics-search-icon" type="text" placeholder="Search for degree programs by name or area of interest" />
+				<input id="acedemics-degree-search" name="acedemics-degree-search" class="academics-search-icon" type="text" autocomplete="off"
+					data-provide="typeahead" placeholder="Search for degree programs by name or area of interest" />
 			</div>
 <!-- 			<div class="academics-colleges-box-container">
 				<div class="col-md-12 academics-box academics-colleges-box fade-in">
