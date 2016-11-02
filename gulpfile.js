@@ -179,6 +179,7 @@ gulp.task('watch', function() {
   gulp.watch(config.devPath + '/**/*.scss', ['css-dev']).on('change', browserSync.reload);
   gulp.watch(config.scssPath + '/**/*.scss', ['css']).on('change', browserSync.reload);
   gulp.watch(config.jsPath + '/**/*.js', ['js']).on('change', browserSync.reload);
+  gulp.watch('**/*.php').on("change", browserSync.reload);
 });
 
 

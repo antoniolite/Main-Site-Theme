@@ -823,12 +823,12 @@ var degreeSearch = function ($) {
     // Typeahead init
     $searchQuery
       .typeahead({
-      source: function (query, process) {
-        return searchSuggestions; // searchSuggestions defined in page-degree-search.php
-      },
-      updater: function (item) {
-        $(this).val(item);
-        return item;
+        source: function (query, process) {
+          return searchSuggestions; // searchSuggestions defined in page-degree-search.php
+        },
+        updater: function (item) {
+          $(this).val(item);
+          return item;
       }
     });
 
@@ -1552,6 +1552,38 @@ var mediaTemplateVideo = function($) {
   }
 };
 
+
+var academicDegreeSearch = function ($) {
+  /**
+ * #search-query specific typeahead init, event handlers
+ **/
+  var $acedemicsDegreeSearch = $('#acedemics-degree-search');
+
+  if ($acedemicsDegreeSearch.length > 0) {
+
+    var suggestions = [],
+        map = {};
+
+    // Typeahead init
+    $acedemicsDegreeSearch
+      .typeahead({
+        source: function (query, process) {
+          $.each(searchSuggestions, function (i, suggestion) { // searchSuggestions defined in page-acedemics-search.php
+            var suggestionTitle = suggestion.title.replace('&amp;','&');
+            map[suggestionTitle] = suggestion;
+            suggestions.push(suggestionTitle);
+          });
+          process(suggestions);
+        },
+        updater: function (item) {
+          window.location = map[item].url;
+          $(this).val(item);
+          return item;
+        }
+      });
+  }
+};
+
 var sectionsMenu = function($) {
   var $sectionsMenu = $('#sections-menu');
   if ( $sectionsMenu.length ) {
@@ -1649,6 +1681,7 @@ if (typeof jQuery != 'undefined'){
     announcementKeywordAutocomplete($);
     customChart($);
     mediaTemplateVideo($);
+    academicDegreeSearch($);
     sectionsMenu($);
 
     //devBootstrap($);
