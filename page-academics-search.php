@@ -7,25 +7,46 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 
 </div> <!-- close .container -->
 
+	<script>
+		var searchSuggestions = <?php echo json_encode( get_academics_search_suggestions() ); ?>;
+	</script>
+
 <div class="container-fullwidth page-media academics" id="<?php echo $post->post_name; ?>">
 	<div class="page-media-header" style="background-image: url('<?php echo $header_img; ?>');">
 	</div>
 	<div class="page-media-container">
 		<!-- <?php echo $header_content; ?> -->
 		<div class="container-fluid top-search">
-			<div class="col-md-12">
-				<h1 id="page-title">Undergraduate and Academic Degrees</h1>
+
+			<div class="title-header-container">
+				<h1 class="site-title">
+					<a href="http://www.ucf.edu/students">Academic Degrees <br />&amp; Colleges</a>
+				</h1>
+				<div class="weather">
+					<span class="icon" title="Fair">
+						<span class="wi wi-day-sunny"></span>
+					</span>
+					<span class="location">Orlando, FL</span>
+					<span class="vertical-rule"></span>
+					<span class="temp">83°F</span>
+				</div>
 			</div>
+
+<!-- 			<div class="col-md-12">
+				<h1 id="site-title">Academic Degrees <br />&amp; Colleges</h1>
+			</div> -->
 		</div>
 
 		<div class="container-fluid top-search">
-			<div class="col-md-10 academics-intro fade-in">
-				<p>UCF offers 210 Bachelor’s Degrees, Master’s Degrees, PhDs and more. Whatever your passion, we’ve got the program to get you going in the right direction.</p>
+			<div class="col-md-12 academics-intro fade-in text-center">
+				<p>Whatever your passion, we’ve got the program to get you going in the right direction.</p>
+				<!-- <p>UCF offers 210 Bachelor’s Degrees, Master’s Degrees, PhDs and more. Whatever your passion, we’ve got the program to get you going in the right direction.</p> -->
 			</div>
-			<div class="col-md-8 academics-box academics-search-box fade-in">
-				<span class="title">Find Your Degree:</span>
+			<div class="col-md-12 academics-box academics-search-box fade-in">
+				<span class="title">Find the program that's right for you:</span>
 				<span class="fa fa-search icon"></span>
-				<input class="academics-search-icon" type="text" placeholder="Search for degree programs by name or area of interest" />
+				<input id="acedemics-degree-search" name="acedemics-degree-search" class="academics-search-icon" type="text" autocomplete="off"
+					data-provide="typeahead" placeholder="Search for degree programs by name or area of interest" />
 			</div>
 <!-- 			<div class="academics-colleges-box-container">
 				<div class="col-md-12 academics-box academics-colleges-box fade-in">

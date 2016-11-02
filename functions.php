@@ -1258,6 +1258,30 @@ function page_specific_webfonts( $pageid ) {
 
 
 /**
+ * Updates University Header link to include wide param
+ **/
+function wideheader_script() {
+	global $post;
+
+	// if the post doesn't have the wide setting set, ignore
+	if ( ! ( get_post_meta( $post->ID, 'page_use_wideheader', True ) == 'on' ) ) {
+		return;
+	}
+
+	foreach( Config::$scripts as $config_script ) {
+		if ($config_script["name"] === "ucfhb-script") {
+			$config_script["src"] .= "?use-1200-breakpoint=1";
+			$script_src = $config_script["src"];
+		}
+	}
+
+	wp_deregister_script( 'ucfhb-script' );
+	wp_register_script( 'ucfhb-script', $script_src );
+	wp_enqueue_script( 'ucfhb-script' );
+}
+add_action( 'wp_enqueue_scripts', 'wideheader_script' );
+
+/**
  * Kill attachment, author, and daily archive pages.
  *
  * http://betterwp.net/wordpress-tips/disable-some-wordpress-pages/
@@ -2343,6 +2367,31 @@ function get_degree_search_suggestions() {
 	}
 
 	return array_values( array_unique( $suggestions ) );
+}
+
+/**
+ * Returns an array of degree titles, for use by the degree search
+ * autocomplete field.
+ **/
+function get_academics_search_suggestions() {
+	$suggestions = array();
+	$posts = get_posts( array(
+		'numberposts' => -1,
+		'post_type' => 'degree'
+	) );
+
+	if ( $posts ) {
+		foreach ( $posts as $post ) {
+			$suggestion = (object) [
+				'id' => $post->ID,
+				'title' => $post->post_title,
+				'url' => $post->guid,
+			];
+			$suggestions[] = $suggestion;
+		}
+	}
+
+	return $suggestions;
 }
 
 
