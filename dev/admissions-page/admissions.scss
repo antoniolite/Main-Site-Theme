@@ -1,5 +1,12 @@
 @import '../media-template/media-template-base';
 
+.btn-hollow-gold {
+  border: 2px solid $ucf-gold;
+  border-bottom: 2px solid $ucf-gold !important;
+  text-align: center;
+  text-decoration: none !important;
+}
+
 .header-title-container {
   display: table;
   margin: 40px auto;
@@ -10,15 +17,43 @@
   margin-top: 0 !important;
 }
 
+.rotate-left {
+  transform: rotate(-5deg);
+}
+
+.rotate-right {
+  transform: rotate(5deg);
+}
+
+.publication-shadow {
+  box-shadow: 3px 3px 6px #acacac;
+}
+
 .promo-image {
   display: block;
   height: auto;
-  margin: 64px 0 25.6px
 }
 
 .line-before-after {
   font-size: 48px;
   margin-bottom: 12px;
+}
+
+.publication-content {
+  padding-bottom: 32px;
+  padding-top: 32px;
+
+  h3 {
+    background: #9a9a9a;
+    color: #fff;
+    display: inline-block;
+    padding: 4px 16px;
+    letter-spacing: 3px;
+  }
+
+  p {
+    font-size: 16px;
+  }
 }
 
 .color-card {
@@ -39,11 +74,11 @@
   .overlay {
     background-position: center center;
     background-size: 100%;
-    bottom: 0;
-    left: 0;
+    bottom: 30px;
+    left: 15px;
     opacity: .05;
     position: absolute;
-    right: 0;
+    right: 15px;
     top: 0;
     transition: background-size .4s, opacity .4s, visibility .4s;
     z-index: 10;
