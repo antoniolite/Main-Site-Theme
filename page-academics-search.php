@@ -15,9 +15,11 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 	<div class="page-media-header" style="background-image: url('<?php echo $header_img; ?>');">
 	</div>
 	<div class="page-media-container">
-		<!-- <?php echo $header_content; ?> -->
-		<div class="container-fluid top-search">
 
+
+		<!-- <?php echo $header_content; ?> -->
+
+		<div class="container-fluid top-search">
 			<div class="title-header-container">
 				<h1 class="site-title">
 					<a href="http://www.ucf.edu/students">Academic Degrees <br />&amp; Colleges</a>
@@ -31,11 +33,12 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<span class="temp">83°F</span>
 				</div>
 			</div>
-
-<!-- 			<div class="col-md-12">
-				<h1 id="site-title">Academic Degrees <br />&amp; Colleges</h1>
-			</div> -->
 		</div>
+
+<!-- <div class="container text-center">
+<div style="display: inline-block;"><span class="header-title pull-left">This is a Header Title (center aligned)</span><h1 class="header-subtitle pull-right">Header Subtitle</h1></div>
+</div>
+ -->
 
 		<div class="container-fluid top-search">
 			<div class="col-md-12 academics-intro fade-in text-center">
@@ -44,7 +47,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 			</div>
 			<div class="col-md-12 academics-box academics-search-box fade-in">
 				<span class="title">Find the program that's right for you:</span>
-				<span class="fa fa-search icon"></span>
+				<span class="fa fa-search search-icon"></span>
 				<input id="acedemics-degree-search" name="acedemics-degree-search" class="academics-search-icon" type="text" autocomplete="off"
 					data-provide="typeahead" placeholder="Search for degree programs by name or area of interest" />
 			</div>
@@ -86,6 +89,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 			<div class="row">
 				<div class="col-md-12 col-sm-12">
 					<h2 class="section-title">Colleges at UCF</h2>
+					<!-- <h2 class="content-title">Orlando’s Hometown University</h2> -->
 						<?php the_content(); ?>
 				</div>
 			</div>
