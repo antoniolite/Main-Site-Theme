@@ -2362,7 +2362,7 @@ function get_degree_search_suggestions() {
 
 	if ( $posts ) {
 		foreach ( $posts as $post ) {
-			$suggestions[] = $post->post_title;
+			$suggestions[] = str_replace( '&amp;', '&', $post->post_title );
 		}
 	}
 
