@@ -74,13 +74,13 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       font-size: 30px;
     }
     @media (max-width: $screen-xs-max) {
-      margin-bottom: 50px;
-      margin-top: 30px;
+      margin-bottom: 25px;
+      margin-top: 75px;
     }
   }
 
   .academics-box {
-    background: rgba(255, 201, 4, 0.9);
+    background-color: #FC0;
     color: #000;
     font-family: $font-family-sans-serif-alt;
     font-size: 24px;
@@ -99,6 +99,13 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
   }
 
   .academics-search-box {
+    height: 92px;
+    transition: all 0.3s;
+
+    @media (max-width: $screen-md-max) {
+      height: 125px;
+    }
+
     input {
       background: #f9dd78;
       border: none;
@@ -107,33 +114,75 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       float: right;
       font-family: $font-family-sans-serif-alt;
       font-size: 17px;
-      font-style: italic;
       font-weight: 100;
       letter-spacing: .5px;
       outline: 0;
       padding: 13px 54px 13px 25px;
       position: absolute;
+      transition: all 0.3s;
       right: 15px;
       top: 18px;
       width: 55%;
       z-index: 1;
 
-      ::-webkit-input-placeholder {
-        color: rgba(0, 0, 0, 0.8);
-      }
-      :-moz-placeholder {
-        color: rgba(0, 0, 0, 0.8);
-      }
-      ::-moz-placeholder {
-        color: rgba(0, 0, 0, 0.8);
-      }
-      :-ms-input-placeholder {
-        color: rgba(0, 0, 0, 0.8);
-      }
-      :placeholder-shown {
-        color: rgba(0, 0, 0, 0.8);
+      @media (max-width: $screen-md-max) {
+        width: 97%;
+        top: 50px;
       }
 
+      ::-webkit-input-placeholder {
+        color: #796b2d;
+      }
+      :-moz-placeholder {
+        color: #796b2d;
+      }
+      ::-moz-placeholder {
+        color: #796b2d;
+      }
+      :-ms-input-placeholder {
+        color: #796b2d;
+      }
+      :placeholder-shown {
+        color: #796b2d;
+      }
+
+    }
+
+    .title {
+      position: relative;
+      top: 0;
+      transition: all 0.3s;
+
+      @media (max-width: $screen-md-max) {
+        font-size: 16px;
+        top: -20px;
+      }
+    }
+
+    .icon {
+      transition: all 0.3s;
+
+      @media (max-width: $screen-md-max) {
+        top: 60px;
+      }
+    }
+  }
+
+  .academics-search-box.focus {
+    height: 125px;
+
+    .title {
+      font-size: 16px;
+      top: -20px;
+    }
+
+    input {
+      width: 97%;
+      top: 50px;
+    }
+
+    .icon {
+      top: 60px;
     }
   }
 
@@ -382,7 +431,7 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
 
 .academics {
   @media (max-width: $screen-xs-max) {
-    height: 400px;
+    height: 540px;
     position: relative;
     top: 0;
   }
@@ -407,7 +456,7 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
     top: -80px;
 
     @media (max-width: $screen-xs-max) {
-      top: -100px;
+      top: 25px;
     }
 
     > h1,
