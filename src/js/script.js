@@ -711,125 +711,39 @@ var degreeSearch = function ($) {
 
   function initAutoComplete() {
     /**
-     * Bootstrap typeahead overrides, for general fixes and usability improvements
-     **/
-    $.fn.typeahead.Constructor.prototype.blur = function () {
-      // Workaround for bug in mouse item selection
-      var that = this;
-      setTimeout(function () { that.hide(); }, 250);
-    };
-
-    $.fn.typeahead.Constructor.prototype.select = function (e) {
-      var val = this.$menu.find('.active').attr('data-value');
-      if (val) {
-        this.$element
-          .val(this.updater(val))
-          .change();
-      }
-
-      // Submit the form on select
-      if (this.$element.parents('form').length) {
-        this.$element.parents('form').eq(0).submit();
-      }
-
-      return this.hide();
-    };
-
-    $.fn.typeahead.Constructor.prototype.keyup = function (e) {
-      switch (e.keyCode) {
-        case 40: // down arrow
-        case 38: // up arrow
-        case 16: // shift
-        case 17: // ctrl
-        case 18: // alt
-        case 9:  // tab
-          break;
-
-        // case 9: // Prevent tabbing from filling the autocomplete field with the selection
-        case 13: // enter
-          if (!this.shown) { return; }
-          this.select();
-          break;
-
-        case 27: // escape
-          if (!this.shown) { return; }
-          this.hide();
-          break;
-
-        case 39: // right arrow
-          if (!this.shown) { return; }
-          this.select();
-          break;
-
-        default:
-          this.lookup();
-      }
-
-      e.stopPropagation();
-      e.preventDefault();
-    };
-
-    $.fn.typeahead.Constructor.prototype.keydown = function (e) {
-      this.suppressKeyPressRepeat = ~$.inArray(e.keyCode, [40, 38, 9, 27]); // remove 13 (enter)
-      this.move(e);
-    };
-
-    $.fn.typeahead.Constructor.prototype.move = function (e) {
-      switch (e.keyCode) {
-        // case 9: // Remove tab overrides
-        case 13: // enter
-          if (this.shown) { // Allow enter key to submit form when no suggestions are available
-            e.preventDefault();
-          }
-          break;
-
-        case 27: // escape
-          e.preventDefault();
-          break;
-
-        case 38: // up arrow
-          e.preventDefault();
-          this.prev();
-          break;
-
-        case 40: // down arrow
-          e.preventDefault();
-          this.next();
-          break;
-      }
-
-      e.stopPropagation();
-    };
-
-    $.fn.typeahead.Constructor.prototype.render = function (items) {
-      var that = this;
-
-      // Don't autoselect 1st suggestion
-      items = $(items).map(function (i, item) {
-        i = $(that.options.item).attr('data-value', item);
-        i.find('a').html(that.highlighter(item));
-        return i[0];
-      });
-
-      this.$menu.html(items);
-      return this;
-    };
-
-    /**
-     * #search-query specific typeahead init, event handlers
+     * degree search typeahead
      **/
     var $searchQuery = $academicsSearch.find('#search-query');
+
+    var degrees = new Bloodhound({
+      local: searchSuggestions,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      datumTokenizer: Bloodhound.tokenizers.whitespace
+    });
+
+    $searchQuery.bind('typeahead:select', function (ev, suggestion) {
+      var $form = $(this).parents('form');
+      if ($form.length) {
+        $form.eq(0).submit();
+      }
+    });
 
     // Typeahead init
     $searchQuery
       .typeahead({
-        source: function (query, process) {
-          return searchSuggestions; // searchSuggestions defined in page-degree-search.php
-        },
-        updater: function (item) {
-          $(this).val(item);
-          return item;
-      }
+        minLength: 1,
+        highlight: true
+      },
+      {
+        name: 'degrees',
+        source: degrees, // searchSuggestions defined in page-degree-search.php
+        templates: {
+          empty: [
+            '<div class="tt-suggestion empty-message">',
+            'No degrees found for search term.',
+            '</div>'
+          ].join('\n'),
+        }
     });
 
     // Dynamic content reloading for browsers that support history api
@@ -1561,23 +1475,42 @@ var academicDegreeSearch = function ($) {
 
   if ($acedemicsDegreeSearch.length > 0) {
 
-    var suggestions = [],
-        map = {};
+    var degrees = new Bloodhound({
+      identify: function(obj) { return obj.name; },
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      local: searchSuggestions
+    });
+
+    var degreesWithDefaults = function (q, sync) {
+      if (q === '') {
+        sync(degrees.get('Bachelor', 'Graduate', 'Certificate'));
+      } else {
+        degrees.search(q, sync);
+      }
+    };
+
+    $acedemicsDegreeSearch.bind('typeahead:select', function(ev, suggestion) {
+      window.location = suggestion.url;
+    });
 
     // Typeahead init
     $acedemicsDegreeSearch
       .typeahead({
-        source: function (query, process) {
-          $.each(searchSuggestions, function (i, suggestion) { // searchSuggestions defined in page-acedemics-search.php
-            map[suggestion.name] = suggestion;
-            suggestions.push(suggestion.name);
-          });
-          process(suggestions);
-        },
-        updater: function (item) {
-          window.location = map[item].url;
-          $(this).val(item);
-          return item;
+        minLength: 1,
+        highlight: true
+      },
+      {
+        name: 'degrees',
+        display: 'name',
+        source: degreesWithDefaults,
+        templates: {
+          empty: [
+            '<div class="tt-suggestion empty-message">',
+            'No degrees found for search term.',
+            '</div>'
+          ].join('\n'),
+          footer: '<div class="tt-suggestion tt-selectable footer-title">What type of degree are you interested in?</div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=undergraduate-degree&sort-by=title&default=0&offset=0&search-default=0">Bachelor</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=graduate-degree&sort-by=title&default=0&offset=0&search-default=0">Graduate</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=certificate&sort-by=title&default=0&offset=0&search-default=0">Certificate</a></div>'
         }
       });
   }

@@ -1,8 +1,10 @@
+@import '../../dev/media-template/media-template-base';
+
 $font-family-serif-alt: "Archer", "Archer A", "Archer B", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif !default;
 $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, sans-serif !default;
 
 .academics {
-  overflow: hidden;
+  overflow: visible;
 
   .college-info {
     @media (max-width: $screen-sm-max) {
@@ -33,6 +35,8 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
   }
 
   &.page-media {
+    z-index: 21;
+
     @media (max-width: $screen-lg-min) {
       top: -110px;
     }
@@ -106,12 +110,35 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       height: 125px;
     }
 
+    .twitter-typeahead {
+      // display: block !important;
+      width: 57%;
+      float: right;
+      position: absolute;
+      right: -7px;
+      top: -7px;
+
+      @media (max-width: $screen-md-max) {
+        width: 101%;
+        top: -15px;
+      }
+    }
+
+    .tt-menu.tt-open {
+      width: 100%;
+
+      .tt-dataset,
+      .tt-suggestion {
+        width: 100%;
+      }
+    }
+
     input {
       background: #f9dd78;
       border: none;
       border-radius: 5px;
       color: #000;
-      float: right;
+      // float: right;
       font-family: $font-family-sans-serif-alt;
       font-size: 17px;
       font-weight: 100;
@@ -120,15 +147,10 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       padding: 13px 54px 13px 25px;
       position: absolute;
       transition: all 0.3s;
-      right: 15px;
-      top: 18px;
-      width: 55%;
-      z-index: 1;
 
-      @media (max-width: $screen-md-max) {
-        width: 97%;
-        top: 50px;
-      }
+      width: 100%;
+
+      z-index: 1;
 
       ::-webkit-input-placeholder {
         color: #796b2d;
@@ -159,7 +181,7 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       }
     }
 
-    .icon {
+    .search-icon {
       transition: all 0.3s;
 
       @media (max-width: $screen-md-max) {
@@ -176,22 +198,35 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       top: -20px;
     }
 
-    input {
-      width: 97%;
-      top: 50px;
+    .twitter-typeahead {
+      width: 101%;
+      top: -15px;
     }
 
-    .icon {
+    .search-icon {
       top: 60px;
     }
   }
 
-  .icon {
+  .search-icon {
     font-size: 33px;
     position: absolute;
-    right: 26px;
-    top: 28px;
+    right: 38px;
+    top: 30px;
     z-index: 2;
+  }
+
+  .tt-suggestion {
+    background-color: rgba(255, 225, 113, 0.9);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 5px 10px;
+    width: 500px;
+
+    &:hover {
+      background-color: rgba(255, 225, 113, 0.8);
+    }
   }
 
 
@@ -500,7 +535,7 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       padding: 0 14px;
     }
 
-    .icon {
+    .search-icon {
       display: inline-block;
       padding-right: 6px;
 
