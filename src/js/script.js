@@ -1561,23 +1561,41 @@ var academicDegreeSearch = function ($) {
 
   if ($acedemicsDegreeSearch.length > 0) {
 
-    var suggestions = [],
-        map = {};
+    var degrees = new Bloodhound({
+      identify: function(obj) { return obj.name; },
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      local: searchSuggestions
+    });
+
+    var degreesWithDefaults = function (q, sync) {
+      if (q === '') {
+        sync(degrees.get('Bachelor', 'Graduate', 'Certificate'));
+      } else {
+        degrees.search(q, sync);
+      }
+    };
+
+    $acedemicsDegreeSearch.bind('typeahead:select', function(ev, suggestion) {
+      window.location = suggestion.url;
+    });
 
     // Typeahead init
     $acedemicsDegreeSearch
       .typeahead({
-        source: function (query, process) {
-          $.each(searchSuggestions, function (i, suggestion) { // searchSuggestions defined in page-acedemics-search.php
-            map[suggestion.name] = suggestion;
-            suggestions.push(suggestion.name);
-          });
-          process(suggestions);
-        },
-        updater: function (item) {
-          window.location = map[item].url;
-          $(this).val(item);
-          return item;
+        minLength: 2
+      },
+      {
+        name: 'degrees',
+        display: 'name',
+        source: degreesWithDefaults,
+        templates: {
+          empty: [
+            '<div class="empty-message">',
+            'No degrees found',
+            '</div>'
+          ].join('\n'),
+          footer: '<div class="tt-suggestion tt-selectable footer-title">What type of degree are you interested in?</div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=undergraduate-degree&sort-by=title&default=0&offset=0&search-default=0">Bachelor</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=graduate-degree&sort-by=title&default=0&offset=0&search-default=0">Graduate</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=certificate&sort-by=title&default=0&offset=0&search-default=0">Certificate</a></div>'
         }
       });
   }

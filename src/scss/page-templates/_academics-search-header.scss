@@ -145,6 +145,19 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
     z-index: 2;
   }
 
+  .tt-suggestion {
+    background-color: rgba(255, 225, 113, 0.9);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 5px 10px;
+    width: 500px;
+
+    &:hover {
+      background-color: rgba(255, 225, 113, 0.8);
+    }
+  }
+
 
   .college-dropdown-content {
     background: rgba(255, 225, 113, 0.9);
