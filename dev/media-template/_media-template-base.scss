@@ -775,25 +775,21 @@ $font-size-h4-sm: 16px;
       margin-bottom: 12px;
     }
 
-    .title-wrapper {
-      @include transition(background .25s);
-      background: rgba(30, 30, 30, .25);
-      border-radius: 4px;
-      display: inline-block;
-    }
-
-    h3 {
-      @include gotham(7);
-      @include transition(color .25s);
-      display: inline;
-      font-size: 14px;
-      padding: 2px 14px;
-    }
-
     p {
       font-size: 12px;
       font-style: italic;
       padding-top: 8px;
+    }
+
+    h3 {
+      @include gotham(7);
+      @include transition(background .25s, color .25s);
+      background: rgba(30, 30, 30, .25);
+      border-radius: 4px;
+      display: block;
+      font-size: 14px;
+      padding: 2px 14px;
+      width: auto;
     }
 
     &:active,
@@ -815,12 +811,36 @@ $font-size-h4-sm: 16px;
         color: $white;
       }
 
-      .title-wrapper {
-        background: rgba(10, 10, 10, 0.55);
+      &:active,
+      &:focus,
+      &:hover {
+        .fa {
+          color: $black;
+        }
+
+        h3 {
+          background: rgba(10, 10, 10, 0.55);
+          color: $ucf-gold;
+        }
+      }
+    }
+
+    .icon-link-dark {
+      a {
+        color: $black;
       }
 
-      h3 {
-        color: $ucf-gold;
+      &:active,
+      &:focus,
+      &:hover {
+        .fa {
+          color: $white;
+        }
+
+        h3 {
+          background: rgba(10, 10, 10, 0.55);
+          color: $ucf-gold;
+        }
       }
     }
   }
