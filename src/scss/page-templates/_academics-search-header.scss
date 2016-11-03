@@ -4,7 +4,7 @@ $font-family-serif-alt: "Archer", "Archer A", "Archer B", "Palatino Linotype", "
 $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, sans-serif !default;
 
 .academics {
-  overflow: hidden;
+  overflow: visible;
 
   .college-info {
     @media (max-width: $screen-sm-max) {
@@ -35,6 +35,8 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
   }
 
   &.page-media {
+    z-index: 21;
+
     @media (max-width: $screen-lg-min) {
       top: -110px;
     }
@@ -119,6 +121,15 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       @media (max-width: $screen-md-max) {
         width: 101%;
         top: -15px;
+      }
+    }
+
+    .tt-menu.tt-open {
+      width: 100%;
+
+      .tt-dataset,
+      .tt-suggestion {
+        width: 100%;
       }
     }
 
