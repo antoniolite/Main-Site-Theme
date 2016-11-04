@@ -224,6 +224,11 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
     padding: 5px 10px;
     width: 500px;
 
+    hr {
+      border: 1px dashed #6f6f6f;
+      margin:0;
+    }
+
     &:hover {
       background-color: rgba(255, 225, 113, 0.8);
     }
