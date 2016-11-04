@@ -6,27 +6,8 @@
   text-transform: uppercase;
   transition: box-shadow .75s;
 
-  ul {
-    margin-bottom: 0 !important;
-
-    li {
-      margin-bottom: 0 !important;
-
-      &.active {
-        .section-link {
-          color: $white;
-        }
-      }
-
-      .section-link {
-        color: $black;
-
-        &:hover {
-          color: $white;
-          text-decoration: none;
-        }
-      }
-    }
+  .section-link {
+    @include gotham(7);
   }
 
   @media (max-width: $screen-sm-max) {
@@ -41,7 +22,11 @@
   }
 
   .navbar-nav {
+    margin-bottom: 0;
+
     > li {
+      margin-bottom: 0;
+
       > a {
         padding-bottom: 17px;
         padding-top: 17px;
@@ -85,7 +70,7 @@
   .navbar-nav {
     > li {
       > a {
-        color: $ucf-col-default;
+        color: $ucf-col-default !important;
         &:focus {
           background-color: $ucf-gold;
           color: $ucf-col-default;
@@ -93,7 +78,8 @@
 
         &:hover {
           background: $ucf-metal-gold;
-          color: $ucf-col-highlight;
+          color: $ucf-col-highlight !important;
+          text-decoration: none !important;
         }
       }
 
