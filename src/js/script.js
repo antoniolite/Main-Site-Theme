@@ -1494,6 +1494,8 @@ var academicDegreeSearch = function ($) {
       window.location = suggestion.url;
     });
 
+    var degreeType = '<div class="tt-suggestion"><hr></div><div class="tt-suggestion tt-selectable footer-title"><strong>What type of degree are you interested in?</strong></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=undergraduate-degree">Undergraduate Degree</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=graduate-degree">Graduate Degree</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=certificate">Certificate</a></div>';
+
     // Typeahead init
     $acedemicsDegreeSearch
       .typeahead({
@@ -1508,9 +1510,9 @@ var academicDegreeSearch = function ($) {
           empty: [
             '<div class="tt-suggestion empty-message">',
             'No degrees found for search term.',
-            '</div>'
+            '</div>' + degreeType
           ].join('\n'),
-          footer: '<div class="tt-suggestion tt-selectable footer-title">What type of degree are you interested in?</div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=undergraduate-degree&sort-by=title&default=0&offset=0&search-default=0">Bachelor</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=graduate-degree&sort-by=title&default=0&offset=0&search-default=0">Graduate</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=certificate&sort-by=title&default=0&offset=0&search-default=0">Certificate</a></div>'
+          footer: degreeType
         }
       });
   }
