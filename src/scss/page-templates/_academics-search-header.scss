@@ -48,11 +48,11 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
     width: 100%;
 
     @media (max-width: $screen-sm-max) {
-      height: 720px;
+      height: 650px;
     }
 
     @media (max-width: $screen-xs-max) {
-      height: 650px;
+      height: 575px;
     }
   }
 
@@ -61,7 +61,12 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
     padding-top: 200px;
 
     @media (max-width: $screen-sm-max) {
+      padding-top: 125px;
+      position: absolute;
+    }
+    @media (max-width: $screen-xs-max) {
       padding-top: 95px;
+      position: absolute;
     }
   }
 
@@ -72,12 +77,14 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
     font-weight: 600;
     line-height: 1.25;
     margin-bottom: 50px;
-    margin-top: 50px;
+    margin-top: 40px;
 
     @media (max-width: $screen-sm-max) {
       font-size: 30px;
+      margin-top: 70px;
     }
     @media (max-width: $screen-xs-max) {
+      font-size: 25px;
       margin-bottom: 25px;
       margin-top: 75px;
     }
@@ -131,6 +138,10 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       .tt-suggestion {
         width: 100%;
       }
+
+      .tt-cursor {
+        background: #ffe68d !important;
+      }
     }
 
     input {
@@ -179,6 +190,10 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
         font-size: 16px;
         top: -20px;
       }
+
+      @media (max-width: $screen-xs-max) {
+        font-size: 14px;
+      }
     }
 
     .search-icon {
@@ -223,6 +238,11 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
     font-weight: normal;
     padding: 5px 10px;
     width: 500px;
+
+    hr {
+      border: 1px dashed #6f6f6f;
+      margin:0;
+    }
 
     &:hover {
       background-color: rgba(255, 225, 113, 0.8);
@@ -350,6 +370,7 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
     background-color: $ucf-gold;
     border: none;
     border-bottom: 0;
+    border-radius: 3px;
     color: #000;
     font-family: $font-family-sans-serif-alt;
     font-size: 16px;
@@ -364,29 +385,7 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       border-right: solid 1px #ffe585;
       text-align: right;
       padding-right: 5px;
-
-      // @media (max-width: $screen-sm-max) {
-      //   color: #000;
-      //   display: inline;
-      //   border: none;
-      //   padding-right: 0;
-      // }
     }
-
-    // @media (max-width: $screen-sm-max) {
-    //   background: none;
-    //   display: inline;
-    //   font-size: 14px;
-    //   width: auto;
-    //   padding: 0;
-    //   text-decoration: underline;
-    // }
-
-    // &:visited,
-    // &:hover {
-    //   text-decoration: none;
-    //   color: 1px solid #E50606;
-    // }
   }
 
   ul {
@@ -477,6 +476,9 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
     position: relative;
     top: -80px;
 
+    @media (max-width: $screen-sm-max) {
+      top: 0;
+    }
     @media (max-width: $screen-xs-max) {
       top: 25px;
     }
@@ -499,10 +501,10 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
         font-size: 68px;
       }
       @media (max-width: $screen-sm-max) {
-        font-size: 55px;
+        font-size: 45px;
       }
       @media (max-width: $screen-xs-max) {
-        font-size: 40px;
+        font-size: 30px;
       }
     }
   }
@@ -535,7 +537,7 @@ $font-family-sans-serif-alt: "Gotham SSm A", "Gotham SSm B", Helvetica, Arial, s
       padding: 0 14px;
     }
 
-    .search-icon {
+    .icon {
       display: inline-block;
       padding-right: 6px;
 

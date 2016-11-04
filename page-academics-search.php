@@ -51,34 +51,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 				<input id="acedemics-degree-search" name="acedemics-degree-search" class="academics-search-icon" type="text" autocomplete="off"
 					data-provide="typeahead" placeholder="Search for degree programs by name or area of interest" />
 			</div>
-<!-- 			<div class="academics-colleges-box-container">
-				<div class="col-md-12 academics-box academics-colleges-box fade-in">
-					<span class="title">Explore all 13 colleges at UCF</span>
-					<span class="fa fa-chevron-down icon"></span>
-					<a href="#expand"></a>
-				</div>
-				<div class="col-md-12 college-dropdown-content">
-					<ul class="college-list first">
-						<li><a href="#arts">Arts &amp; Humanities</a></li>
-						<li><a href="#business">Burnett Honors College</a></li>
-						<li><a href="#arts">Business Administration</a></li>
-						<li><a href="#business">Education &amp; Human Performance</a></li>
-						<li><a href="#arts">Engineering &amp; Computer Science</a></li>
-					</ul>
-					<ul class="college-list second">
-						<li><a href="#arts">Arts &amp; Humanities</a></li>
-						<li><a href="#business">Burnett Honors College</a></li>
-						<li><a href="#arts">Business Administration</a></li>
-						<li><a href="#business">Education &amp; Human Performance</a></li>
-						<li><a href="#arts">Engineering &amp; Computer Science</a></li>
-					</ul>
-					<ul class="college-list third">
-						<li><a href="#arts">Arts &amp; Humanities</a></li>
-						<li><a href="#business">Burnett Honors College</a></li>
-						<li><a href="#arts">Business Administration</a></li>
-					</ul>
-				</div>
-			</div> -->
 		</div>
 
 	</div>
@@ -95,12 +67,12 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 			</div>
 		</div>
 
-		<div class="container">
+<!-- 		<div class="container">
 			<div class="row college">
 				<div class="col-md-4 col-sm-4 col-xs-12">
 					<h3 id="arts">Arts &amp; Humanities</h3>
 					<ul class="college-info">
-						<li>Visit <a href="#">art.ucf.edu</a></li>
+						<li>Visit <a href="http://art.ucf.edu">art.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<h4 class="buttons-heading">Degree Programs</h4>
@@ -116,15 +88,15 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 			</div>
 			<div class="row college">
 				<div class="col-md-4 col-sm-4 col-xs-12">
-					<h3 id="business">Burnett Honors College</h3>
+					<h3 id="burnett">Burnett Honors College</h3>
 					<ul class="college-info">
-						<li>Visit <a href="#">honors.ucf.edu</a></li>
+						<li>Visit <a href="http://honors.ucf.edu">honors.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<h4 class="buttons-heading">Degree Programs</h4>
 					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">22</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">6</span> Graduate Programs</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
 					</ul>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
@@ -134,41 +106,203 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 			</div>
 			<div class="row college">
 				<div class="col-md-4 col-sm-4 col-xs-12">
-					<h3 id="arts">Business Administration</h3>
+					<h3 id="business">Business Administration</h3>
 					<ul class="college-info">
-						<li>Visit <a href="#">business.ucf.edu</a></li>
+						<li>Visit <a href="http://business.ucf.edu/">business.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<h4 class="buttons-heading">Degree Programs</h4>
 					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">18</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">3</span> Graduate Programs</a></li>
-					</ul>
-				</div>
-				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/ucf_seal_strip.jpg" class="img-responsive" alt="" />
-					<p>The college is one of the nation’s largest accredited schools of business and home to the DeVos Sport Business Management program, the Kenneth G. Dixon School of Accounting, the Dr. P. Phillips School of Real Estate and the Institute for Economic Competitiveness. The college is involved in helping entrepreneurs and small businesses succeed, and encourages faculty to take part in numerous opportunities to enhance their teaching and research beyond the classroom.</p>
-				</div>
-			</div>
-			<div class="row college">
-				<div class="col-md-4 col-sm-4 col-xs-12">
-					<h3 id="business">Education &amp; Human Performance</h3>
-					<ul class="college-info">
-						<li>Visit <a href="#">education.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
-					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">23</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">15</span> Graduate Programs</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
 					</ul>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
 					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
-					<p>Instructing future educators to teach creatively, passionately and exceptionally is what the college is all about. Home to the UCF Teaching Academy, the Toni Jennings Exceptional Education Institute and the Morgridge International Reading Center, the college leverages partnerships with local schools to provide real-world experience that gives our students a competitive edge in the job market after graduation.</p>
+					<p>With more than 8,000 students, the college offers undergraduate and graduate students innovative thinking in a high-tech atmosphere. We are the only accredited undergraduate and graduate college of business in Orlando.</p>
 				</div>
 			</div>
-		</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="education">Education &amp; Human Performance</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://education.ucf.edu">education.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>We produce more teachers than any other institution in the state. Our college brings together students, faculty, schools and community leaders to provide state-approved and nationally accredited certifications and degrees.</p>
+				</div>
+			</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="engineering">Engineering and Computer Science</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://cecs.ucf.edu">cecs.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>Central Florida is home to some of the biggest names in technology, including NASA, Lockheed Martin, Boeing, Siemens and Walt Disney World. Our college strives to create new solutions to real-world problems.</p>
+				</div>
+			</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="graduate">Graduate Studies</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://www.graduate.ucf.edu/">graduate.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>The college offers programs and delivery methods that bring master’s and professional education programs to those who need advanced knowledge and skills to further their careers and enrich their lives.</p>
+				</div>
+			</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="health">Health and Public Affairs</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://www.cohpa.ucf.edu">cohpa.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>Graduates of the college go wherever help is needed. Approaching health and public affairs with a service mentality, the college produces workers who are committed to serving their communities.</p>
+				</div>
+			</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="medicine">Medicine</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://med.ucf.edu">med.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>The <a href="http://med.ucf.edu">College of Medicine</a> and the <a href="http://med.ucf.edu/biomed/" target="_blank" class="external">Burnett School of Biomedical Sciences</a> is located at the UCF Health Sciences Campus at Lake Nona. The medical school is an integral part of a new medical city where future doctors will train in close proximity to world-class partners.</p>
+				</div>
+			</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="nursing">Nursing</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://nursing.ucf.edu/">nursing.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>State-of-the-art classrooms, teaching laboratories and top-notch faculty are just a few reasons the college consistently ranks among the top recipients of National Institutes of Health funding in Florida.</p>
+				</div>
+			</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="optics">Optics and Photonics</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://www.creol.ucf.edu/">creol.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>Internationally recognized, the college is comprised of three major research centers: the Center for Research and Education in Optics and Lasers (CREOL), the Florida Photonics Center of Excellence and the newly-founded Townes Laser Institute.</p>
+				</div>
+			</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="rosen">Rosen College of Hospitality Management</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://hospitality.ucf.edu/">hospitality.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>There is no better place to learn hospitality than the #1 tourist destination in the world. Additionally, the college is located in the most modern and technologically advanced facility ever built for hospitality management education.</p>
+				</div>
+			</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="science">Sciences</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://sciences.ucf.edu/">sciences.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>The largest at UCF, the college offers 15 undergraduate degree programs, spanning the natural, computational, social and behavioral sciences. Check out our programs and see how you can learn in and out of the classroom.</p>
+				</div>
+			</div>
+			<div class="row college">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<h3 id="undergrad">Undergraduate Studies</h3>
+					<ul class="college-info">
+						<li>Visit <a href="http://undergrad.ucf.edu/">undergrad.ucf.edu</a></li>
+						<li><a href="#">See College Departments</a></li>
+					</ul>
+					<h4 class="buttons-heading">Degree Programs</h4>
+					<ul class="program-info-list">
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
+						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-8 col-sm-8 col-xs-12 description">
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<p>UCF’s newest college, Undergraduate Studies, offers the ability to tailor your program of study to suit your academic and career goals. This academic flexibility allows students to choose a path in environmental studies, women’s studies or interdisciplinary studies — where you design your degree with 13 areas of study ranging from art to communications to education and physical sciences.</p>
+				</div>
+			</div>
+		</div> -->
 	</article>
 </div>
 
