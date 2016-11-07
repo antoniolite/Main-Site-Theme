@@ -2446,7 +2446,6 @@ function get_degrees_by_college() {
 	if ( $colleges ) {
 
 		foreach ( $colleges as $college ) {
-			// echo $college->slug . "\n\n";
 
 			$args = array(
 				'post_type'      => 'degree',

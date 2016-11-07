@@ -3,16 +3,8 @@ get_header(); the_post();
 
 $header_img = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_img', true ) );
 $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_media_header_content', true ) ) );
-?>
 
-
-<?php
-	// Available filters + filter values
-	$degrees = get_degrees_by_college();
-
-	echo "<!--";
-	print_r($degrees);
-	echo "-->";
+$degrees = get_degrees_by_college();
 ?>
 
 </div> <!-- close .container -->
@@ -25,9 +17,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 	<div class="page-media-header" style="background-image: url('<?php echo $header_img; ?>');">
 	</div>
 	<div class="page-media-container">
-
-
-		<!-- <?php echo $header_content; ?> -->
 
 		<div class="container-fluid top-search">
 			<div class="title-header-container">
@@ -45,15 +34,9 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 			</div>
 		</div>
 
-<!-- <div class="container text-center">
-<div style="display: inline-block;"><span class="header-title pull-left">This is a Header Title (center aligned)</span><h1 class="header-subtitle pull-right">Header Subtitle</h1></div>
-</div>
- -->
-
 		<div class="container-fluid top-search">
 			<div class="col-md-12 academics-intro fade-in text-center">
 				<p>Whatever your passion, we’ve got the program to get you going in the right direction.</p>
-				<!-- <p>UCF offers 210 Bachelor’s Degrees, Master’s Degrees, PhDs and more. Whatever your passion, we’ve got the program to get you going in the right direction.</p> -->
 			</div>
 			<div class="col-md-12 academics-box academics-search-box fade-in">
 				<span class="title">Find the program that's right for you:</span>
@@ -71,7 +54,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 			<div class="row">
 				<div class="col-md-12 col-sm-12">
 					<h2 class="section-title">Colleges at UCF</h2>
-					<!-- <h2 class="content-title">Orlando’s Hometown University</h2> -->
 						<?php the_content(); ?>
 				</div>
 			</div>
