@@ -97,7 +97,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -138,7 +138,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -167,7 +167,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -196,7 +196,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -225,7 +225,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -254,7 +254,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -283,7 +283,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -312,7 +312,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -341,7 +341,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -370,7 +370,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -399,7 +399,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
@@ -428,7 +428,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
 						<?php endif; ?>
 						<?php if ($grad_count > 0): ?>
-							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=undergraduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+							<li><a class="btn count-button external" target="_blank" href="/degree-search/?program-type%5B0%5D=graduate-degree&amp;college%5B0%5D=<?php echo $college_name; ?>" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
 						<?php endif; ?>
 						</ul>
 					<?php endif; ?>
