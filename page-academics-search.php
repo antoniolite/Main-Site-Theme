@@ -83,7 +83,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="arts">Arts &amp; Humanities</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://art.ucf.edu">art.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-arts-and-humanities'];
@@ -124,7 +123,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="business">Business Administration</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://business.ucf.edu/">business.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-business-administration'];
@@ -153,7 +151,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="education">Education &amp; Human Performance</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://education.ucf.edu">education.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-education-and-human-performance'];
@@ -182,7 +179,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="engineering">Engineering and Computer Science</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://cecs.ucf.edu">cecs.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-engineering-and-computer-science'];
@@ -211,7 +207,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="graduate">Graduate Studies</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://www.graduate.ucf.edu/">graduate.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-graduate-studies'];
@@ -240,7 +235,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="health">Health and Public Affairs</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://www.cohpa.ucf.edu">cohpa.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
+
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-health-and-public-affairs'];
@@ -269,7 +264,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="medicine">Medicine</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://med.ucf.edu">med.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
+
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-medicine'];
@@ -298,7 +293,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="nursing">Nursing</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://nursing.ucf.edu/">nursing.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
+
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-nursing'];
@@ -327,7 +322,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="optics">Optics and Photonics</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://www.creol.ucf.edu/">creol.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
+
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-optics-and-photonics'];
@@ -356,7 +351,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="rosen">Rosen College of Hospitality Management</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://hospitality.ucf.edu/">hospitality.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
+
 					</ul>
 					<?php
 						$college_degrees = $degrees['rosen-college-of-hospitality-management'];
@@ -385,7 +380,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="science">Sciences</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://sciences.ucf.edu/">sciences.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<?php
 						$college_degrees = $degrees['college-of-sciences'];
@@ -414,7 +408,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="undergrad">Undergraduate Studies</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://undergrad.ucf.edu/">undergrad.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
 					</ul>
 					<?php
 						$college_degrees = $degrees['office-of-undergraduate-studies'];
