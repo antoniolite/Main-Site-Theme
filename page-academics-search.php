@@ -5,6 +5,16 @@ $header_img = wp_get_attachment_url( get_post_meta( $post->ID, 'page_media_img',
 $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_media_header_content', true ) ) );
 ?>
 
+
+<?php
+	// Available filters + filter values
+	$degrees = get_degrees_by_college();
+
+	echo "<!--";
+	print_r($degrees);
+	echo "-->";
+?>
+
 </div> <!-- close .container -->
 
 	<script>
@@ -67,7 +77,7 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 			</div>
 		</div>
 
-<!-- 		<div class="container">
+		<div class="container">
 			<div class="row college">
 				<div class="col-md-4 col-sm-4 col-xs-12">
 					<h3 id="arts">Arts &amp; Humanities</h3>
@@ -75,11 +85,22 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://art.ucf.edu">art.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">25</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">5</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-arts-and-humanities'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
 					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/ucf_seal_strip.jpg" class="img-responsive" alt="" />
@@ -91,12 +112,6 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 					<h3 id="burnett">Burnett Honors College</h3>
 					<ul class="college-info">
 						<li>Visit <a href="http://honors.ucf.edu">honors.ucf.edu</a></li>
-						<li><a href="#">See College Departments</a></li>
-					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
 					</ul>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
@@ -111,14 +126,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://business.ucf.edu/">business.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-business-administration'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/business_admin_building.png" class="img-responsive" alt="" />
 					<p>With more than 8,000 students, the college offers undergraduate and graduate students innovative thinking in a high-tech atmosphere. We are the only accredited undergraduate and graduate college of business in Orlando.</p>
 				</div>
 			</div>
@@ -129,14 +155,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://education.ucf.edu">education.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-education-and-human-performance'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/college-of-education.jpg" class="img-responsive" alt="" />
 					<p>We produce more teachers than any other institution in the state. Our college brings together students, faculty, schools and community leaders to provide state-approved and nationally accredited certifications and degrees.</p>
 				</div>
 			</div>
@@ -147,14 +184,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://cecs.ucf.edu">cecs.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-engineering-and-computer-science'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/harris_engineering_building.jpg" class="img-responsive" alt="" />
 					<p>Central Florida is home to some of the biggest names in technology, including NASA, Lockheed Martin, Boeing, Siemens and Walt Disney World. Our college strives to create new solutions to real-world problems.</p>
 				</div>
 			</div>
@@ -165,14 +213,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://www.graduate.ucf.edu/">graduate.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-graduate-studies'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/millican_hall.jpg" class="img-responsive" alt="" />
 					<p>The college offers programs and delivery methods that bring master’s and professional education programs to those who need advanced knowledge and skills to further their careers and enrich their lives.</p>
 				</div>
 			</div>
@@ -183,14 +242,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://www.cohpa.ucf.edu">cohpa.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-health-and-public-affairs'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/health_and_public_affairs.jpg" class="img-responsive" alt="" />
 					<p>Graduates of the college go wherever help is needed. Approaching health and public affairs with a service mentality, the college produces workers who are committed to serving their communities.</p>
 				</div>
 			</div>
@@ -201,14 +271,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://med.ucf.edu">med.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-medicine'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/college_of_medicine-1.jpg" class="img-responsive" alt="" />
 					<p>The <a href="http://med.ucf.edu">College of Medicine</a> and the <a href="http://med.ucf.edu/biomed/" target="_blank" class="external">Burnett School of Biomedical Sciences</a> is located at the UCF Health Sciences Campus at Lake Nona. The medical school is an integral part of a new medical city where future doctors will train in close proximity to world-class partners.</p>
 				</div>
 			</div>
@@ -219,14 +300,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://nursing.ucf.edu/">nursing.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-nursing'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/nursing.jpg" class="img-responsive" alt="" />
 					<p>State-of-the-art classrooms, teaching laboratories and top-notch faculty are just a few reasons the college consistently ranks among the top recipients of National Institutes of Health funding in Florida.</p>
 				</div>
 			</div>
@@ -237,14 +329,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://www.creol.ucf.edu/">creol.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-optics-and-photonics'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/creol.jpg" class="img-responsive" alt="" />
 					<p>Internationally recognized, the college is comprised of three major research centers: the Center for Research and Education in Optics and Lasers (CREOL), the Florida Photonics Center of Excellence and the newly-founded Townes Laser Institute.</p>
 				</div>
 			</div>
@@ -255,14 +358,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://hospitality.ucf.edu/">hospitality.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['rosen-college-of-hospitality-management'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/rosen.jpg" class="img-responsive" alt="" />
 					<p>There is no better place to learn hospitality than the #1 tourist destination in the world. Additionally, the college is located in the most modern and technologically advanced facility ever built for hospitality management education.</p>
 				</div>
 			</div>
@@ -273,14 +387,25 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://sciences.ucf.edu/">sciences.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['college-of-sciences'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
-					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
+					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/11/college-of-sciences.jpg" class="img-responsive" alt="" />
 					<p>The largest at UCF, the college offers 15 undergraduate degree programs, spanning the natural, computational, social and behavioral sciences. Check out our programs and see how you can learn in and out of the classroom.</p>
 				</div>
 			</div>
@@ -291,18 +416,29 @@ $header_content = wptexturize( do_shortcode( get_post_meta( $post->ID, 'page_med
 						<li>Visit <a href="http://undergrad.ucf.edu/">undergrad.ucf.edu</a></li>
 						<li><a href="#">See College Departments</a></li>
 					</ul>
-					<h4 class="buttons-heading">Degree Programs</h4>
-					<ul class="program-info-list">
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Bachelor's Degrees</a></li>
-						<li><a class="btn count-button" href="#" role="button"><span class="count">1</span> Graduate Programs</a></li>
-					</ul>
+					<?php
+						$college_degrees = $degrees['office-of-undergraduate-studies'];
+						$undergrad_count = count($college_degrees['undergraduate']);
+						$grad_count = count($college_degrees['graduate']);
+					?>
+					<?php if ($college_degrees && ($undergrad_count > 0  || $grad_count > 0)): ?>
+						<h4 class="buttons-heading">Degree Programs</h4>
+						<ul class="program-info-list">
+						<?php if ($undergrad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $undergrad_count; ?></span> Bachelor's Degrees</a></li>
+						<?php endif; ?>
+						<?php if ($grad_count > 0): ?>
+							<li><a class="btn count-button" href="#" role="button"><span class="count"><?php echo $grad_count; ?></span> Graduate Programs</a></li>
+						<?php endif; ?>
+						</ul>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-8 col-sm-8 col-xs-12 description">
 					<img src="http://wwwdev.smca.ucf.edu/wp-content/uploads/2016/03/burnett_logo_strip.jpg" class="img-responsive" alt="" />
 					<p>UCF’s newest college, Undergraduate Studies, offers the ability to tailor your program of study to suit your academic and career goals. This academic flexibility allows students to choose a path in environmental studies, women’s studies or interdisciplinary studies — where you design your degree with 13 areas of study ranging from art to communications to education and physical sciences.</p>
 				</div>
 			</div>
-		</div> -->
+		</div>
 	</article>
 </div>
 
