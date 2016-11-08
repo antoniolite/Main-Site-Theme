@@ -2485,61 +2485,6 @@ function get_degree_search_filters() {
 	return $filters;
 }
 
-
-
-/**
- * Returns an array containing arrays of college and undergrad degrees, for use in
- * Academics page list of colleges.
- **/
-function get_degrees_by_college() {
-	$college_degrees;
-	$colleges = get_terms( 'colleges', array( 'orderby' => 'name', 'order' => 'desc' ) );
-	if ( $colleges ) {
-
-		foreach ( $colleges as $college ) {
-
-			$args = array(
-				'post_type'      => 'degree',
-				'post_status'    => 'publish',
-				'posts_per_page' => -1,
-				'order'          => 'ASC',
-				'orderby'        => 'post_title'
-			);
-
-			$args['tax_query'][] = array(
-				'taxonomy' => 'colleges',
-				'field'    => 'term_id',
-				'terms'    => $college->term_id
-			);
-
-			$args['tax_query'][] = array(
-				'taxonomy' => 'program_types',
-				'field'    => 'slug',
-				'terms'    => 'undergraduate-degree'
-			);
-
-			$undergrad = get_posts( $args );
-
-			// modify query for graduate degrees
-			$args['tax_query'][1] = array(
-				'taxonomy' => 'program_types',
-				'field'    => 'slug',
-				'terms'    => 'graduate-degree'
-			);
-
-			$grad = get_posts( $args );
-
-			$college_degrees[$college->slug] = array(
-				'college'        =>  $college->slug,
-				'undergraduate'  =>  $undergrad,
-				'graduate'       =>  $grad,
-			);
-		}
-	}
-
-	return $college_degrees;
-}
-
 /**
  * Return's a term's custom meta value by key name.
  * Assumes that term data are saved as options using the naming schema
