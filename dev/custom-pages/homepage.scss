@@ -1,0 +1,601 @@
+@import '../media-template/media-template-base';
+
+$events-bg-url: 'http://wwwdev.smca.ucf.edu/wp-content/uploads/sites/9/2016/11/athletics-background.jpg';
+$downtown-bg-url: 'http://wwwdev.smca.ucf.edu/wp-content/uploads/sites/9/2016/11/downtown_orlando.jpg';
+$florida-icon-url: 'http://wwwdev.smca.ucf.edu/wp-content/uploads/sites/9/2016/11/tmp-fl-pin.png';
+$ignite-banner-url: 'http://wwwdev.smca.ucf.edu/wp-content/uploads/sites/9/2016/11/ignite-tmp.png';
+$light-gray: #d8d8d8;
+$font-condensed: "Knockout 49 A", "Knockout 49 B";
+
+.container {
+  max-width: 1170px;
+  width: 1170px;
+}
+
+.page-media-container {
+  padding-top: 190px;
+}
+
+.page-media-header {
+  height: 720px;
+  overflow: hidden;
+  width: 100%;
+  z-index: 1;
+  margin-top: -30px;
+  padding-top: 35px;
+
+  @media (max-width: $screen-xs-max) {
+    height: 500px;
+    background-position: 0 30px;
+  }
+
+  .header-title {
+    font-size: 66px;
+    margin-top: 0;
+  }
+}
+
+.weather {
+  .icon span {
+    color: $ucf-gold;
+    font-size: 27px;
+    display: inline-block;
+    position: relative;
+    bottom: -3px;
+  }
+
+  .vertical-rule {
+    border-left: 1px solid #fff;
+    margin-left: 4px;
+    margin-right: 6px;
+    width: 2px;
+  }
+}
+
+#contentcol {
+
+  .heading-condensed {
+    font-family: $font-condensed;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .lead {
+    @include gotham(7);
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
+  .callout.callout-knightro {
+    font-size: 20px;
+    margin-top: -45px;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    img {
+      width: 100%;
+    }
+
+    .padded-top {
+       padding-top: 175px;
+    }
+  }
+
+  .callout.callout-intro {
+    margin-top: -21px;
+    padding: 80px 0;
+
+    h2 {
+      color: $ucf-gold;
+      font-size: 45px;
+      padding-bottom: 20px;
+    }
+
+    ol li a {
+      @include gotham(5);
+
+      &:link {
+        text-decoration: none;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .inline {
+      font-size: 12px;
+      text-transform: uppercase;
+      display: inline;
+    }
+
+    .list-inline {
+      display: inline-block;
+    }
+
+    .list-chevrons li::before {
+      padding-left: 3px;
+      margin-left: -11px;
+    }
+
+    .highlight {
+      font-size: 15px;
+    }
+  }
+
+  .callout.callout-intro {
+    .degree-search {
+      color: $black;
+    }
+  }
+
+  .callout.callout-downtown {
+    @media (min-width: $screen-md-min) {
+      background-image: url('#{$downtown-bg-url}');
+      background-position: 100% 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 800px;
+      padding: 0;
+      font-size: 20px;
+    }
+
+    .learn-more-box {
+      @include gotham(6);
+      background-image: url($florida-icon-url);
+      background-position: 25px 20px;
+      background-repeat: no-repeat;
+      background-size: 120px;
+      border: 2px solid $white;
+      color: $white;
+      display: block;
+      font-size: 18px;
+      line-height: 1.4;
+      padding: 20px 20px 20px 170px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      width: 100%;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        text-decoration: none;
+      }
+    }
+
+    h1,
+    .h1 {
+      color: $white;
+      font-size: 75px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .callout.callout-ignite {
+    background: url($ignite-banner-url);
+    background-color: black;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 0;
+    overflow: hidden;
+    padding-top: 175px;
+  }
+
+  .callout.callout-social {
+    h2 {
+      // display: inline-block;
+      font-size: 25px;
+    }
+    // .social-menu {
+    //   display: inline-block;
+    //   margin-left: 8px;
+
+    //   .social-menu-link {
+    //     height: 25px;
+    //     line-height: 25px;
+    //     width: 25px;
+    //     margin-left: 3px;
+    //     margin-right: 3px;
+
+    //     .social-menu-icon {
+    //       font-size: 15px;
+    //     }
+    //   }
+
+    //   .social-menu-link-facebook {
+    //     background-color: #3b5998;
+
+    //     &:hover {
+    //       background: #d4d4d4;
+    //     }
+    //   }
+
+    //   .social-menu-link-twitter {
+    //     background-color: #55acee;
+
+    //     &:hover {
+    //       background: #d4d4d4;
+    //     }
+    //   }
+
+    //   .social-menu-link-flickr {
+    //     background-color: #ff0084;
+
+    //     &:hover {
+    //       background: #d4d4d4;
+    //     }
+    //   }
+
+    //   .social-menu-link-youtube {
+    //     background-color: #bb0000;
+
+    //     &:hover {
+    //       background: #d4d4d4;
+    //     }
+    //   }
+
+    //   .social-menu-link-googleplus {
+    //     background-color: #dd4b39;
+
+    //     &:hover {
+    //       background: #d4d4d4;
+    //     }
+    //   }
+    // }
+  }
+
+  .callout.callout-stats {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    margin-top: -5px;
+
+    .callout-stats-cover {
+      background: $ucf-gold;
+      height: 500px;
+      left: 0;
+      opacity: 0.9;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    h2 {
+      text-transform: uppercase;
+    }
+
+    .stats-item {
+      min-height: 100px;
+      border: dotted 0 $black;
+      text-align: center;
+      line-height: 1.2;
+      padding: 20px 10px;
+
+      span {
+        font-size: 50px;
+        font-family: $font-condensed;
+        display: block;
+      }
+    }
+    .stats-border-top-left {
+      border-width: 0 1px 1px 0;
+    }
+    .stats-border-top-right {
+      border-width: 0 0 1px 0;
+    }
+    .stats-border-bottom-left {
+      border-width: 0 1px 0 0;
+    }
+    // .stats-border-bottom-right {
+    //   border-width: ;
+    // }
+  }
+
+  .callout.callout-dark {
+
+    a:link,
+    a:active {
+      color: $white;
+    }
+
+    a:hover {
+      color: $light-gray;
+      text-decoration: underline;
+    }
+
+    .bordered-content {
+      box-sizing: border-box;
+      border: solid 1px $white;
+
+      &.bordered-left {
+        border-width: 0 0 0 1px;
+        padding-left: 50px;
+      }
+      &.bordered-right {
+        border-width: 0 1px 0 0;
+        padding-right: 50px;
+      }
+    }
+
+    ol {
+      font-size: 15px;
+    }
+
+    ol li a {
+      margin-left: 10px;
+    }
+
+  }
+
+  .highlight {
+    display: inline-block;
+    padding: .4em 1em;
+    text-transform: uppercase;
+  }
+
+  .highlight-white {
+    background-color: $white;
+    color: $black;
+  }
+
+  .highlight-gold {
+    background-color: $ucf-gold;
+    color: $black;
+  }
+
+  .callout-events {
+    @media (min-width: $screen-md-min) {
+      background-image: url('#{$events-bg-url}');
+      background-repeat: no-repeat;
+
+      background-size: contain;
+      background-position: 100% 0;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      background-size: 50%;
+    }
+
+    h1,
+    .h1 {
+      font-size: 75px;
+    }
+
+    .list-chevrons,
+    .events-list {
+      letter-spacing: .04em;
+    }
+
+    .heading-heavy {
+      margin: 2.5em 0 1em;
+    }
+  }
+
+  .events-list {
+    list-style: none;
+    padding-left: 0;
+
+    .events-list-item {
+      @media (min-width: $screen-sm-min) {
+        margin-bottom: 25px;
+        margin-top: 25px;
+      }
+    }
+
+    .event-link {
+      text-decoration: none;
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none;
+
+        .event-date,
+        .event-title {
+          text-decoration: underline;
+        }
+      }
+
+      // won't be present in shortcode-generated markup, but for the sake of development:
+      br {
+        display: none;
+      }
+    }
+
+    .event-start-date,
+    .event-start-title,
+    .event-title {
+      display: block;
+    }
+
+    .event-start-date,
+    .event-start-title {
+      line-height: 1.5;
+    }
+
+    .event-start-date {
+      color: $ucf-gold;
+      font-size: 15px;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+    }
+
+    .event-start-year,
+    .event-start-time,
+    .event-location {
+      // .sr-only
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    .event-title {
+      @include gotham(8);
+      @include font-smoothing();
+      font-size: 13px;
+      margin: .4em 0;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 16px;
+      }
+    }
+
+    .event-description {
+      @include gotham();
+      font-size: 12px;
+      line-height: 1.7;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+
+
+
+.typeahead-search-box {
+  @include gotham(6);
+
+  background-color: transparent;
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  height: 59px;
+  margin-bottom: 20px;
+  padding: 0;
+  transition: all 1s;
+
+  .title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  @media (max-width: $screen-md-max) {
+    height: 100px;
+    transition-delay: 0s;
+    transition: height 0.2s;
+  }
+
+  .twitter-typeahead {
+    width: 101.5%;
+    top: 5px;
+    float: right;
+    position: absolute;
+    right: -7px;
+
+    @media (max-width: $screen-sm-max) {
+      top: -1px;
+    }
+  }
+
+  .tt-menu.tt-open {
+    width: 100%;
+
+    .tt-dataset,
+    .tt-suggestion {
+      width: 100%;
+    }
+
+    .tt-cursor {
+      background: #e4c550;
+    }
+  }
+
+  input {
+    @include gotham(1);
+
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    color: #000;
+    font-size: 17px;
+    letter-spacing: .5px;
+    outline: 0;
+    padding: 13px 54px 13px 25px;
+    position: absolute;
+    transition: all 0.3s;
+    width: 90%;
+
+    z-index: 1;
+
+    &::-webkit-input-placeholder {
+      color: #222;
+    }
+    &:-moz-placeholder {
+      color: #222;
+    }
+    &::-moz-placeholder {
+      color: #222;
+    }
+    &:-ms-input-placeholder {
+      color: #222;
+    }
+    &:placeholder-shown {
+      color: #222;
+    }
+
+  }
+
+  .title {
+    font-size: 16px;
+    position: relative;
+    top: -20px;
+    transition: all 0.3s;
+
+    @media (max-width: $screen-md-max) {
+      font-size: 16px;
+      top: -20px;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      font-size: 16px;
+    }
+  }
+
+  .search-icon {
+    transition: all 0.3s;
+
+    @media (max-width: $screen-md-max) {
+      top: 34px;
+    }
+  }
+}
+
+.search-icon {
+  font-size: 33px;
+  position: absolute;
+  right: 38px;
+  top: 41px;
+  z-index: 2;
+}
+
+.tt-suggestion {
+  background-color: rgba(255, 225, 113, 0.9);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 5px 10px;
+  width: 500px;
+
+  hr {
+    border: 1px dashed #6f6f6f;
+    margin:0;
+  }
+
+  &:hover {
+    background-color: rgba(255, 225, 113, 0.8);
+  }
+}
