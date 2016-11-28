@@ -64,11 +64,11 @@
     h1,
     .h1,
     .margin-h1 {
-      // margin-top: 1em;
+      // e.g. margin-top: 1em;
       margin-top: $font-size-h1-xs;
 
       @media (min-width: $screen-sm-min) {
-        // margin-top: 1.5em;
+        // e.g. margin-top: 1.5em;
         margin-top: #{$font-size-h1-sm * 1.5};
       }
     }
@@ -76,11 +76,11 @@
     h2,
     .h2,
     .margin-h2 {
-      // margin-top: 1em;
+      // e.g. margin-top: 1em;
       margin-top: $font-size-h2-xs;
 
       @media (min-width: $screen-sm-min) {
-        // margin-top: 1.5em;
+        // e.g. margin-top: 1.5em;
         margin-top: #{$font-size-h2-sm * 1.5};
       }
     }
@@ -88,11 +88,11 @@
     h3,
     .h3,
     .margin-h3 {
-      // margin-top: 1em;
+      // e.g. margin-top: 1em;
       margin-top: $font-size-h3-xs;
 
       @media (min-width: $screen-sm-min) {
-        // margin-top: 1.5em;
+        // e.g. margin-top: 1.5em;
         margin-top: #{$font-size-h3-sm * 1.5};
       }
     }
@@ -100,11 +100,11 @@
     h4,
     .h4,
     .margin-h4 {
-      // margin-top: 1em;
+      // e.g. margin-top: 1em;
       margin-top: $font-size-h4-xs;
 
       @media (min-width: $screen-sm-min) {
-        // margin-top: 1.5em;
+        // e.g. margin-top: 1.5em;
         margin-top: #{$font-size-h4-sm * 1.5};
       }
     }
@@ -181,6 +181,49 @@
     }
   }
 
+  // Defines a gold callout with white text.
+  .callout-gold {
+    background-color: $ucf-gold;
+    color: $white;
+
+    a {
+      color: $white;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .list-navigation a {
+      font-weight: 400;
+    }
+  }
+
+  // Defines a gray callout with black text.
+  .callout-light-gray {
+    background-color: $callout-light-gray;
+    color: $black;
+
+    a {
+      color: $black;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .list-navigation a {
+      font-weight: 400;
+    }
+
+    .list-navigation a,
+    .list-chevrons a {
+      text-decoration: none;
+    }
+
+    .callout-aside-heading a {
+      color: $black;
+      font-weight: 400;
+      text-decoration: none;
+    }
+  }
+
 
   //
   // Class for a wide, full-screen section heading.
@@ -197,10 +240,6 @@
   .section-media-header-source {
     height: 400px;
     width: 100%;
-
-    @media (min-width: $screen-sm-min) {
-      height: 500px;
-    }
   }
 
   .section-media-header-frame {
@@ -222,11 +261,119 @@
     color: $white;
     font-size: 32px;
     text-shadow: 1px 1px 1px $black;
+  }
 
-    @media (min-width: $screen-sm-min) {
-      font-size: 48px;
+
+  //
+  // Icon links
+  //
+  .icon-links {
+    margin: 0 auto;
+    text-align: center;
+
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 24px;
+      padding-top: 24px;
     }
   }
 
+  .icon-link {
+    display: inline-block;
+    margin: 10px auto;
+    padding: 0 24px;
+    vertical-align: top;
+    width: 25%;
+
+    @media (max-width: $screen-xs-max) {
+      display: block;
+      max-width: 250px;
+      width: auto;
+    }
+
+    a {
+      color: $ucf-col-default;
+      text-decoration: none !important;
+
+      .fa {
+        font-size: 80px;
+        margin-bottom: 12px;
+        @include transition(color .25s);
+
+        @media (max-width: $screen-xs-max) {
+          font-size: 60px;
+        }
+      }
+
+      h3 {
+        @include transition(background .25s, color .25s);
+        @include gotham(7);
+        border-radius: 4px;
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        padding: 2px 14px;
+        width: auto;
+      }
+
+      p {
+        font-size: 12px;
+        font-style: italic;
+        padding-top: 8px;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .icon-link-white {
+    a {
+      color: $white;
+
+      h3 {
+        background: rgba(30, 30, 30, .25);
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        .fa {
+          color: $black;
+        }
+
+        h3 {
+          background: rgba(10, 10, 10, 0.55);
+          color: $ucf-gold;
+        }
+      }
+    }
+  }
+
+  .icon-link-dark {
+    a {
+      color: $black;
+
+      h3 {
+        background: rgba(30, 30, 30, .25);
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        .fa {
+          color: $white;
+        }
+
+        h3 {
+          background: rgba(10, 10, 10, 0.55);
+          color: $ucf-gold;
+        }
+      }
+    }
+  }
 }
 // scss-lint:enable IdSelector
