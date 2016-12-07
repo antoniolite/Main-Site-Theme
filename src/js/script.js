@@ -1525,6 +1525,12 @@ var academicDegreeSearch = function ($) {
   }
 };
 
+var homePageMajorsList = function($) {
+  $('.top-majors-heading').on('click', function() {
+    $('.top-majors-heading, .top-majors-content').toggleClass('expanded');
+  });
+};
+
 var sectionsMenu = function($) {
   var $sectionsMenu = $('#sections-menu');
   if ( $sectionsMenu.length ) {
@@ -1624,8 +1630,7 @@ if (typeof jQuery != 'undefined'){
     mediaTemplateVideo($);
     academicDegreeSearch($);
     sectionsMenu($);
-
-    //devBootstrap($);
+    homePageMajorsList($);
 
     statusAlertCheck($);
     setInterval(function() {statusAlertCheck($);}, 30000);

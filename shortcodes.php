@@ -1527,5 +1527,4 @@ function sc_image( $atts ) {
 
 add_shortcode( 'image', 'sc_image' );
 
-
 ?>
