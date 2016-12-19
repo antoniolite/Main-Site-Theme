@@ -1369,17 +1369,7 @@ function sc_events( $atts, $content='' ) {
 	$atts['start'] = intval( $atts['start'] );
 	$atts['limit'] = intval( $atts['limit'] );
 	$atts['show_descriptions'] = filter_var( $atts['show_descriptions'], FILTER_VALIDATE_BOOLEAN );
-
-	// var_dump($atts['use_short_month']);
-	// var_dump(filter_var($atts['use_short_month'], FILTER_VALIDATE_BOOLEAN));
 	$atts['use_short_month'] = filter_var($atts['use_short_month'], FILTER_VALIDATE_BOOLEAN);
-
-
-echo "<!--";
-
-print_r($atts);
-
-echo "-->";
 
 	ob_start();
 
