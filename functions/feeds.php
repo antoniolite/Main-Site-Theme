@@ -252,7 +252,7 @@ function display_events_list_item( $item, $list_item_classes='', $show_descripti
 	<li class="events-list-item vevent <?php echo $list_item_classes; ?>">
 		<a href="<?php echo $url; ?>" class="event-link url">
 			<time class="event-start-datetime dtstart" datetime="<?php echo $start->format( 'c' ); ?>">
-				<?php if ( $use_short_month ): ?>
+				<?php if ( $use_short_month !== true ): ?>
 					<span class="event-start-date"><?php echo $start->format( 'M j' ); ?></span>
 				<?php else: ?>
 					<span class="event-start-date"><?php echo $start->format( 'F j' ); ?></span>
