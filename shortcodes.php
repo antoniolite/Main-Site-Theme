@@ -1361,8 +1361,7 @@ function sc_events( $atts, $content='' ) {
 			'limit'             => 4,
 			'url'               => '',
 			'list_classes'      => '',
-			'list_item_classes' => '',
-			'custom_date_format' => ''
+			'list_item_classes' => ''
 		), $atts, 'sc_events'
 	);
 
