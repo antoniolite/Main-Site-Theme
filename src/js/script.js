@@ -1525,6 +1525,7 @@ var academicDegreeSearch = function ($) {
   }
 };
 
+
 var homePageMajorsList = function($) {
   $('.top-majors-heading').on('click', function() {
     $('.top-majors-heading, .top-majors-content').toggleClass('expanded');
@@ -1562,11 +1563,40 @@ var numberWithCommas = function(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
+
+
+/**
+ * Debouce method to pause logic until resize is complete
+ */
+function debounce(func, wait, immediate) {
+  var timeout;
+
+  return function () {
+    var context = this,
+        args = arguments;
+
+    var later = function () {
+      timeout = null;
+      if (!immediate) {
+        func.apply(context, args);
+      }
+    };
+
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+
+    if (callNow) {
+      func.apply(context, args);
+    }
+  };
+}
+
+
 var sectionsMenu = function($) {
   var $sectionsMenu = $('#sections-menu');
-  if ( $sectionsMenu.length ) {
-    var selector = $sectionsMenu.data('selector');
 
+  if ( $sectionsMenu.length ) {
     var clickHandler = function(e) {
       e.preventDefault();
 
@@ -1603,6 +1633,10 @@ var sectionsMenu = function($) {
 
     };
 
+    var setBumperHeight = function() {
+      $bumper.height($menu.height());
+    };
+
     var scroll = function() {
       if ($(window).scrollTop() >= offset) {
         $menu.removeClass('center');
@@ -1615,20 +1649,27 @@ var sectionsMenu = function($) {
       }
     };
 
-    var onResize = function() {
+    var onResize = debounce( function() {
       offset = $firstSection.offset().top - $menu.height(); // Reduce by 50px to account for university header.
-    };
+      setBumperHeight();
+    }, 100);
 
-    var $sections = $(selector),
-        $menuList = $sectionsMenu.find('ul.nav'),
-        $menu = $('#sections-navbar'),
+
+    var selector      = $sectionsMenu.data('selector'),
+        $sections     = $(selector),
+        $menuList     = $sectionsMenu.find('ul.nav'),
+        $menu         = $('#sections-navbar'),
         $firstSection = $sections.first(),
-        offset = $firstSection.offset().top;
+        offset        = $firstSection.offset().top,
+        $bumper       = $menu.next('.navbar-bumper');
 
     $.each($sections, addToMenu);
+
     $(document).on('scroll', scroll);
     $('body').scrollspy({target: '#sections-menu', offset: 60});
     $(window).on('resize', onResize);
+
+    setBumperHeight();
     scroll();
   }
 };

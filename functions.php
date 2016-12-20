@@ -1983,8 +1983,6 @@ function get_degree_search_search_again( $filters, $params ) {
  * Academics page list of colleges.
  **/
 function get_degrees_by_college( $college='' ) {
-	$college_degrees;
-
 	$args = array(
 		'post_type'      => 'degree',
 		'post_status'    => 'publish',
@@ -2028,7 +2026,7 @@ function get_degrees_by_college( $college='' ) {
  * Academics page list of colleges.
  **/
 function get_college_degrees() {
-	$college_degrees;
+	$college_degrees = array();
 	$colleges = get_terms( 'colleges', array( 'orderby' => 'name', 'order' => 'desc' ) );
 	if ( $colleges ) {
 
