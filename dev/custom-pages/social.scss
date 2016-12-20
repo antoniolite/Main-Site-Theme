@@ -20,6 +20,13 @@ $color-youtube: #cd201f;
 $color-vine: #00b488;
 $color-linkedin: #0077b5;
 
+#contentcol a {
+  border-bottom: none !important;
+
+  &:hover {
+    border-bottom: none !important;
+  }
+}
 
 #header-menu {
   li:not(:last-child) a,
@@ -256,11 +263,22 @@ $color-linkedin: #0077b5;
       .section-intro {
         padding: 20px 15px 20px 35px;
 
-        a { 
+        a {
           border-bottom: 0 !important;
 
           &:hover {
             border-bottom: 0 !important;
+          }
+        }
+      }
+
+      .section-text {
+        a {
+          color: #fff !important;
+
+          &:hover {
+            border-bottom: none !important;
+            text-decoration: underline !important;
           }
         }
       }
@@ -271,7 +289,7 @@ $color-linkedin: #0077b5;
     }
   }
 
-  a.link-user { 
-    border-bottom: 0 !important; 
-  } 
+  a.link-user {
+    border-bottom: 0 !important;
+  }
 }

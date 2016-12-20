@@ -8,7 +8,6 @@ require_once('functions/admin.php');  			# Admin/login functions
 require_once('functions/config.php');			# Where per theme settings are registered
 require_once('shortcodes.php');         		# Per theme shortcodes
 
-
 //Add theme-specific functions here.
 
 /**
@@ -1258,6 +1257,30 @@ function page_specific_webfonts( $pageid ) {
 
 
 /**
+ * Updates University Header link to include wide param
+ **/
+function wideheader_script() {
+	global $post;
+
+	// if the post doesn't have the wide setting set, ignore
+	if ( ! ( get_post_meta( $post->ID, 'page_use_wideheader', True ) == 'on' ) ) {
+		return;
+	}
+
+	foreach( Config::$scripts as $config_script ) {
+		if ($config_script["name"] === "ucfhb-script") {
+			$config_script["src"] .= "?use-1200-breakpoint=1";
+			$script_src = $config_script["src"];
+		}
+	}
+
+	wp_deregister_script( 'ucfhb-script' );
+	wp_register_script( 'ucfhb-script', $script_src );
+	wp_enqueue_script( 'ucfhb-script' );
+}
+add_action( 'wp_enqueue_scripts', 'wideheader_script' );
+
+/**
  * Kill attachment, author, and daily archive pages.
  *
  * http://betterwp.net/wordpress-tips/disable-some-wordpress-pages/
@@ -1570,6 +1593,8 @@ function append_degree_metadata( $post, $tuition_data ) {
 		$post->tax_college                 = get_first_result( wp_get_post_terms( $post->ID, 'colleges' ) );
 		$post->tax_department              = get_first_result( wp_get_post_terms( $post->ID, 'departments' ) );
 		$post->tax_program_type            = get_first_result( wp_get_post_terms( $post->ID, 'program_types' ) );
+		$post->use_classic_template        = filter_var( get_post_meta( $post->ID, 'degree_use_classic_template', TRUE ), FILTER_VALIDATE_BOOLEAN );
+		$post->header_image                = wp_get_attachment_url( get_post_meta( $post->ID, 'degree_header_image', TRUE ) );
 
 		if ( $tuition_data ) {
 			$post->tuition_estimates = get_tuition_estimate( $post->tax_program_type, $post->degree_hours );
@@ -1591,13 +1616,21 @@ function append_degree_metadata( $post, $tuition_data ) {
 			}
 		}
 
+		$is_graduate = Degree::is_graduate_program( $post );
+
 		if ( empty( $post->degree_pdf ) ) {
-			if ( Degree::is_graduate_program( $post ) ) {
+			if ( $is_graduate ) {
 				$post->degree_pdf = GRAD_CATALOG_URL;
 			}
 			else {
 				$post->degree_pdf = UNDERGRAD_CATALOG_URL;
 			}
+		}
+
+		if ( $is_graduate ) {
+			$post->application_url = $theme_options['graduate_app_url'];
+		} else {
+			$post->application_url = $theme_options['undergraduate_app_url'];
 		}
 
 		// Append taxonomy term "meta"
@@ -1945,6 +1978,67 @@ function get_degree_search_search_again( $filters, $params ) {
 	return ob_get_clean();
 }
 
+/**
+ * Returns an array containing college and undergrad degree counts, for use in
+ * Academics page list of colleges.
+ **/
+function get_degrees_by_college( $college='' ) {
+	$college_degrees;
+
+	$args = array(
+		'post_type'      => 'degree',
+		'post_status'    => 'publish',
+		'posts_per_page' => -1,
+		'order'          => 'ASC',
+		'orderby'        => 'post_title'
+	);
+
+	$args['tax_query'][] = array(
+		'taxonomy' => 'colleges',
+		'field'    => 'slug',
+		'terms'    => $college
+	);
+
+	$args['tax_query'][] = array(
+		'taxonomy' => 'program_types',
+		'field'    => 'slug',
+		'terms'    => 'undergraduate-degree'
+	);
+
+	$undergrad = get_posts( $args );
+
+	// modify query for graduate degrees
+	$args['tax_query'][1] = array(
+		'taxonomy' => 'program_types',
+		'field'    => 'slug',
+		'terms'    => 'graduate-degree'
+	);
+
+	$grad = get_posts( $args );
+
+	return array(
+		'college'        =>  $college,
+		'undergraduate'  =>  $undergrad,
+		'graduate'       =>  $grad,
+	);
+}
+
+/**
+ * Returns an array containing arrays of college and undergrad degrees, for use in
+ * Academics page list of colleges.
+ **/
+function get_college_degrees() {
+	$college_degrees;
+	$colleges = get_terms( 'colleges', array( 'orderby' => 'name', 'order' => 'desc' ) );
+	if ( $colleges ) {
+
+		foreach ( $colleges as $college ) {
+			$college_degrees[$college->slug] = get_degrees_by_college( $college->slug );
+		}
+	}
+
+	return $college_degrees;
+}
 
 /**
  * Returns relevant params passed in, or available relevant $_GET params.
@@ -2328,13 +2422,37 @@ function get_degree_search_suggestions() {
 
 	if ( $posts ) {
 		foreach ( $posts as $post ) {
-			$suggestions[] = $post->post_title;
+			$suggestions[] = str_replace( '&amp;', '&', $post->post_title );
 		}
 	}
 
 	return array_values( array_unique( $suggestions ) );
 }
 
+/**
+ * Returns an array of degree titles, for use by the degree search
+ * autocomplete field.
+ **/
+function get_academics_search_suggestions() {
+	$suggestions = array();
+	$posts = get_posts( array (
+		'numberposts' => -1,
+		'post_type' => 'degree'
+	) );
+
+	if ( $posts ) {
+		foreach ( $posts as $post ) {
+			$suggestion = (object) array (
+				'title' => $post->post_title,
+				'name' => str_replace( '&amp;', '&', $post->post_title ),
+				'url' => get_permalink( $post->ID ),
+			);
+			$suggestions[] = $suggestion;
+		}
+	}
+
+	return $suggestions;
+}
 
 /**
  * Returns an array containing arrays of term objects, for use in
@@ -2347,6 +2465,7 @@ function get_degree_search_filters() {
 	$filters['college']['name'] = 'Sort by College';
 
 	$colleges = get_terms( 'colleges', array( 'orderby' => 'name', 'order' => 'desc' ) );
+
 	if ( $colleges ) {
 		foreach ( $colleges as $college ) {
 			$alias = get_term_custom_meta( $college->term_id, 'colleges', 'college_alias' );
@@ -2374,7 +2493,6 @@ function get_degree_search_filters() {
 
 	return $filters;
 }
-
 
 /**
  * Return's a term's custom meta value by key name.
@@ -2573,6 +2691,94 @@ function colleges_render_columns( $out, $name, $term_id ) {
 	return $out;
 }
 add_filter( 'manage_colleges_custom_column', 'colleges_render_columns', 10, 3);
+
+/**
+ * Returns weather formatted with weather icons
+ **/
+
+function display_weather() {
+	$weather = get_weather_data();
+	$weather["icon"] = get_weather_icon( $weather["condition"] );
+	ob_start();
+?>
+	<?php if ( $weather ) : ?>
+		<div class="weather">
+			<?php if ( $weather["icon"] ) : ?>
+				<span class="icon" title="<?php echo $weather["condition"]; ?>">
+					<span class="<?php echo $weather["icon"]; ?>"></span>
+				</span>
+			<?php endif; ?>
+			<span class="location">Orlando, FL</span>
+			<span class="vertical-rule"></span>
+			<span class="temp"><?php echo $weather["temp"]; ?>F</span>
+		</div>
+	<?php endif; ?>
+<?php
+	return ob_get_clean();
+}
+
+function get_weather_icon( $condition ) {
+	// https://erikflowers.github.io/weather-icons/
+	$icon_prefix = "wi wi-";
+	$icons_to_conditions = array(
+			'day-sunny' => array(
+				'fair',
+				'default'
+			),
+			'hot' => array(
+				'hot',
+				'haze'
+			),
+			'cloudy' => array(
+				'overcast',
+				'partly cloudy',
+				'mostly cloudy'
+			),
+			'snowflake-cold' => array(
+				'blowing snow',
+				'cold',
+				'snow'
+			),
+			'showers' => array(
+				'showers',
+				'drizzle',
+				'mixed rain/sleet',
+				'mixed rain/hail',
+				'mixed snow/sleet',
+				'hail',
+				'freezing drizzle'
+			),
+			'cloudy-gusts' => array(
+				'windy'
+			),
+			'fog' => array(
+				'dust',
+				'smoke',
+				'foggy'
+			),
+			'storm-showers' => array(
+				'scattered thunderstorms',
+				'scattered thundershowers',
+				'scattered showers',
+				'freezing rain',
+				'isolated thunderstorms',
+				'isolated thundershowers'
+			),
+			'lightning' => array(
+				'tornado',
+				'severe thunderstorms'
+			)
+		);
+	$condition = strtolower( $condition );
+	foreach ( $icons_to_conditions as $icon => $condition_array ) {
+		if ( in_array( $condition, $condition_array ) ) {
+			return $icon_prefix . $icon;
+		}
+	}
+	// If the condition for some reason isn't listed here,
+	// no icon name will be returned and so no icon will be used
+	return false;
+}
 
 
 /**
@@ -3033,7 +3239,6 @@ function google_tag_manager_dl() {
 	return ob_get_clean();
 }
 
-
 function get_image_url( $filename ) {
 	global $wpdb, $post;
 
@@ -3106,5 +3311,30 @@ function get_social_icon( $item_slug ) {
 			return 'fa fa-pencil';
 	}
 }
+
+/**
+ * Adds updated body class for degrees
+ **/
+function add_classic_degree_body_class( $classes ) {
+	global $post;
+	if ( $post->post_type == 'degree' ) {
+		$use_classic_template = get_post_meta( $post->ID, 'degree_use_classic_template', True );
+		$header_image = get_post_meta( $post->ID, 'degree_header_image', True );
+		$has_header_image = ( $header_image !== "" ) ? true : false;
+		if ( $use_classic_template ) {
+			$classes[] = 'classic-degree-template';
+		}
+		else {
+			$classes[] = 'updated-degree-template';
+
+			if ( !$has_header_image ) {
+				$classes[] = 'no-header-image';
+			}
+		}
+	}
+	return $classes;
+}
+
+add_action( 'body_class', 'add_classic_degree_body_class' );
 
 ?>

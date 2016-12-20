@@ -498,6 +498,13 @@ class Page extends CustomPostType {
 					'std' => 'off',
 				),
 				array(
+					'name' => 'Use wide University Header',
+					'desc' => '(Optional) Check this box to use the wide version of the <a href="https://universityheader.ucf.edu/">University Header bar</a>.',
+					'id' => $prefix.'use_wideheader',
+					'type' => 'checkbox',
+					'std' => 'off',
+				),
+				array(
 					'name' => 'Subheader',
 					'desc' => '(Optional) Display a Subheader above the page\'s content.',
 					'id' => $prefix.'subheader',
@@ -622,6 +629,13 @@ class Page extends CustomPostType {
 					'desc' => 'Video to use at the top of pages using the media template.',
 					'id' => $prefix.'media_ogg',
 					'type' => 'file',
+				),
+				array(
+					'name' => '<strong>Media Template:</strong> Loop Video',
+					'desc' => 'Determines if the video should loop.',
+					'id'   => $prefix.'loop_video',
+					'type' => 'checkbox',
+					'std'  => 'off'
 				),
 				array(
 					'name' => '<strong>Media Template:</strong> Header Contents',
@@ -1415,6 +1429,18 @@ class Degree extends CustomPostType{
 				'desc' => 'graduate value in database. Do not modify this value.',
 				'id'   => $prefix.'is_graduate',
 				'type' => 'text',
+			),
+			array(
+				'name'  => 'Use Classic Template',
+				"desc"  => 'If checked, will used the classic template without an image header.',
+				'id'    => $prefix.'use_classic_template',
+				'type'  => 'checkbox'
+			),
+			array(
+				'name'  => 'Header Image',
+				'desc'  => 'Sets the header image of the degree (only if "Use Updated Template" is checked)',
+				'id'    => $prefix.'header_image',
+				'type'  => 'file'
 			)
 		);
 	}

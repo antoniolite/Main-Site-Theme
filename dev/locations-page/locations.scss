@@ -2,6 +2,7 @@
 @import '../../src/components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins';
 @import '../../src/components/bootstrap-sass-official/assets/stylesheets/bootstrap/type';
 @import '../../src/scss/variables';
+@import '../media-template/media-template-base';
 
 // Compile this file using the following command (assumes scss is installed globally)
 // scss --watch --style compressed dev/locations-page/locations.scss:dev/locations-page/locations.min.css
@@ -35,7 +36,7 @@ $verdana: Verdana, Geneva, sans-serif;
 
 .page-media {
   margin-bottom: -50px;
-  padding-bottom: 90px;
+  padding-bottom: 70px;
   top: -70px;
 }
 
@@ -64,6 +65,11 @@ $verdana: Verdana, Geneva, sans-serif;
       color: #3c5f7d;
       text-decoration: none;
     }
+  }
+
+  .section-more {
+    font-family: $gotham;
+    font-size: 13px;
   }
 
   .section-header {
@@ -177,71 +183,6 @@ $verdana: Verdana, Geneva, sans-serif;
     @media(max-width: $screen-xs-max) {
       font-size: 16px;
       margin-top: -2px;
-    }
-  }
-}
-
-.callout {
-  background: $ucf-gold;
-  margin: 0 auto;
-  padding: 48px 0;
-  text-align: center;
-
-  &:last-child {
-    margin-right: 0;
-  }
-
-  .icon-link {
-    display: inline-block;
-    margin: 10px auto;
-    padding: 0 12px;
-    width: 25%;
-
-    @media (max-width: $screen-xs-max) {
-      width: 50%;
-    }
-
-    a {
-      color: $ucf-col-default;
-
-      .fa {
-        font-size: 80px;
-        margin-bottom: 12px;
-        @include transition(color .25s);
-      }
-
-      h3 {
-        @include transition(background .25s, color .25s);
-        background: rgba(30, 30, 30, .25);
-        border-radius: 4px;
-        display: inline;
-        font-family: $gotham;
-        font-size: 14px;
-        font-weight: 700;
-        margin-bottom: 18px;
-        padding: 2px 14px;
-      }
-
-      p {
-        font-size: 12px;
-        font-style: italic;
-        padding-top: 8px;
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        text-decoration: none;
-
-        .fa {
-          color: #fff;
-        }
-
-        h3 {
-          background: rgba(10, 10, 10, 0.55);
-          color: $ucf-gold;
-        }
-      }
     }
   }
 }

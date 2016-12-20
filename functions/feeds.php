@@ -240,7 +240,7 @@ function display_events($start=null, $limit=null){?>
 }
 
 
-function display_events_list_item( $item, $list_item_classes='', $show_description=false ) {
+function display_events_list_item( $item, $list_item_classes='', $show_description=false, $use_short_month=false ) {
 	$start        = new DateTime( $item['starts'] );
 	$url          = $item['url'];
 	$title        = $item['title'];
@@ -249,19 +249,23 @@ function display_events_list_item( $item, $list_item_classes='', $show_descripti
 
 	ob_start();
 ?>
-	<li class="events-list-item vevent <?php echo $list_item_classes; ?>">
+	<li class="h-event events-list-item vevent <?php echo $list_item_classes; ?>">
 		<a href="<?php echo $url; ?>" class="event-link url">
-			<time class="event-start-datetime dtstart" datetime="<?php echo $start->format( 'c' ); ?>">
-				<span class="event-start-date"><?php echo $start->format( 'F j' ); ?></span>
+			<time class="dt-start event-start-datetime dtstart" datetime="<?php echo $start->format( 'c' ); ?>">
+				<?php if ( $use_short_month ): ?>
+					<span class="event-start-date"><?php echo $start->format( 'M j' ); ?></span>
+				<?php else: ?>
+					<span class="event-start-date"><?php echo $start->format( 'F j' ); ?></span>
+				<?php endif; ?>
 				<span class="event-start-year"><?php echo $start->format( 'Y' ); ?></span>
 				<span class="event-start-time"><?php echo $start->format( 'h:i a' ); ?></span>
-			</time>
-			<span class="event-title summary"><?php echo $title; ?></span>
-			<span class="event-location location"><?php echo $location; ?></span>
+				</time>
+			<span class="p-name event-title summary"><?php echo $title; ?></span>
+			<span class="p-location event-location location"><?php echo $location; ?></span>
 		</a>
 
 		<?php if ( $show_description ): ?>
-		<div class="event-description description"><?php echo truncateHtml( $description, 350 ); ?></div>
+		<div class="p-summary event-description description"><?php echo truncateHtml( $description, 350 ); ?></div>
 		<?php endif; ?>
 	</li>
 <?php
@@ -269,7 +273,7 @@ function display_events_list_item( $item, $list_item_classes='', $show_descripti
 }
 
 
-function display_events_list( $start=null, $limit=null, $url='', $list_classes='', $list_item_classes='', $show_descriptions=false ) {
+function display_events_list( $start=null, $limit=null, $url='', $list_classes='', $list_item_classes='', $show_descriptions=false, $use_short_month=false ) {
 	$options = get_option( THEME_OPTIONS_NAME );
 	$start = $start ? intval( $start ) : 0;
 
@@ -292,7 +296,7 @@ function display_events_list( $start=null, $limit=null, $url='', $list_classes='
 	<ul class="events-list <?php echo $list_classes; ?>">
 		<?php
 		foreach ( $events as $event ) {
-			echo display_events_list_item( $event, $list_item_classes, $show_descriptions );
+			echo display_events_list_item( $event, $list_item_classes, $show_descriptions, $use_short_month );
 		}
 		?>
 	</ul>
