@@ -307,6 +307,7 @@ function display_events_list( $start=null, $limit=null, $url='', $list_classes='
 }
 
 
+// TODO remove me; replace all calls to this function with UCF_News_Common::display_news_items()
 function display_news(){?>
 	<?php
 	$options = get_option(THEME_OPTIONS_NAME);
@@ -480,6 +481,7 @@ function get_events( $start=0, $limit=4, $url='' ) {
 }
 
 
+// TODO remove me; replace all calls to this function with UCF_News_Common::get_news_items()
 function get_news($start=null, $limit=null){
 	$options = get_option(THEME_OPTIONS_NAME);
 	$url     = $options['news_url'];
@@ -489,6 +491,7 @@ function get_news($start=null, $limit=null){
 
 
 /* Added function for main site theme: */
+// TODO remove me
 function get_sidebar_news($post, $start=null, $limit=null){
 	$options	 = get_option(THEME_OPTIONS_NAME);
 	$url      	 = get_post_meta($post->ID, 'page_widget_r_today_feed', TRUE) !== '' ? get_post_meta($post->ID, 'page_widget_r_today_feed', TRUE) : $options['news_url'];
@@ -518,4 +521,106 @@ function get_pegasus_issues( $start=0, $limit=5 ) {
 	}
 }
 
+
+/**
+ * Add new registered layouts for UCF News plugin
+ **/
+function mainsite_news_get_layouts( $layouts ) {
+	$layouts = array_merge(
+		$layouts,
+		array(
+			'modern' => 'Modern'
+		)
+	);
+	return $layouts;
+}
+add_filter( 'ucf_news_get_layouts', 'mainsite_news_get_layouts' );
+
+
+/**
+ * Modify output of UCF News classic layout for this theme:
+ **/
+// TODO
+
+
+/**
+ * Output of "Modern" UCF News layout:
+ **/
+function mainsite_news_display_modern_before( $items, $title, $display_type ) {
+	ob_start();
 ?>
+	<div class="ucf-news ucf-news-modern">
+<?php
+	echo ob_get_clean();
+}
+
+add_action( 'ucf_news_display_modern_before', 'mainsite_news_display_modern_before', 10, 3 );
+
+
+function mainsite_news_display_modern_title( $item, $title, $display_type ) {
+	echo do_action( 'ucf_news_display_classic_title', $item, $title, $display_type );
+}
+
+add_action( 'ucf_news_display_modern_title', 'mainsite_news_display_modern_title', 10, 3 );
+
+
+function mainsite_news_display_modern( $items, $title, $display_type ) {
+	ob_start();
+?>
+	<div class="ucf-news-items">
+	<?php
+	foreach( $items as $item ) :
+		$item_img = UCF_News_Common::get_story_image_or_fallback( $item );
+		$sections = UCF_News_Common::get_story_sections( $item );
+		$section  = isset( $sections[0] ) ? $sections[0] : false;
+	?>
+		<article class="ucf-news-item">
+
+		<?php if ( $item_img ): ?>
+			<a class="ucf-news-thumbnail" href="<?php echo $item->link; ?>">
+				<img class="ucf-news-thumbnail-image" src="<?php echo $item_img; ?>">
+			</a>
+		<?php endif; ?>
+
+			<div class="ucf-news-item-content">
+
+			<?php if ( $section ): ?>
+				<span class="ucf-news-item-label">
+					<?php echo $section->name; ?>
+				</span>
+			<?php endif; ?>
+
+				<h3 class="ucf-news-item-title">
+					<a class="ucf-news-item-link" href="<?php echo $item->link; ?>">
+						<?php echo $item->title->rendered; ?>
+					</a>
+				</h3>
+
+				<div class="ucf-news-item-excerpt">
+					<?php echo $item->excerpt->rendered; ?>
+				</div>
+
+			</div>
+
+		</article>
+	<?php
+	endforeach;
+	?>
+</div>
+<?php
+	echo ob_get_clean();
+}
+
+add_action( 'ucf_news_display_modern', 'mainsite_news_display_modern', 10, 3 );
+
+
+function mainsite_news_display_modern_after( $items, $title, $display_type ) {
+	ob_start();
+?>
+	</div>
+<?php
+	echo ob_get_clean();
+}
+
+add_action( 'ucf_news_display_modern_after', 'mainsite_news_display_modern_after', 10, 3 );
+
