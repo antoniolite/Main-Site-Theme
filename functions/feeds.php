@@ -307,6 +307,22 @@ function display_events_list( $start=null, $limit=null, $url='', $list_classes='
 }
 
 
+function display_news() {
+	$args = array(
+		'sections' => null,
+		'topics'   => null,
+		'offset'   => 0,
+		'limit'    => get_theme_option( 'news_max_items' )
+	);
+
+	$items = UCF_News_Feed::get_news_items( $args );
+
+	if ( $items ) {
+		echo UCF_News_Common::display_news_items( $items, 'classic', 'News', 'default' );
+	}
+}
+
+
 function display_pegasus_issues_list_item( $issue, $list_item_classes='' ) {
 	$issue_url               = $issue->link;
 	$issue_title             = $issue->title->rendered;
@@ -486,7 +502,7 @@ add_action( 'ucf_news_display_modern_before', 'mainsite_news_display_modern_befo
 
 
 function mainsite_news_display_modern_title( $item, $title, $display_type ) {
-	echo do_action( 'ucf_news_display_classic_title', $item, "In the News", $display_type );
+	echo '<h2 class="ucf-news-title">In the News</h2>';
 }
 
 add_action( 'ucf_news_display_modern_title', 'mainsite_news_display_modern_title', 10, 3 );
