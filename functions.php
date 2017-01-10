@@ -3411,4 +3411,5 @@ function add_classic_degree_body_class( $classes ) {
 
 add_action( 'body_class', 'add_classic_degree_body_class' );
 
+
 ?>
