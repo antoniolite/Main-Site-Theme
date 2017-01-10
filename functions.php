@@ -445,6 +445,95 @@ function get_weather_data() {
 
 
 /**
+ * Returns weather formatted with weather icons
+ **/
+
+function display_weather() {
+	$weather = get_weather_data();
+	$weather["icon"] = get_weather_icon( $weather["condition"] );
+	ob_start();
+?>
+	<?php if ( $weather ) : ?>
+		<div class="weather">
+			<?php if ( $weather["icon"] ) : ?>
+				<span class="icon" title="<?php echo $weather["condition"]; ?>">
+					<span class="<?php echo $weather["icon"]; ?>"></span>
+				</span>
+			<?php endif; ?>
+			<span class="location">Orlando, FL</span>
+			<span class="vertical-rule"></span>
+			<span class="temp"><?php echo $weather["temp"]; ?>F</span>
+		</div>
+	<?php endif; ?>
+<?php
+	return ob_get_clean();
+}
+
+function get_weather_icon( $condition ) {
+	// https://erikflowers.github.io/weather-icons/
+	$icon_prefix = "wi wi-";
+	$icons_to_conditions = array(
+			'day-sunny' => array(
+				'fair',
+				'default'
+			),
+			'hot' => array(
+				'hot',
+				'haze'
+			),
+			'cloudy' => array(
+				'overcast',
+				'partly cloudy',
+				'mostly cloudy'
+			),
+			'snowflake-cold' => array(
+				'blowing snow',
+				'cold',
+				'snow'
+			),
+			'showers' => array(
+				'showers',
+				'drizzle',
+				'mixed rain/sleet',
+				'mixed rain/hail',
+				'mixed snow/sleet',
+				'hail',
+				'freezing drizzle'
+			),
+			'cloudy-gusts' => array(
+				'windy'
+			),
+			'fog' => array(
+				'dust',
+				'smoke',
+				'foggy'
+			),
+			'storm-showers' => array(
+				'scattered thunderstorms',
+				'scattered thundershowers',
+				'scattered showers',
+				'freezing rain',
+				'isolated thunderstorms',
+				'isolated thundershowers'
+			),
+			'lightning' => array(
+				'tornado',
+				'severe thunderstorms'
+			)
+		);
+	$condition = strtolower( $condition );
+	foreach ( $icons_to_conditions as $icon => $condition_array ) {
+		if ( in_array( $condition, $condition_array ) ) {
+			return $icon_prefix . $icon;
+		}
+	}
+	// If the condition for some reason isn't listed here,
+	// no icon name will be returned and so no icon will be used
+	return false;
+}
+
+
+/**
  * Output weather data. Add an optional class for easy Bootstrap styling.
  **/
 function output_weather_data($cssclass=null) {
@@ -2690,92 +2779,79 @@ function colleges_render_columns( $out, $name, $term_id ) {
 }
 add_filter( 'manage_colleges_custom_column', 'colleges_render_columns', 10, 3);
 
-/**
- * Returns weather formatted with weather icons
- **/
 
-function display_weather() {
-	$weather = get_weather_data();
-	$weather["icon"] = get_weather_icon( $weather["condition"] );
-	ob_start();
+function add_colleges_fields( $taxonomy ) {
+	wp_enqueue_script('media-upload');
 ?>
-	<?php if ( $weather ) : ?>
-		<div class="weather">
-			<?php if ( $weather["icon"] ) : ?>
-				<span class="icon" title="<?php echo $weather["condition"]; ?>">
-					<span class="<?php echo $weather["icon"]; ?>"></span>
-				</span>
-			<?php endif; ?>
-			<span class="location">Orlando, FL</span>
-			<span class="vertical-rule"></span>
-			<span class="temp"><?php echo $weather["temp"]; ?>F</span>
-		</div>
-	<?php endif; ?>
+	<div class="form-field term-group">
+		<label for="colleges_header_image">Header Image</label>
+		<button type="button" class="button" id="colleges_header_image_upload">Upload Image</button>
+		<input type="hidden" name="colleges_header_image" id="colleges_header_image">
+	</div>
+	<div class="form-field term-group">
+		<img id="colleges_header_image_preview" src="" style="width: 100%;">
+	</div>
 <?php
-	return ob_get_clean();
 }
 
-function get_weather_icon( $condition ) {
-	// https://erikflowers.github.io/weather-icons/
-	$icon_prefix = "wi wi-";
-	$icons_to_conditions = array(
-			'day-sunny' => array(
-				'fair',
-				'default'
-			),
-			'hot' => array(
-				'hot',
-				'haze'
-			),
-			'cloudy' => array(
-				'overcast',
-				'partly cloudy',
-				'mostly cloudy'
-			),
-			'snowflake-cold' => array(
-				'blowing snow',
-				'cold',
-				'snow'
-			),
-			'showers' => array(
-				'showers',
-				'drizzle',
-				'mixed rain/sleet',
-				'mixed rain/hail',
-				'mixed snow/sleet',
-				'hail',
-				'freezing drizzle'
-			),
-			'cloudy-gusts' => array(
-				'windy'
-			),
-			'fog' => array(
-				'dust',
-				'smoke',
-				'foggy'
-			),
-			'storm-showers' => array(
-				'scattered thunderstorms',
-				'scattered thundershowers',
-				'scattered showers',
-				'freezing rain',
-				'isolated thunderstorms',
-				'isolated thundershowers'
-			),
-			'lightning' => array(
-				'tornado',
-				'severe thunderstorms'
-			)
-		);
-	$condition = strtolower( $condition );
-	foreach ( $icons_to_conditions as $icon => $condition_array ) {
-		if ( in_array( $condition, $condition_array ) ) {
-			return $icon_prefix . $icon;
-		}
+add_action( 'colleges_add_form_fields', 'add_colleges_fields', 10, 1 );
+
+function edit_colleges_fields( $term, $taxonomy ) {
+	wp_enqueue_script('media-upload');
+	$image = get_term_meta( $term->term_id, 'colleges_header_image', true );
+?>
+	<tr class="form-field term-group">
+		<th scope="row"><label for="colleges_header_image">Header Image</label></th>
+		<td>
+			<button type="button" class="button" id="colleges_header_image_upload">Change Image</button>
+			<button type="button" class="button" id="colleges_header_image_remove">Remove Image</button>
+		</td>
+		<td><input type="hidden" name="colleges_header_image" id="colleges_header_image"></td>
+	</tr>
+	<tr class="form-field term-group">
+		<td>Preview: </td>
+		<td><img id="colleges_header_image_preview" src="<?php echo $image; ?>" style="width: 100%;" ></td>
+	</tr>
+<?php
+}
+
+add_action( 'colleges_edit_form_fields', 'edit_colleges_fields', 10, 2 );
+
+function save_colleges_meta( $term_id, $tt_id ) {
+	if ( isset( $_POST['colleges_header_image'] ) ) {
+		$header_image = $_POST['colleges_header_image'];
+		add_term_meta( $term_id, 'colleges_header_image', $header_image );
 	}
-	// If the condition for some reason isn't listed here,
-	// no icon name will be returned and so no icon will be used
-	return false;
+}
+
+add_action( 'created_colleges', 'save_colleges_meta', 10, 2 );
+
+function edit_colleges_meta( $term_id, $tt_id ) {
+	if ( isset( $_POST['colleges_header_image'] ) ) {
+		$header_image = $_POST['colleges_header_image'];
+		update_term_meta( $term_id, 'colleges_header_image', $header_image );
+	}
+}
+
+add_action( 'edited_colleges', 'edit_colleges_meta', 10, 2 );
+
+/**
+ * Get Degree Header Image logic
+ **/
+function get_degree_header_image() {
+	global $post;
+
+	$degree_header = $post->header_image;
+	$college_header = get_term_meta( $post->tax_college->term_id, 'colleges_header_image', TRUE );
+	$fallback = get_theme_option( 'fallback_degree_image' );
+
+	if ( $degree_header ) {
+		return $degree_header;
+	} else if ( $college_header ) {
+		return $college_header;
+	} else {
+		return ( isset( $fallback ) && !empty( $fallback ) ) ? $fallback : NULL;
+	}
 }
 
 
