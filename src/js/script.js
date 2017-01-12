@@ -1479,7 +1479,10 @@ var academicDegreeSearch = function ($) {
   }
 };
 
-// https://codepen.io/hi-im-si/pen/uhxFn
+/**
+ * Count a number up form zero
+ * https://codepen.io/hi-im-si/pen/uhxFn
+ */
 var countUp = function($) {
   $('.count-up').each(function() {
     var $this = $(this),
@@ -1502,15 +1505,16 @@ var countUp = function($) {
   });
 };
 
-// http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+/**
+ * Place commas where approrpiate in large numbers
+ * http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+ */
 var numberWithCommas = function(x) {
   if (x < 1000) {
     return x;
   }
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
-
-
 
 /**
  * Debouce method to pause logic until resize is complete
@@ -1538,7 +1542,6 @@ function debounce(func, wait, immediate) {
     }
   };
 }
-
 
 var sectionsMenu = function($) {
   var $sectionsMenu = $('#sections-menu');
