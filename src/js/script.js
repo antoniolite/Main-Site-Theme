@@ -697,6 +697,10 @@ var degreeSearch = function ($) {
             'No degrees found for search term.',
             '</div>'
           ].join('\n'),
+          suggestion: function(data) {
+            // Defining a custom suggestion template fixes entity encoding issues
+            return '<div>' + data + '</div>';
+          }
         }
     });
 
@@ -1569,11 +1573,12 @@ var sectionsMenu = function($) {
       var $item  = $( $section ),
           url = $item.attr('id'),
           text;
-      if ($item.data('section-link-title') !== "undefined") {
+
+      if (typeof $item.data('section-link-title') !== "undefined") {
         text = $item.data('section-link-title');
       }
       else {
-        text = $item.find('h2.section-title').text();
+        text = $item.find('.section-title').text();
       }
       var $listItem = $('<li></li>'),
           $anchor = $('<a class="section-link" href="#' + url + '">' + text + '</a>');
