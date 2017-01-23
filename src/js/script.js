@@ -1472,7 +1472,7 @@ var academicDegreeSearch = function ($) {
         source: degreesWithDefaults,
         display: function(data) {
           // Stupid hack that forces parsing of html entities
-          return $('<textarea />').html(data).text();
+          return $('<textarea />').html(data.name).text();
         },
         templates: {
           empty: [
