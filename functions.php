@@ -445,95 +445,6 @@ function get_weather_data() {
 
 
 /**
- * Returns weather formatted with weather icons
- **/
-
-function display_weather() {
-	$weather = get_weather_data();
-	$weather["icon"] = get_weather_icon( $weather["condition"] );
-	ob_start();
-?>
-	<?php if ( $weather ) : ?>
-		<div class="weather">
-			<?php if ( $weather["icon"] ) : ?>
-				<span class="icon" title="<?php echo $weather["condition"]; ?>">
-					<span class="<?php echo $weather["icon"]; ?>"></span>
-				</span>
-			<?php endif; ?>
-			<span class="location">Orlando, FL</span>
-			<span class="vertical-rule"></span>
-			<span class="temp"><?php echo $weather["temp"]; ?>F</span>
-		</div>
-	<?php endif; ?>
-<?php
-	return ob_get_clean();
-}
-
-function get_weather_icon( $condition ) {
-	// https://erikflowers.github.io/weather-icons/
-	$icon_prefix = "wi wi-";
-	$icons_to_conditions = array(
-			'day-sunny' => array(
-				'fair',
-				'default'
-			),
-			'hot' => array(
-				'hot',
-				'haze'
-			),
-			'cloudy' => array(
-				'overcast',
-				'partly cloudy',
-				'mostly cloudy'
-			),
-			'snowflake-cold' => array(
-				'blowing snow',
-				'cold',
-				'snow'
-			),
-			'showers' => array(
-				'showers',
-				'drizzle',
-				'mixed rain/sleet',
-				'mixed rain/hail',
-				'mixed snow/sleet',
-				'hail',
-				'freezing drizzle'
-			),
-			'cloudy-gusts' => array(
-				'windy'
-			),
-			'fog' => array(
-				'dust',
-				'smoke',
-				'foggy'
-			),
-			'storm-showers' => array(
-				'scattered thunderstorms',
-				'scattered thundershowers',
-				'scattered showers',
-				'freezing rain',
-				'isolated thunderstorms',
-				'isolated thundershowers'
-			),
-			'lightning' => array(
-				'tornado',
-				'severe thunderstorms'
-			)
-		);
-	$condition = strtolower( $condition );
-	foreach ( $icons_to_conditions as $icon => $condition_array ) {
-		if ( in_array( $condition, $condition_array ) ) {
-			return $icon_prefix . $icon;
-		}
-	}
-	// If the condition for some reason isn't listed here,
-	// no icon name will be returned and so no icon will be used
-	return false;
-}
-
-
-/**
  * Output weather data. Add an optional class for easy Bootstrap styling.
  **/
 function output_weather_data($cssclass=null) {
@@ -1506,6 +1417,11 @@ function wp_title_degree_programs($title, $separator) {
 add_filter('wp_title', 'wp_title_degree_programs', 11, 2); // Allow overriding by SEO plugins
 
 
+function format_search_query( $search_query ) {
+	return htmlspecialchars( urldecode( stripslashes( $search_query ) ) );
+}
+
+
 /**
  * Generates text used in page <title> for Degree Search based on current filters/search val.
  **/
@@ -1516,7 +1432,7 @@ function get_degree_search_title( $separator='|', $params=null ) {
 
 	if ( !empty( $params ) ) {
 		if ( isset( $params['search-query'] ) ) {
-			$title = htmlspecialchars( urldecode( $params['search-query'] ) ) . ' ' . $title;
+			$title = format_search_query( $params['search-query'] ) . ' ' . $title;
 		}
 
 		$title .= ' '. $separator . ' Top ';
@@ -1872,7 +1788,7 @@ function fetch_degree_data( $params ) {
 
 	if ( $params ) {
 		if ( isset( $params['search-query'] ) ) {
-			$args['s'] = htmlspecialchars( urldecode( $params['search-query'] ) );
+			$args['s'] = format_search_query( $params['search-query'] );
 			$use_suggestions = true;
 		}
 
@@ -1974,7 +1890,7 @@ function get_degree_search_result_phrase( $result_count_total, $params ) {
 	<?php
 	// Search query phrasing
 	if ( isset( $params['search-query'] ) ): ?>
-	<span class="search-result">&ldquo;<?php echo htmlspecialchars( urldecode( $params['search-query'] ) ); ?>&rdquo;</span>
+	<span class="search-result">&ldquo;<?php echo format_search_query( $params['search-query'] ); ?>&rdquo;</span>
 	<?php endif; ?>
 
 	<span class="degree-result-phrase-desktop">degree program<?php if ( $result_count_total !== 1 ): ?>s<?php endif; ?> found</span>
@@ -2043,7 +1959,7 @@ function get_degree_search_search_again( $filters, $params ) {
 	if ( isset( $params['search-query'] ) ): ?>
 		<div class="degree-search-again-container">
 			<p class="degree-search-similar">
-				Try your search again for <strong>&ldquo;<?php echo htmlspecialchars( urldecode( $params['search-query'] ) ); ?>&rdquo;</strong> filtered by degree type:
+				Try your search again for <strong>&ldquo;<?php echo format_search_query( $params['search-query'] ); ?>&rdquo;</strong> filtered by degree type:
 			</p>
 			<?php foreach ( $filters as $key=>$filter ): ?>
 				<?php if ( $filter['name'] == 'Degrees'): ?>
@@ -2055,7 +1971,7 @@ function get_degree_search_search_again( $filters, $params ) {
 								'search-query' => $params['search-query']
 							) );
 						?>
-							<a class="search-again-link <?php echo $term->slug; ?>" href="<?php echo get_permalink( get_page_by_title( 'Degree Search' ) ); ?>?<?php echo $query; ?>" data-<?php echo $key; ?>="<?php echo $term->slug; ?>" data-search-term="<?php echo htmlspecialchars( urldecode( $params['search-query'] ) ); ?>">
+							<a class="search-again-link <?php echo $term->slug; ?>" href="<?php echo get_permalink( get_page_by_title( 'Degree Search' ) ); ?>?<?php echo $query; ?>" data-<?php echo $key; ?>="<?php echo $term->slug; ?>" data-search-term="<?php echo format_search_query( $params['search-query'] ); ?>">
 								<?php echo $term->name; ?>s
 							</a>
 						<?php endif; ?>
@@ -2143,10 +2059,13 @@ function degree_search_params_or_fallback( $params ) {
 		// Force default search view params (search results triggered immediately from the default view)
 		else if ( isset( $_GET['search-default'] ) && intval( $_GET['search-default'] ) === 1 ) {
 			$params = unserialize( DEGREE_SEARCH_S_DEFAULT_PARAMS );
-			$params['search-query'] = $_GET['search-query'];
+			$params['search-query'] = stripslashes( $_GET['search-query'] );
 		}
 		else {
 			$params = $_GET;
+			if ( isset( $params['search-query'] ) ) {
+				$params['search-query'] = stripslashes( $params['search-query'] );
+			}
 		}
 	}
 
@@ -2367,7 +2286,7 @@ function get_degree_search_contents( $return=false, $params=null ) {
 	} else {
 		$no_results = 'No results found';
 		if ( isset( $params['search-query'] ) ) {
-			$no_results .= ' for <strong>&ldquo;'. htmlspecialchars( urldecode( $params['search-query'] ) ) .'&rdquo;</strong>';
+			$no_results .= ' for <strong>&ldquo;'. format_search_query( $params['search-query'] ) .'&rdquo;</strong>';
 		}
 		$no_results .= '.';
 	}
@@ -2852,6 +2771,95 @@ function get_degree_header_image() {
 	} else {
 		return ( isset( $fallback ) && !empty( $fallback ) ) ? $fallback : NULL;
 	}
+}
+
+
+/**
+ * Returns weather formatted with weather icons
+ **/
+
+function display_weather() {
+	$weather = get_weather_data();
+	$weather["icon"] = get_weather_icon( $weather["condition"] );
+	ob_start();
+?>
+	<?php if ( $weather ) : ?>
+		<div class="weather">
+			<?php if ( $weather["icon"] ) : ?>
+				<span class="icon" title="<?php echo $weather["condition"]; ?>">
+					<span class="<?php echo $weather["icon"]; ?>"></span>
+				</span>
+			<?php endif; ?>
+			<span class="location">Orlando, FL</span>
+			<span class="vertical-rule"></span>
+			<span class="temp"><?php echo $weather["temp"]; ?>F</span>
+		</div>
+	<?php endif; ?>
+<?php
+	return ob_get_clean();
+}
+
+function get_weather_icon( $condition ) {
+	// https://erikflowers.github.io/weather-icons/
+	$icon_prefix = "wi wi-";
+	$icons_to_conditions = array(
+			'day-sunny' => array(
+				'fair',
+				'default'
+			),
+			'hot' => array(
+				'hot',
+				'haze'
+			),
+			'cloudy' => array(
+				'overcast',
+				'partly cloudy',
+				'mostly cloudy'
+			),
+			'snowflake-cold' => array(
+				'blowing snow',
+				'cold',
+				'snow'
+			),
+			'showers' => array(
+				'showers',
+				'drizzle',
+				'mixed rain/sleet',
+				'mixed rain/hail',
+				'mixed snow/sleet',
+				'hail',
+				'freezing drizzle'
+			),
+			'cloudy-gusts' => array(
+				'windy'
+			),
+			'fog' => array(
+				'dust',
+				'smoke',
+				'foggy'
+			),
+			'storm-showers' => array(
+				'scattered thunderstorms',
+				'scattered thundershowers',
+				'scattered showers',
+				'freezing rain',
+				'isolated thunderstorms',
+				'isolated thundershowers'
+			),
+			'lightning' => array(
+				'tornado',
+				'severe thunderstorms'
+			)
+		);
+	$condition = strtolower( $condition );
+	foreach ( $icons_to_conditions as $icon => $condition_array ) {
+		if ( in_array( $condition, $condition_array ) ) {
+			return $icon_prefix . $icon;
+		}
+	}
+	// If the condition for some reason isn't listed here,
+	// no icon name will be returned and so no icon will be used
+	return false;
 }
 
 
