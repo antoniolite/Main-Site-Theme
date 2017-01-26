@@ -310,7 +310,7 @@ function display_events_list( $start=null, $limit=null, $url='', $list_classes='
 function display_news() {
 	$args = array(
 		'sections' => null,
-		'topics'   => null,
+		'topics'   => 'main-site-stories',
 		'offset'   => 0,
 		'limit'    => get_theme_option( 'news_max_items' )
 	);
@@ -430,7 +430,11 @@ function get_events( $start=0, $limit=4, $url='' ) {
 	}
 
 	// Append /upcoming/ to the end of the url, if it's not already present.
-	if ( substr( $url, -9 ) !== 'upcoming/' ) {
+	// Don't append to category or tag event lists.
+	if (
+		( substr( $url, '/category/' ) === false || substr( $url, '/tag/' ) === false )
+		&& ( substr( $url, -9 ) !== 'upcoming/' )
+	) {
 		$url .= 'upcoming/';
 	}
 
