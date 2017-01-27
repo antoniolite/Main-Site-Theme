@@ -3,11 +3,11 @@
 
 $header-media-xs-url:    '//www.ucf.edu/wp-content/uploads/2017/01/athletics-header-xs.jpg';
 $fightsong-bg-sm-url:    '//www.ucf.edu/wp-content/uploads/2017/01/football-fan.jpg';
-$events-bg-md-url:       '//placehold.it/850x950/';
-$destiny-bg-sm-url:      '//www.ucf.edu/wp-content/uploads/2017/01/basketball-player.jpg';
+$events-bg-md-url:       '//www.ucf.edu/wp-content/uploads/2017/01/athletics-flag.jpg';
+$destiny-bg-sm-url:      '//www.ucf.edu/wp-content/uploads/2017/01/tacko-fall.jpg';
 $nextlevel-bg-xs-url:    '//www.ucf.edu/wp-content/uploads/2017/01/athletics-crowd-xs.jpg';
 $nextlevel-bg-sm-url:    '//www.ucf.edu/wp-content/uploads/2017/01/athletics-crowd.jpg';
-$facilities-bg-sm-url:    '//placehold.it/1600x650/';
+$facilities-bg-sm-url:   '//www.ucf.edu/wp-content/uploads/2017/01/athletics-aerial.jpg';
 
 
 .page-media .page-media-header {
@@ -18,20 +18,31 @@ $facilities-bg-sm-url:    '//placehold.it/1600x650/';
   @media (max-width: $screen-xs-max) {
     background-image: url('#{$header-media-xs-url}') !important;
     background-position: bottom center;
+  }
+
+  @media (max-width: 479px) {
     height: 124vw;
-    max-height: 700px;
+    max-height: 600px;
+  }
+
+  @media (min-width: 480px) and (max-width: $screen-xs-max) {
+    height: 94vw;
+    max-height: 650px;
   }
 
   .header-title {
     background-color: rgba($ucf-gold, .9); // increase opacity slightly for this page
-    margin-top: 70px;
 
     @media (max-width: 479px) {
-      font-size: 10vw;
+      font-size: 9vw;
     }
 
     @media (min-width: 480px) and (max-width: $screen-xs-max) {
       font-size: 8vw;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      margin-top: 70px;
     }
   }
 
@@ -147,6 +158,7 @@ $facilities-bg-sm-url:    '//placehold.it/1600x650/';
     width: 1px;
   }
 
+  // Highlight text
   .highlight {
     display: inline-block;
     padding: .4em 1em;
@@ -162,6 +174,7 @@ $facilities-bg-sm-url:    '//placehold.it/1600x650/';
     color: $black;
   }
 
+  // Condensed headings
   .heading-condensed {
     @include knockout();
     line-height: .9;
@@ -218,6 +231,16 @@ $facilities-bg-sm-url:    '//placehold.it/1600x650/';
     font-size: 18px;
   }
 
+  // Athletics gold text
+  a.ucf-athletics-gold {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      color: $ucf-athletics-gold !important;
+    }
+  }
+
 
   //
   // PER-SECTION OVERRIDES
@@ -235,13 +258,24 @@ $facilities-bg-sm-url:    '//placehold.it/1600x650/';
     .section-heading {
       margin-top: 0;
     }
-  }
 
-  .intro-teams-list {
-    margin-bottom: 0;
+    .intro-teams-list {
+      margin-bottom: 0;
 
-    li {
-      margin-bottom: .6em;
+      li {
+        margin-bottom: .6em;
+      }
+
+      a {
+        font-weight: normal;
+        text-decoration: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
@@ -491,6 +525,8 @@ $facilities-bg-sm-url:    '//placehold.it/1600x650/';
   .section-nextlevel {
     .callout {
       background-image: url($nextlevel-bg-xs-url);
+      background-position: center center;
+      background-repeat: no-repeat;
       background-size: cover;
 
       @media (min-width: $screen-sm-min) {
@@ -508,8 +544,10 @@ $facilities-bg-sm-url:    '//placehold.it/1600x650/';
 
 
   .section-facilities {
-    @media (max-width: $screen-xs-max) {
-      margin-bottom: 30px;
+    margin-bottom: 30px;
+
+    @media (min-width: $screen-sm-min) {
+      margin-bottom: -1px;
     }
 
     @media (min-width: $screen-sm-min) {
@@ -543,6 +581,10 @@ $facilities-bg-sm-url:    '//placehold.it/1600x650/';
 
     li {
       margin-bottom: .6em;
+    }
+
+    a {
+      color: $black;
     }
   }
 
