@@ -1440,20 +1440,34 @@ var academicDegreeSearch = function ($) {
 
   if ($academicsDegreeSearch.length > 0) {
 
+    var scoreSorter = function(a, b) {
+      if (a.score < b.score) {
+        return 1;
+      }
+      if (a.score > b.score) {
+        return -1;
+      }
+      return 0;
+    };
+
     var degrees = new Bloodhound({
       identify: function(obj) { return obj.name; },
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      local: searchSuggestions
+      local: searchSuggestions.sort(scoreSorter)
     });
 
-    var degreesWithDefaults = function (q, sync) {
-      if (q === '') {
-        sync(degrees.get('Bachelor', 'Graduate', 'Certificate'));
-      } else {
-        degrees.search(q, sync);
-      }
+    $('.degree-search-box, .academics-search-box').on('click', '#show-all-degrees', function () {
+      window.location = '/degree-search/?search-query=' + $('#academics-degree-search').val();
+    });
+
+    var updateShowAll = function () {
+      $('#show-all-degrees').html('Show all degress for <em>"' + $academicsDegreeSearch.val() + '"</em>');
     };
+
+    $academicsDegreeSearch.on('input', function () {
+      setTimeout(updateShowAll, 50);
+    });
 
     $academicsDegreeSearch.bind('typeahead:select', function(ev, suggestion) {
       window.location = suggestion.url;
@@ -1469,7 +1483,7 @@ var academicDegreeSearch = function ($) {
       },
       {
         name: 'degrees',
-        source: degreesWithDefaults,
+        source: degrees,
         display: function(data) {
           // Stupid hack that forces parsing of html entities
           return $('<textarea />').html(data.name).text();
@@ -1480,7 +1494,7 @@ var academicDegreeSearch = function ($) {
             'No degrees found for search term.',
             '</div>' + degreeType
           ].join('\n'),
-          footer: degreeType
+          footer: '<div class="tt-suggestion tt-selectable"><a href="#" id="show-all-degrees">Show all degress for </a></div>' + degreeType
         }
       });
   }

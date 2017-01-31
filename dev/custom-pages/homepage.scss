@@ -249,7 +249,6 @@ $color-linkedin: #0077b5;
     padding-bottom: 0;
     padding-top: 0;
 
-
     @media (max-width: $screen-sm-max) {
       min-height: 175px;
     }
@@ -265,8 +264,29 @@ $color-linkedin: #0077b5;
     }
 
     .padded-bottom {
-      padding-bottom: 70px;
+      padding-bottom: 47px;
     }
+
+    @media (max-width: $screen-md-max) {
+      img {
+        top: 73px;
+      }
+
+      .padded-top {
+        padding-top: 95px;
+      }
+
+      .padded-bottom {
+        padding-bottom: 0;
+      }
+    }
+
+    @media (max-width: $screen-sm-max) {
+      .padded-bottom {
+        padding-bottom: 25px;
+      }
+    }
+
   }
 
   .callout.callout-intro {
@@ -1155,7 +1175,8 @@ $color-linkedin: #0077b5;
     }
 
     a,
-    a:link {
+    a:link,
+    a:hover {
       color: $black;
     }
 
