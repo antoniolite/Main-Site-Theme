@@ -1477,22 +1477,11 @@ var academicDegreeSearch = function ($) {
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       local: addScore(searchSuggestions),
-      sorter: scoreSorter,
-      initialize: false
+      sorter: scoreSorter
     });
-
-    degrees.initialize();
 
     $('.degree-search-box, .academics-search-box').on('click', '#show-all-degrees', function () {
       window.location = '/degree-search/?search-query=' + $('#academics-degree-search').val();
-    });
-
-    var updateShowAll = function () {
-      $('#show-all-degrees').html('Show all ' + resultCount + ' degress for <em>"' + $academicsDegreeSearch.val() + '"</em>');
-    };
-
-    $academicsDegreeSearch.on('input', function () {
-      setTimeout(updateShowAll, 50);
     });
 
     $academicsDegreeSearch.bind('typeahead:select', function(ev, suggestion) {
@@ -1515,6 +1504,10 @@ var academicDegreeSearch = function ($) {
       {
         name: 'degrees',
         source: function(query, sync, async) {
+          // degree.search is called here 2x because I (Jim) was unable to come up with
+          // a way of hooking into the typehead sync function. So instead, I hook into
+          // a custom countSync function first to set the count variable, followed by
+          // passing the typeahead sync function.
           // Set Count
           degrees.search(query, countSync);
           // Set Results
@@ -1531,7 +1524,9 @@ var academicDegreeSearch = function ($) {
             'No degrees found for search term.',
             '</div>' + degreeType
           ].join('\n'),
-          footer: '<div class="tt-suggestion tt-selectable"><a href="#" id="show-all-degrees">Show all degress for </a></div>' + degreeType
+          footer: function (context) {
+            return '<div class="tt-suggestion tt-selectable"><a href="#" id="show-all-degrees">Show all ' + resultCount + ' degress for <em>&ldquo;' + $academicsDegreeSearch.val() + '&rdquo;</em></a></div>' + degreeType;
+          }
         }
       });
   }
