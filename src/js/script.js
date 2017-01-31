@@ -1437,6 +1437,7 @@ var academicDegreeSearch = function ($) {
  * #search-query specific typeahead init, event handlers
  **/
   var $academicsDegreeSearch = $('#academics-degree-search');
+  var resultCount = 0;
 
   if ($academicsDegreeSearch.length > 0) {
 
@@ -1472,19 +1473,22 @@ var academicDegreeSearch = function ($) {
     };
 
     var degrees = new Bloodhound({
-      identify: function(obj) { return obj.name; },
+      identify: function(obj) { return obj.name + obj.programType; },
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       local: addScore(searchSuggestions),
-      sorter: scoreSorter
+      sorter: scoreSorter,
+      initialize: false
     });
+
+    degrees.initialize();
 
     $('.degree-search-box, .academics-search-box').on('click', '#show-all-degrees', function () {
       window.location = '/degree-search/?search-query=' + $('#academics-degree-search').val();
     });
 
     var updateShowAll = function () {
-      $('#show-all-degrees').html('Show all degress for <em>"' + $academicsDegreeSearch.val() + '"</em>');
+      $('#show-all-degrees').html('Show all ' + resultCount + ' degress for <em>"' + $academicsDegreeSearch.val() + '"</em>');
     };
 
     $academicsDegreeSearch.on('input', function () {
@@ -1497,6 +1501,11 @@ var academicDegreeSearch = function ($) {
 
     var degreeType = '<div class="tt-suggestion"><hr></div><div class="tt-suggestion tt-selectable footer-title"><strong>What type of degree are you interested in?</strong></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=undergraduate-degree">Undergraduate Degree</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=graduate-degree">Graduate Degree</a></div><div class="tt-suggestion tt-selectable"><a href="/degree-search/?program-type%5B0%5D=certificate">Certificate</a></div>';
 
+    var countSync = function(datum) {
+      resultCount = datum.length;
+      return datum;
+    };
+
     // Typeahead init
     $academicsDegreeSearch
       .typeahead({
@@ -1505,7 +1514,12 @@ var academicDegreeSearch = function ($) {
       },
       {
         name: 'degrees',
-        source: degrees,
+        source: function(query, sync, async) {
+          // Set Count
+          degrees.search(query, countSync);
+          // Set Results
+          degrees.search(query, sync);
+        },
         limit: 8,
         display: function(data) {
           // Stupid hack that forces parsing of html entities
