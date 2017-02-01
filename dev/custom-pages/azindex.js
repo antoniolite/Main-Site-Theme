@@ -1,7 +1,6 @@
 (function() {
 
-    var $jumpTo       = $('#jump-to'),
-        $alphaResults = $('.post-type-search-alpha'),
+    var $alphaResults = $('.post-type-search-alpha'),
         toTopMarkup   = '<span class="to-top-text"><span class="fa fa-long-arrow-up"></span> <a href="#">Back to Top</a></span>';
 
 
@@ -62,11 +61,7 @@
       $letterHeading
         .after(toTopMarkup);
 
-      if ($letterList.children().length < 1) {
-        // Disable jump-to options for sections with no content
-        $jumpTo.find('option[value="az-'+ letter +'"]').attr('disabled', true);
-      }
-      else {
+      if ($letterList.children().length) {
         // Apply affixing to each heading wrap, if that letter has list items.
         letterWrapAffix.offset = getLetterWrapAffixOffset($letterWrap, $letterList);
         $letterWrap.affix(letterWrapAffix);

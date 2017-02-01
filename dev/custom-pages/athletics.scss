@@ -116,16 +116,6 @@ $facilities-bg-sm-url:   '//www.ucf.edu/wp-content/uploads/2017/01/athletics-aer
     font-size: 15px;
   }
 
-  // Larger underline headings on this page
-  .heading-underline {
-    font-size: 21px;
-
-    @media (min-width: $screen-sm-min) {
-      font-size: 26px;
-      margin-top: 80px;
-    }
-  }
-
   // Add more letter spacing to sans-serif headings on this page
   .heading-underline,
   .heading-sans-serif {
@@ -410,6 +400,7 @@ $facilities-bg-sm-url:   '//www.ucf.edu/wp-content/uploads/2017/01/athletics-aer
     }
 
     .event-link {
+      position: relative;
       text-decoration: none;
 
       &:hover,
@@ -423,7 +414,16 @@ $facilities-bg-sm-url:   '//www.ucf.edu/wp-content/uploads/2017/01/athletics-aer
         }
       }
 
-      // won't be present in shortcode-generated markup, but for the sake of development:
+      &:hover::before {
+        color: $ucf-gold;
+        content: '\f0da';
+        font-family: FontAwesome;
+        font-size: 24px;
+        left: -25px;
+        top: 14px;
+        position: absolute;
+      }
+
       br {
         display: none;
       }
@@ -539,6 +539,68 @@ $facilities-bg-sm-url:   '//www.ucf.edu/wp-content/uploads/2017/01/athletics-aer
   .section-news {
     @media (max-width: $screen-xs-max) {
       margin-bottom: 30px;
+    }
+
+    .section-heading-wrap {
+      border-bottom: 1px solid $gray-lighter;
+      margin-bottom: 20px;
+      padding: 0 0 8px;
+      position: relative;
+    }
+
+    .section-heading {
+      margin-bottom: 0;
+    }
+
+    .section-subheading {
+      margin-top: 30px;
+
+      @media (min-width: $screen-sm-min) {
+        margin-top: 75px;
+      }
+    }
+
+    .read-more {
+      bottom: 8px;
+      position: absolute;
+      right: 0;
+
+      .fa {
+        margin-left: 6px;
+      }
+
+      a {
+        color: $gray;
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: uppercase;
+
+        @media (min-width: $screen-sm-min) {
+          font-size: 14px;
+        }
+      }
+    }
+
+    // Hide default category labels and always display "Sports"
+    .ucf-news-item-label {
+      display: none;
+    }
+
+    .ucf-news-item-content::before {
+      @include gotham(7);
+      background-color: $ucf-gold;
+      color: $black;
+      content: 'Sports';
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin: 0 0 10px;
+      padding: 2px 15px;
+      text-transform: uppercase;
+
+      @media (min-width: $screen-sm-min) {
+        font-size: 11px;
+      }
     }
   }
 
