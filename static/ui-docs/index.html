@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>UCF Style Guide</title>
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <link rel="stylesheet" href="media-template-base.min.css" />
+  <link rel="stylesheet" href="//cloud.typography.com/730568/757444/css/fonts.css" type="text/css" media="all">
+  <link rel="stylesheet" href="prism.css" />
+  <script type="text/javascript" src="prism.js"></script>
+  <style>
+    html body {
+      padding: 0;
+    }
+
+    .navbar-brand {
+      color: #ffc904 !important;
+      text-transform: uppercase;
+    }
+
+    .section-header {
+      margin-top: 40px;
+    }
+
+    .section-header,
+    .section-sub-header {
+      font-family: "Gotham SSm 7r","Gotham SSm A","Gotham SSm B","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    .state-list {
+      list-style: none;
+      margin-top: 10px;
+      padding-left: 0;
+    }
+
+    code {
+      background-color: #eee;
+      font-family: monospace;
+    }
+
+    .example {
+      padding: 10px;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+    }
+
+    pre {
+      background-color: #eee;
+      font-family: monospace;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    .section-divider {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="navbar-brand">UCF Style Guide</h1>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div id="contentcol" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-section">
+  <h2 class="section-header heading-underline">Well Icon</h2>
+
+  <p>Class to be applied to a .fa- or .glyphicon- icon inside of a well. The icon using this class is intended to be wrapped within a small column at the -sm breakpoint and above;</p>
+
+  
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+       <div class="well">
+   <div class="row">
+     <div class="col-sm-2">
+       <span class="fa fa-info well-icon"></span>
+     </div>
+     <div class="col-sm-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+   </div>
+ </div>
+    </div>
+    <pre>
+      <code class="language-html">
+ &lt;div class="well"&gt;
+   &lt;div class="row"&gt;
+     &lt;div class="col-sm-2"&gt;
+       &lt;span class="fa fa-info well-icon"&gt;&lt;/span&gt;
+     &lt;/div&gt;
+     &lt;div class="col-sm-10"&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/div&gt;
+   &lt;/div&gt;
+ &lt;/div&gt;
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="page-section">
+  <h2 class="section-header heading-underline">Callout</h2>
+
+  <p>Class for generic full-width callout sections. The base .callout class should NOT be used for defining background colors or inner text colors. Separate color modification classes should be used to change callout colors instead. To create a callout type with a different background/text color, create a new, separate class with as open specificity as possible (e.g. .callout-new, NOT .callout.callout-new). See .callout-dark as an example.</p>
+
+  
+  <div>
+    <h3 class="section-sub-header h4">States</h3>
+
+    <ul class="state-list">
+      
+        <li><code>.callout-dark</code> - black callout with white text.</li>
+      
+        <li><code>.callout-gold</code> - gold callout with white text.</li>
+      
+        <li><code>.callout-light-gray</code> - light gray callout with black text.</li>
+      
+        <li><code>.callout-athletics-gold</code> - althetics gold callout with black text.</li>
+      
+    </ul>
+  </div>
+  
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+       <div class="callout callout-dark">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <h2>H2 Heading</h2>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+       </div>
+     </div>
+   </div>
+ </div>
+ <div class="callout callout-gold">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <h2>H2 Heading</h2>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+       </div>
+     </div>
+   </div>
+ </div>
+ <div class="callout callout-light-gray">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <h2>H2 Heading</h2>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+       </div>
+     </div>
+   </div>
+ </div>
+ <div class="callout callout-athletics-gold">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <h2>H2 Heading</h2>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+       </div>
+     </div>
+   </div>
+ </div>
+    </div>
+    <pre>
+      <code class="language-html">
+ &lt;div class="callout callout-dark"&gt;
+   &lt;div class="container"&gt;
+     &lt;div class="row"&gt;
+       &lt;div class="col-md-12"&gt;
+         &lt;h2&gt;H2 Heading&lt;/h2&gt;
+         &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+       &lt;/div&gt;
+     &lt;/div&gt;
+   &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="callout callout-gold"&gt;
+   &lt;div class="container"&gt;
+     &lt;div class="row"&gt;
+       &lt;div class="col-md-12"&gt;
+         &lt;h2&gt;H2 Heading&lt;/h2&gt;
+         &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+       &lt;/div&gt;
+     &lt;/div&gt;
+   &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="callout callout-light-gray"&gt;
+   &lt;div class="container"&gt;
+     &lt;div class="row"&gt;
+       &lt;div class="col-md-12"&gt;
+         &lt;h2&gt;H2 Heading&lt;/h2&gt;
+         &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+       &lt;/div&gt;
+     &lt;/div&gt;
+   &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="callout callout-athletics-gold"&gt;
+   &lt;div class="container"&gt;
+     &lt;div class="row"&gt;
+       &lt;div class="col-md-12"&gt;
+         &lt;h2&gt;H2 Heading&lt;/h2&gt;
+         &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+       &lt;/div&gt;
+     &lt;/div&gt;
+   &lt;/div&gt;
+ &lt;/div&gt;
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="page-section">
+  <h2 class="section-header heading-underline">Aside Heading</h2>
+
+  <p>Defines a heading within a callout aside/sidebar. Designed to align with adjacent h2, h3 and h4 headings.</p>
+
+  
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+       <div class="callout callout-light-gray">
+   <aside class="callout-aside">
+     <h3 class="callout-aside-heading">
+       <a href="#"><span class="fa fa-question-circle"></span>FAQ</a>
+     </h3>
+     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+   </aside>
+ </div>
+    </div>
+    <pre>
+      <code class="language-html">
+ &lt;div class="callout callout-light-gray"&gt;
+   &lt;aside class="callout-aside"&gt;
+     &lt;h3 class="callout-aside-heading"&gt;
+       &lt;a href="#"&gt;&lt;span class="fa fa-question-circle"&gt;&lt;/span&gt;FAQ&lt;/a&gt;
+     &lt;/h3&gt;
+     &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+   &lt;/aside&gt;
+ &lt;/div&gt;
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="page-section">
+  <h2 class="section-header heading-underline">Icon Links</h2>
+
+  <p>Links with icons</p>
+
+  
+  <div>
+    <h3 class="section-sub-header h4">States</h3>
+
+    <ul class="state-list">
+      
+        <li><code>.icon-link-white</code> - Displays a white icon and text.</li>
+      
+        <li><code>.icon-link-white:hover</code> - Inverse cover displayed on hover.</li>
+      
+        <li><code>.icon-link-dark</code> - Displays a dark icon and text.</li>
+      
+        <li><code>.icon-link-dark:hover</code> - Inverse cover displayed on hover.</li>
+      
+    </ul>
+  </div>
+  
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+       <aside class="callout callout-gold">
+   <div class="container icon-links">
+     <div class="icon-link icon-link-white">
+       <a href="#"><p></p>
+         <div class="icon-wrapper">
+           <span class="fa fa-map"></span>
+         </div>
+         <h3>Campus Map</h3>
+         <p>Locate labs, offices, parking &amp; food</p>
+       </a>
+     </div>
+     <div class="icon-link icon-link-dark">
+       <a href="#"><p></p>
+         <div class="icon-wrapper">
+           <span class="fa fa-map"></span>
+         </div>
+         <h3>Campus Map</h3>
+         <p>Locate labs, offices, parking &amp; food</p>
+       </a>
+     </div>
+   </div>
+ </aside>
+    </div>
+    <pre>
+      <code class="language-html">
+ &lt;aside class="callout callout-gold"&gt;
+   &lt;div class="container icon-links"&gt;
+     &lt;div class="icon-link icon-link-white"&gt;
+       &lt;a href="#"&gt;&lt;p&gt;&lt;/p&gt;
+         &lt;div class="icon-wrapper"&gt;
+           &lt;span class="fa fa-map"&gt;&lt;/span&gt;
+         &lt;/div&gt;
+         &lt;h3&gt;Campus Map&lt;/h3&gt;
+         &lt;p&gt;Locate labs, offices, parking &amp; food&lt;/p&gt;
+       &lt;/a&gt;
+     &lt;/div&gt;
+     &lt;div class="icon-link icon-link-dark"&gt;
+       &lt;a href="#"&gt;&lt;p&gt;&lt;/p&gt;
+         &lt;div class="icon-wrapper"&gt;
+           &lt;span class="fa fa-map"&gt;&lt;/span&gt;
+         &lt;/div&gt;
+         &lt;h3&gt;Campus Map&lt;/h3&gt;
+         &lt;p&gt;Locate labs, offices, parking &amp; food&lt;/p&gt;
+       &lt;/a&gt;
+     &lt;/div&gt;
+   &lt;/div&gt;
+ &lt;/aside&gt;
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="page-section">
+  <h2 class="section-header heading-underline">List Navigation</h2>
+
+  <p>Basic unordered list styles with optimized list item spacing applied. Intended for use on lists of links, e.g. "Explore Further", "More Information", etc.</p>
+
+  
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+       <ul class="list-navigation">
+   <li><a href="#">List Nav 1</a></li>
+   <li><a href="#">List Nav 2</a></li>
+   <li><a href="#">List Nav 3</a></li>
+ </ul>
+    </div>
+    <pre>
+      <code class="language-html">
+ &lt;ul class="list-navigation"&gt;
+   &lt;li&gt;&lt;a href="#"&gt;List Nav 1&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="#"&gt;List Nav 2&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="#"&gt;List Nav 3&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="page-section">
+  <h2 class="section-header heading-underline">List Chevrons</h2>
+
+  <p>Class for an unordered list with gold chevron icons for bullets.</p>
+
+  
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+       <ul class="list-chevrons">
+   <li>List Item 1</li>
+   <li>List Item 2</li>
+   <li>List Item 3</li>
+ </ul>
+    </div>
+    <pre>
+      <code class="language-html">
+ &lt;ul class="list-chevrons"&gt;
+   &lt;li&gt;List Item 1&lt;/li&gt;
+   &lt;li&gt;List Item 2&lt;/li&gt;
+   &lt;li&gt;List Item 3&lt;/li&gt;
+ &lt;/ul&gt;
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="page-section">
+  <h2 class="section-header heading-underline">Heading Sans Serif</h2>
+
+  <p>Applies generic Gotham styles to a heading.</p>
+
+  
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+      <h3 class="heading-sans-serif">Heading Heading Sans Serif</h3>
+    </div>
+    <pre>
+      <code class="language-html">
+&lt;h3 class="heading-sans-serif"&gt;Heading Heading Sans Serif&lt;/h3&gt;
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="page-section">
+  <h2 class="section-header heading-underline">Heading Slab Serif</h2>
+
+  <p>Applies generic Archer styles to a heading.</p>
+
+  
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+      <h3 class="heading-slab-serif">Heading Slab Serif</h3>
+    </div>
+    <pre>
+      <code class="language-html">
+&lt;h3 class="heading-slab-serif"&gt;Heading Slab Serif&lt;/h3&gt;
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="page-section">
+  <h2 class="section-header heading-underline">Heading Underline</h2>
+
+  <p>Styles a heading with a gold underline, Gotham face and uppercase text.</p>
+
+  
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+      <h2 class="heading-underline">Heading Underline</h2>
+    </div>
+    <pre>
+      <code class="language-html">
+&lt;h2 class="heading-underline"&gt;Heading Underline&lt;/h2&gt;
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

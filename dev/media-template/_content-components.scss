@@ -4,18 +4,22 @@
 
 // scss-lint:disable IdSelector
 #contentcol {
-
-  // Class to be applied to a .fa- or .glyphicon- icon inside of a well.
-  // The icon using this class is intended to be wrapped within a small
-  // column at the -sm breakpoint and above; e.g.:
-  //
-  // <div class="well"><div class="row">
-  // <div class="col-sm-2"><span class="fa fa-info well-icon"></span></div>
-  // <div class="col-sm-10">Well content...</div>
-  // </div></div>
-  //
-  // See updated Apply Now page for sample usage.
-  //
+//
+// @name Well Icon
+// @description Class to be applied to a .fa- or .glyphicon- icon inside of a well. The icon using this class is intended to be wrapped within a small column at the -sm breakpoint and above;
+//
+// See updated Apply Now page for sample usage.
+//
+// @markup
+// <div class="well">
+//   <div class="row">
+//     <div class="col-sm-2">
+//       <span class="fa fa-info well-icon"></span>
+//     </div>
+//     <div class="col-sm-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+//   </div>
+// </div>
+//
   .well-icon {
     color: $ucf-gold;
     display: block;
@@ -35,16 +39,60 @@
     }
   }
 
-  // Class for generic full-width callout sections.
+  // @name Callout
   //
-  // The base .callout class should NOT be used for defining background colors
-  // or inner text colors. Separate color modification classes should be used
-  // to change callout colors instead.
+  // @description Class for generic full-width callout sections. The base .callout class should NOT be used for defining background colors or inner text colors. Separate color modification classes should be used to change callout colors instead. To create a callout type with a different background/text color, create a new, separate class with as open specificity as possible (e.g. .callout-new, NOT .callout.callout-new). See .callout-dark as an example.
   //
-  // To create a callout type with a different background/text color, create a
-  // new, separate class with as open specificity as possible
-  // (e.g. .callout-new, NOT .callout.callout-new).
-  // See .callout-dark as an example.
+  // @state .callout-dark - black callout with white text.
+  // @state .callout-gold - gold callout with white text.
+  // @state .callout-light-gray - light gray callout with black text.
+  // @state .callout-athletics-gold - althetics gold callout with black text.
+  //
+  // @markup
+  // <div class="callout callout-dark">
+  //   <div class="container">
+  //     <div class="row">
+  //       <div class="col-md-12">
+  //         <h2>H2 Heading</h2>
+  //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </div>
+  //
+  //
+  // <div class="callout callout-gold">
+  //   <div class="container">
+  //     <div class="row">
+  //       <div class="col-md-12">
+  //         <h2>H2 Heading</h2>
+  //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </div>
+  //
+  // <div class="callout callout-light-gray">
+  //   <div class="container">
+  //     <div class="row">
+  //       <div class="col-md-12">
+  //         <h2>H2 Heading</h2>
+  //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </div>
+  //
+  // <div class="callout callout-athletics-gold">
+  //   <div class="container">
+  //     <div class="row">
+  //       <div class="col-md-12">
+  //         <h2>H2 Heading</h2>
+  //         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </div>
   //
   .callout {
     // Dumb hack that removes 1px whitespace from bottom of page, when the last
@@ -120,17 +168,19 @@
       }
     }
 
-    // Defines a heading within a callout aside/sidebar.
-    // Designed to align with adjacent h2, h3 and h4 headings.
+    // @name Aside Heading
     //
-    // Intended usage:
+    // @description Defines a heading within a callout aside/sidebar. Designed to align with adjacent h2, h3 and h4 headings.
     //
-    // <aside class="callout-aside">
-    // <h3 class="callout-aside-heading">
-    // <a href="..."><span class="fa fa-question-circle"></span>FAQ</a>
-    // </h3>
-    // ...
-    // </aside>
+    // @markup
+    // <div class="callout callout-light-gray">
+    //   <aside class="callout-aside">
+    //     <h3 class="callout-aside-heading">
+    //       <a href="#"><span class="fa fa-question-circle"></span>FAQ</a>
+    //     </h3>
+    //     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    //   </aside>
+    // </div>
     //
     .callout-aside-heading {
       @include archer(4, italic);
@@ -260,6 +310,39 @@
     }
   }
 
+  // @name Icon Links
+  //
+  // @description Links with icons
+  //
+  // @state .icon-link-white - Displays a white icon and text.
+  // @state .icon-link-white:hover - Inverse cover displayed on hover.
+  // @state .icon-link-dark - Displays a dark icon and text.
+  // @state .icon-link-dark:hover - Inverse cover displayed on hover.
+  //
+  // @markup
+  // <aside class="callout callout-gold">
+  //   <div class="container icon-links">
+  //     <div class="icon-link icon-link-white">
+  //       <a href="#"><p></p>
+  //         <div class="icon-wrapper">
+  //           <span class="fa fa-map"></span>
+  //         </div>
+  //         <h3>Campus Map</h3>
+  //         <p>Locate labs, offices, parking &amp; food</p>
+  //       </a>
+  //     </div>
+  //     <div class="icon-link icon-link-dark">
+  //       <a href="#"><p></p>
+  //         <div class="icon-wrapper">
+  //           <span class="fa fa-map"></span>
+  //         </div>
+  //         <h3>Campus Map</h3>
+  //         <p>Locate labs, offices, parking &amp; food</p>
+  //       </a>
+  //     </div>
+  //   </div>
+  // </aside>
+  //
   .icon-links {
     margin: 10px auto;
     text-align: center;

@@ -1,0 +1,32 @@
+<div class="page-section">
+  <h2 class="section-header heading-underline">{{ name }}</h2>
+
+  <p>{{ description }}</p>
+
+  {% if state %}
+  <div>
+    <h3 class="section-sub-header h4">States</h3>
+
+    <ul class="state-list">
+      {% for s in state %}
+        <li><code>{{ s.name }}</code> - {{ s.description }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <div>
+    <h3 class="section-sub-header h4">Example</h3>
+
+    <div class="example">
+      {{ markup.example | safe }}
+    </div>
+    <pre>
+      <code class="language-html">
+{{ markup.escaped }}
+      </code>
+    </pre>
+  </div>
+</div>
+
+<hr class="section-divider">

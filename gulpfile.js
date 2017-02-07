@@ -12,7 +12,8 @@ var gulp = require('gulp'),
     jshintStylish = require('jshint-stylish'),
     scsslint = require('gulp-scss-lint'),
     autoprefixer = require('gulp-autoprefixer'),
-    browserSync = require('browser-sync').create();
+    browserSync = require('browser-sync').create(),
+    dss = require('gulp-dss');
 
 var gutil = require('gulp-util');
 
@@ -184,6 +185,15 @@ gulp.task('watch', function() {
   gulp.watch(config.scssPath + '/**/*.scss', ['css']);
   gulp.watch(config.jsPath + '/**/*.js', ['js']).on('change', browserSync.reload);
   gulp.watch('**/*.php').on("change", browserSync.reload);
+});
+
+gulp.task('dss', function() {
+  return gulp.src(config.devPath + '/media-template/**/*.scss')
+    .pipe(dss({
+      output: 'index.html',
+      templatePath: './static/ui-docs/templates/'
+    }))
+    .pipe(gulp.dest('static/ui-docs/'));
 });
 
 

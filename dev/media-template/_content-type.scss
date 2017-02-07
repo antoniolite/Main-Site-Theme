@@ -5,14 +5,32 @@
 // scss-lint:disable IdSelector
 #contentcol {
 
-  // Basic unordered list styles with optimized list item spacing applied.
-  // Intended for use on lists of links, e.g. "Explore Further",
-  // "More Information", etc.
+  // @name List Navigation
+  //
+  // @description Basic unordered list styles with optimized list item spacing applied. Intended for use on lists of links, e.g. "Explore Further", "More Information", etc.
+  //
+  // @markup
+  // <ul class="list-navigation">
+  //   <li><a href="#">List Nav 1</a></li>
+  //   <li><a href="#">List Nav 2</a></li>
+  //   <li><a href="#">List Nav 3</a></li>
+  // </ul>
+  //
   .list-navigation {
     @include list-reset();
   }
 
-  // Class for an unordered list with gold chevron icons for bullets.
+  // @name List Chevrons
+  //
+  // @description Class for an unordered list with gold chevron icons for bullets.
+  //
+  // @markup
+  // <ul class="list-chevrons">
+  //   <li>List Item 1</li>
+  //   <li>List Item 2</li>
+  //   <li>List Item 3</li>
+  // </ul>
+  //
   .list-chevrons {
     @include list-reset();
     padding-left: 1.25em;
@@ -32,20 +50,35 @@
     }
   }
 
-  // Applies generic Gotham styles to a heading.
+  // @name Heading Sans Serif
+  //
+  // @description Applies generic Gotham styles to a heading.
+  //
+  // @markup
+  // <h3 class="heading-sans-serif">Heading Heading Sans Serif</h3>
   .heading-sans-serif {
     @include gotham(7);
     line-height: 1.25;
     text-transform: uppercase;
   }
 
-  // Applies generic Archer styles to a heading.
+  // @name Heading Slab Serif
+  //
+  // @description Applies generic Archer styles to a heading.
+  //
+  // @markup
+  // <h3 class="heading-slab-serif">Heading Slab Serif</h3>
+  //
   .heading-slab-serif {
     @include archer(7);
   }
 
-  // Styles a heading with a gold underline, Gotham face and uppercase
-  // text.
+  // @name Heading Underline
+  //
+  // @description Styles a heading with a gold underline, Gotham face and uppercase text.
+  //
+  // @markup
+  // <h2 class="heading-underline">Heading Underline</h2>
   .heading-underline {
     // .heading-underline elements should always be consistent in
     // font size, so force them on this class

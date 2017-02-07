@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>UCF Style Guide</title>
+  <link rel="stylesheet" href="../css/style.min.css" />
+  <link rel="stylesheet" href="media-template-base.min.css" />
+  <link rel="stylesheet" href="//cloud.typography.com/730568/757444/css/fonts.css" type="text/css" media="all">
+  <link rel="stylesheet" href="prism.css" />
+  <script type="text/javascript" src="prism.js"></script>
+  <style>
+    html body {
+      padding: 0;
+    }
+
+    .navbar-brand {
+      color: #ffc904 !important;
+      text-transform: uppercase;
+    }
+
+    .section-header {
+      margin-top: 40px;
+    }
+
+    .section-header,
+    .section-sub-header {
+      font-family: "Gotham SSm 7r","Gotham SSm A","Gotham SSm B","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+
+    .state-list {
+      list-style: none;
+      margin-top: 10px;
+      padding-left: 0;
+    }
+
+    code {
+      background-color: #eee;
+      font-family: monospace;
+    }
+
+    .example {
+      padding: 10px;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+    }
+
+    pre {
+      background-color: #eee;
+      font-family: monospace;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    .section-divider {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="navbar-brand">UCF Style Guide</h1>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div id="contentcol" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
