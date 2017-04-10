@@ -271,6 +271,13 @@ Config::$theme_settings = array(
 			'value'       => $theme_options['gtm_id'],
 		)),
 		new TextField(array(
+			'name'        => 'Optimizely Project ID',
+			'id'          => THEME_OPTIONS_NAME.'[opt_id]',
+			'description' => 'The ID for the Optimizely Project.',
+			'default'     => null,
+			'value'       => $theme_options['opt_id'],
+		)),
+		new TextField(array(
 			'name'        => 'Chartbeat UID',
 			'id'          => THEME_OPTIONS_NAME.'[cb_uid]',
 			'description' => 'Example: <em>1842</em>',

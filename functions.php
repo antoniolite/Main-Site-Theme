@@ -3356,6 +3356,21 @@ function google_tag_manager_dl() {
 	return ob_get_clean();
 }
 
+/**
+ * Prints the Optimizely snippet.
+ **/
+function optimizely_snippet() {
+	$opt_id = get_theme_option( 'opt_id' );
+	if ( $opt_id ) {
+		return '<script src="//cdn.optimizely.com/js/' . $opt_id . '.js"></script>';
+	}
+	return;
+}
+
+/**
+ * Prints the Google Tag Manager data layer snippet.
+ **/
+
 function get_image_url( $filename ) {
 	global $wpdb, $post;
 
