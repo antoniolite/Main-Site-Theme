@@ -4,7 +4,12 @@
 		<?="\n".header_()."\n"?>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<?php echo optimizely_snippet(); ?>
+		<?php
+		// Load Optimizely snippet
+		if ( !is_admin() ) {
+			echo optimizely_snippet();
+		} ?>
+
 		<?php echo google_tag_manager_dl(); ?>
 
 		<?php if ( CB_UID ): ?>
